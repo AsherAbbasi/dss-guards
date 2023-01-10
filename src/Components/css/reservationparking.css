@@ -1,0 +1,42 @@
+.font{
+   font-size: 14px;
+   padding: 2px !important;
+}
+.headerStyle{
+    font-size: 12px;
+    padding: 2px !important;
+    font-weight: 800;
+    color:white ;
+}
+#searchSection{
+    margin-left: -25px;
+    background-color: brown;
+    padding: 23px;
+    
+}
+#search{
+ background-color: red;
+}
+/* .tableSection{
+    padding: 23px;
+} */
+#searchBtn{
+    width: 100px;
+    background-color: green;
+    color: white;
+
+}
+#searchBar{
+    width: 30%;
+    border: 2px solid gainsboro;
+}
+#btn{
+   background: none;
+   border: none;
+   color: red;
+}
+#btn:hover{
+    background: none;
+    border: none;
+    color: green;
+ }

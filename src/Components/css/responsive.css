@@ -1,0 +1,115 @@
+
+#text{
+    color:white;
+    text-shadow:1px 1px 4px;
+     border-bottom:1px solid rgb(206, 202, 202);
+     /* margin-top:22px; */
+     padding-bottom:12px;
+     text-align:center;
+     font-size: 30px;
+     background-color:brown ;
+}
+#left{
+    color: red;
+    margin-top: 10px;
+}
+#ViewUnits{
+    background: none;
+    border: none;
+    color: green;
+    margin-top: -7px;
+    padding: 0px !important;
+    margin-left: 30px;
+}
+#addButton{
+    width: 173px;
+    margin-left: 8px;
+    background-color: white;
+    color: green;
+    border: 1px solid rgb(236, 235, 235);
+    
+}
+#addButton:hover{
+    background-color: rgb(245, 245, 245);
+    color: black;
+}
+#submitBtn{
+    background-color: brown;
+    border: none;
+    font-weight: 600;
+}
+#submitBtn:hover{
+    background-color: rgb(157, 14, 14);
+    font-size: 17px;
+    font-weight: 700;
+}
+#buildingEditBtn{
+background: none;
+border: none;
+border-radius: 0px;
+border-right: 1px solid gray;
+color: green;
+padding: 0px;
+font-weight: 500;
+}
+#buildingDeleteBtn{
+    background: none;
+    border: none;
+    color: brown;
+    padding: 0px;
+    font-weight: 500;
+    }
+    #buildingEditBtn:hover{
+      color: rgb(17, 195, 17);
+      font-weight: 500;
+    }
+    #buildingDeleteBtn:hover{
+        color: rgb(239, 97, 97);
+        font-weight: 500;
+      }
+@media only screen and (min-width:992px) and (max-width: 1299px) {
+#tbl{
+    margin: 22px;
+    margin-left: 33px;
+}  
+#dasboardPara{
+    margin-left:74px;
+
+}
+#text{
+    font-size: 20px;
+}
+ 
+}
+@media only screen and (min-width:770px) and (max-width: 991px) {
+    #tbl{
+        margin: 22px;
+        margin-left: 33px;
+    } 
+    #sideBar{
+        padding-right: 62px;
+        border: none;
+    } 
+    #dasboardPara{
+        margin-left:44px;
+    
+    }
+    #text{
+        font-size: 18px;
+    }
+     
+    }
+    @media only screen  and (max-width: 470px) {
+        #tbl{
+        margin-left: -37px;
+        } 
+        #dasboardPara{
+        padding:0 !important;
+        font-size: 14px;
+        
+        }
+        #text{
+            font-size: 18px;
+        }
+         
+        }
