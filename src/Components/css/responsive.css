@@ -4,10 +4,13 @@
     text-shadow:1px 1px 4px;
      border-bottom:1px solid rgb(206, 202, 202);
      /* margin-top:22px; */
-     padding-bottom:12px;
+     padding:12px;
      text-align:center;
      font-size: 30px;
      background-color:brown ;
+}
+#dasboardPara{
+    padding: 26px;
 }
 #left{
     color: red;
@@ -43,6 +46,12 @@
     font-size: 17px;
     font-weight: 700;
 }
+#sideBar{
+    text-align: left;
+    height: 100vh;
+    
+}
+
 #buildingEditBtn{
 background: none;
 border: none;
@@ -59,11 +68,11 @@ font-weight: 500;
     padding: 0px;
     font-weight: 500;
     }
-    #buildingEditBtn:hover{
+#buildingEditBtn:hover{
       color: rgb(17, 195, 17);
       font-weight: 500;
     }
-    #buildingDeleteBtn:hover{
+ #buildingDeleteBtn:hover{
         color: rgb(239, 97, 97);
         font-weight: 500;
       }

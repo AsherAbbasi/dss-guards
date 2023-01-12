@@ -1,6 +1,6 @@
 import React from 'react'
 import companyLogo from '../images/dssguardslogo.jpeg';
-import { Row, Container } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
