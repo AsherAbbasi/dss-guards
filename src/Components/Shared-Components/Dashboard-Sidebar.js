@@ -35,7 +35,7 @@ import { useNavigate } from 'react-router-dom';
       navigate('/user')
     }
     const handleClickViewEmployees=()=>{
-      navigate('/employees')
+      navigate('/users')
     }
     return (
       <>
@@ -57,8 +57,8 @@ import { useNavigate } from 'react-router-dom';
               <MenuItem style={{color:'white'}}  onClick={handleClickAddBuilding}><Pencil style={{marginRight:"12px"}}/>Add Building </MenuItem>
               <MenuItem style={{color:'white'}} onClick={handleClickViewBuilding}> <Eye style={{marginRight:"12px"}}/>View Building </MenuItem>
               <MenuItem style={{color:'white'}} onClick={handleClickParkingPermit} ><SignNoParking style={{marginRight:"12px"}}/>View Parking permit </MenuItem>
-              <MenuItem style={{color:'white'}} onClick={handleClickAddEmployees}><Pencil style={{marginRight:"12px"}}/> Add Employees </MenuItem>
-              <MenuItem style={{color:'white'}} onClick={handleClickViewEmployees}><Eye style={{marginRight:"12px"}}/> View Employees </MenuItem>
+              <MenuItem style={{color:'white'}} onClick={handleClickAddEmployees}><Pencil style={{marginRight:"12px"}}/> Add User </MenuItem>
+              <MenuItem style={{color:'white'}} onClick={handleClickViewEmployees}><Eye style={{marginRight:"12px"}}/> View Users </MenuItem>
             </Menu>
           </Sidebar>
       </>

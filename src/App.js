@@ -7,8 +7,8 @@ import Addbuilding from './Components/Shared-Components/Buildings'
 import ViewBuildings from './Components/Shared-Components/ViewBuildings';
 import ParkingReservation from './Components/Shared-Components/ViewReservations';
 import Units from './Components/Shared-Components/BuildingUnits';
-import Employee from './Components/Employees/AddEmployee'
-import EmployeesData from './Components/Employees/ViewEmployees'
+import User from './Components/User/AddUser'
+import UserData from './Components/User/ViewUser'
 
 
 function App({}) {
@@ -24,8 +24,8 @@ function App({}) {
           <Route exact path="/building" element= {<Addbuilding/>} />
           <Route exact path="/buildingsDetails" element= {<ViewBuildings/>} />
           <Route exact path="/buildingUnits" element= {<Units/>} />
-          <Route exact path="/user" element= {<Employee/>} />
-          <Route exact path="/employees" element= {<EmployeesData/>} />
+          <Route exact path="/user" element= {<User/>} />
+          <Route exact path="/users" element= {<UserData/>} />
 
 
           AddGuards

@@ -126,7 +126,7 @@ export default function ParkingReservations() {
                         <td className='font'>{item.name}</td>
                         {/* <td className='font'>{item.email}</td> */}
                         <td className='font'>{item.contactNumber}</td>
-                        <td className='font'>{item.unitVisiting}</td>
+                        <td className='font'>{item.buildingUnits}</td>
                         <td className='font'>
                           <p className='d-flex m-0 border-bottom'><p style={{ color: "brown", fontWeight: "600", margin: "0px" }}> Number:</p>{item.licensedPlateNumber}</p>
                           <p className='d-flex m-0 border-bottom'><p style={{ color: "brown", fontWeight: "600", margin: "0px" }}>Color:</p>{item.vehicleColor}</p>
@@ -150,8 +150,6 @@ export default function ParkingReservations() {
                             }}>
                             Delete
                           </Button>
-
-
                         </td>
                       </tr>
                     })}

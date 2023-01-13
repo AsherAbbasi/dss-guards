@@ -35,8 +35,10 @@ export default function ViewBuildings() {
     },
   }
   const { column } = styles;
+  const accessToken=localStorage.getItem('Access token')
   useEffect(() => {
-    axios.get(`${API}building`)
+    
+    axios.get(`${API}building`, { headers: {"Authorization" : `Bearer ${accessToken}`} })
       .then((res) => {
         setShowBuildings(res.data)
       })

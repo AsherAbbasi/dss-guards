@@ -23,12 +23,15 @@ export default function AddGuards() {
 
   }
   const [newUser, setNewUser] = useState(initialData)
-
+  const [showUnitInput,setShowUnitInput]=useState(false)
+  console.log(showUnitInput)
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setNewUser((prevState) => ({ ...prevState, [name]: value }));
+    setShowUnitInput(value)
     e.preventDefault();
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -79,7 +82,6 @@ export default function AddGuards() {
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p className='mb-2'>Name</p>
                     <Form.Control type="text" name="name" placeholder="Enter Name" onChange={handleOnChange} required />
-
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -95,20 +97,26 @@ export default function AddGuards() {
                     </div>
                   </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <p className='mb-2'>Add Building Code </p>
-                    <Form.Control type="text" name="buildingCode" placeholder="Enter Code Of Building" onChange={handleOnChange} required />
-                  </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formBasicEmail" >
                     <p className='mb-2'>Role</p>
-                    <Form.Select aria-label="Default select example"name="role" onChange={handleOnChange}>
+                    <Form.Select aria-label="Default select example" name="role" onChange={handleOnChange} >
                       <option>Select Role Of User</option>
-                      <option value="Admin">Admin</option>
-                      <option value="Guard">Guard</option>
-                      <option value="User">User</option>
+                      <option value="Admin" >Admin</option>
+                      <option value="Guard" >Guard</option>
+                      <option value="User" >User</option>
                     </Form.Select>
                   </Form.Group>
+                
+                 {showUnitInput === 'Guard' ||showUnitInput === "User" ?
+                 <>
+                 <Form.Group className="mb-3" controlId="formBasicEmail" >
+                    <p className='mb-2'>Add Building Code </p>
+                    <Form.Control type="text" name="buildingCode" placeholder="Enter Code Of Building" onChange={handleOnChange} required  />
+                  </Form.Group>
+                 </>
+                  :''
+                   }
 
                   <Button variant="primary" type="submit" id='submitBtn'>
                     SUBMIT

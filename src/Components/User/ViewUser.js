@@ -6,11 +6,14 @@ import { API } from '../../Config/config'
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import { Row, Container, Col, Button } from 'react-bootstrap';
-import { Sidebar } from 'react-pro-sidebar';
+import UserEdit from '../Shared-Components/Modal/EditUserModal'
 
 export default function ViewEmployees() {
-
+  const [employeeModal, setEmployeeModal] = useState(false);
+  const [showEmployeeData, setShowEmployeeData] = useState(false);
+  const [dataUpdated, setDataUpdated]=useState(false)
   const [employeeData, setEmployeeData] = useState([])
+  const employeeUpdated = () => setDataUpdated(!dataUpdated);
   useEffect(() => {
     // change background color with a random color
     const color = "white";
@@ -20,7 +23,12 @@ export default function ViewEmployees() {
       .then((res) => {
         setEmployeeData(res.data)
       })
-  }, []);
+  }, [dataUpdated]);
+  const handleClose = () => setEmployeeModal(false);
+  const handleShowData = (data) => {
+    setEmployeeModal(true)
+    setShowEmployeeData(data)
+  };
   const handleClickRemove = async (_id) => {
     try {
       if (window.confirm("Delete Data Permanently?")) {
@@ -41,6 +49,7 @@ export default function ViewEmployees() {
     }
   }
   return (
+    <>
     <Container fluid={true}>
       <Row>
         <NavigationBar />
@@ -57,8 +66,8 @@ export default function ViewEmployees() {
                       <td>Name</td>
                       <td>Email</td>
                       <td>Password</td>
-                      <td>Assigned building</td>
                       <td>Role</td>
+                      <td>Assigned building</td>
                       <td>Action</td>
                     </tr>
                   </thead>
@@ -68,11 +77,12 @@ export default function ViewEmployees() {
                         <td>{data.name}</td>
                         <td>{data.email}</td>
                         <td>{data.password}</td>
-                        <td>{data.buildingCode}</td>
                         <td>{data.role}</td>
+                        <td>{data.buildingCode}</td>
                         <td className='d-flex'>
                           <Button
                             id='buildingEditBtn'
+                            onClick={()=>handleShowData(data)}
                           >
                             Edit
                           </Button>
@@ -97,5 +107,14 @@ export default function ViewEmployees() {
         </Col>
       </Row>
     </Container>
+    <Modal show={employeeModal} onHide={handleClose}>
+    <Modal.Header closeButton>
+      <Modal.Title>Update Employee Data</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+      <UserEdit data={showEmployeeData} setEmployeeModal={setEmployeeModal} employeeUpdated={employeeUpdated}/>
+    </Modal.Body>
+         </Modal>
+         </>
   )
 }
