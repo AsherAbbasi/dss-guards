@@ -8,10 +8,6 @@ import { toast } from "react-toastify";
 import { useState } from 'react';
 import { API } from '../../Config/config';
 
-
-
-
-
 export default function Login() {
   const navigate = useNavigate();
   const [formValue , setFormValue] = useState({
@@ -27,7 +23,7 @@ export default function Login() {
     e.preventDefault();
     try{
       const url = `${API}auth/login`;
-      const response=await axios.post(url , formValue);
+      const response= await axios.post(url , formValue);
       const token=(response.data.token.access.token)
       const refreshToken=(response.data.token.refresh.token)
       localStorage.setItem("Access token",token)

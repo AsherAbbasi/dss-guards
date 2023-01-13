@@ -49,7 +49,6 @@ export default function ReserveParking() {
             e.preventDefault();
             e.stopPropagation();
             setValidated(true);
-            console.log("123")
         } else if (form.checkValidity() === true) {
             e.preventDefault();
             try {
@@ -75,7 +74,6 @@ export default function ReserveParking() {
         return today;
     };
 
-   
 
     const disableDate = () => {
         const lastDate = moment(reservation.dateFrom).add(1, 'days').format('YYYY-MM-DD');

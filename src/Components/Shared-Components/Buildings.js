@@ -26,20 +26,24 @@ export default function AddBuilding() {
     buildingUnits: [],
     parkingSlots: '',
   }
-  const [data, setData] = useState(formData)
+  const [data, setData] = useState(formData);
+  const accessToken=localStorage.getItem('Access token');
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setData((prevState) => ({ ...prevState, [name]: value }));
     e.preventDefault();
   }
-  let buildingCode=data.buildingCode;
+  let buildingCode=data?.buildingCode;
   let buildingUnitsData= units.map(buildingUnits=>{
     return {buildingCode,buildingUnits}
   })
+
   let createUnits=async()=>{
-    const url = `${API}/units`;
-    await axios.post(url, buildingUnitsData);
+    const url = `${API}units`;
+    await axios.post(url, buildingUnitsData , { headers: {"Authorization" : `Bearer ${accessToken}`}});
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(!data.buildingCode || !data.buildingAddress || !data.buildingUnits || !data.parkingSlots){
@@ -47,15 +51,15 @@ export default function AddBuilding() {
     }
     else{
     try {
-      const url = `${API}/building`;
-      await axios.post(url, data);
+      const url = `${API}building`;
+      await axios.post(url, data, { headers: {"Authorization" : `Bearer ${accessToken}`}});
       toast.success("Building Added successfully", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2500,
       });
 
     } catch (error) {
-      toast.error(`${error.response.data}`, {
+      toast.error(`${error.message}`, {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2500,
       });

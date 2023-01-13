@@ -16,7 +16,7 @@ export default function ViewBuildings() {
 
   const [showEditModel,setShowEditModel]=useState(false)
   const [showUnitModel,setShowUnitModel]=useState(false)
-  const [showBuildings, setShowBuildings] = useState([]);
+  const [showBuildings, setShowBuildings] = useState();
   const [buildingData, setBuildingData]=useState({})
   const [buildingCode, setBuildingCode]=useState([])
   const [dataUpdated, setDataUpdated]=useState(false)
@@ -37,7 +37,7 @@ export default function ViewBuildings() {
   const { column } = styles;
   const accessToken=localStorage.getItem('Access token')
   useEffect(() => {
-    
+    // console.log(accessToken)
     axios.get(`${API}building`, { headers: {"Authorization" : `Bearer ${accessToken}`} })
       .then((res) => {
         setShowBuildings(res.data)
@@ -109,39 +109,39 @@ export default function ViewBuildings() {
                       </tr>
                     </thead>
                     <tbody>
-                      {showBuildings?.map((item, index) => {
-                        return <tr key={index}>
-                          <td>{item.buildingCode ? item.buildingCode : 2}</td>
-                          <td>{item.buildingAddress}</td>
-                          <div className='d-flex justify-content-center'>
-                            <td>{item.buildingUnits.length}</td>
-                            <Button id='ViewUnits' onClick={()=>handleClickViewAll(item)}>
-                              View All
+                          {showBuildings?.map((item, index) => {
+                            return <tr key={index}>
+                              <td>{item.buildingCode ? item.buildingCode : 2}</td>
+                              <td>{item.buildingAddress}</td>
+                              <div className='d-flex justify-content-center'>
+                                <td>{item.buildingUnits.length}</td>
+                                <Button id='ViewUnits' onClick={() => handleClickViewAll(item)}>
+                                  View All
 
-                            </Button>
-                          </div>
-                          <td>{item.parkingSlots}</td>
+                                </Button>
+                              </div>
+                              <td>{item.parkingSlots}</td>
 
-                          <td className='d-flex'>
-                            <Button
-                              id='buildingEditBtn' onClick={()=>handleClickEdit(item)}
-                            >
-                              EDIT
-                            </Button>
-                            &nbsp;
-                            <Button
-                              onClick={() => {
-                                handleClickRemove(item.buildingCode);
-                              }}
-                              id="buildingDeleteBtn"
-                            >
-                              DELETE
-                            </Button>
+                              <td className='d-flex'>
+                                <Button
+                                  id='buildingEditBtn' onClick={() => handleClickEdit(item)}
+                                >
+                                  EDIT
+                                </Button>
+                                &nbsp;
+                                <Button
+                                  onClick={() => {
+                                    handleClickRemove(item.buildingCode);
+                                  }}
+                                  id="buildingDeleteBtn"
+                                >
+                                  DELETE
+                                </Button>
 
-                          </td>
-                        </tr>
-                      })}
-                    </tbody>
+                              </td>
+                            </tr>
+                          })}
+                        </tbody>
                   </table>
                 </Col>
               </Row>
