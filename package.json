@@ -11,6 +11,7 @@
     "font-awesome": "^4.7.0",
     "glassmorphism": "^0.0.1",
     "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.28",
     "mdb-react-ui-kit": "^5.1.0",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.40",
@@ -22,6 +23,7 @@
     "react-pro-sidebar": "^1.0.0-alpha.9",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
+    "react-table": "^7.8.0",
     "react-toastify": "^9.0.7",
     "toastify": "^2.0.1",
     "web-vitals": "^2.1.4"
