@@ -12,6 +12,16 @@
 #dasboardPara{
     padding: 26px;
 }
+#dashboardImg{
+    width: 400px;
+    height: 250px;
+    border-radius: 15px;
+}
+#dashboardImg1{
+    width: 400px;
+    height: 250px;
+    border-radius: 15px;
+}
 #left{
     color: red;
     margin-top: 10px;
@@ -22,7 +32,6 @@
     color: green;
     margin-top: -7px;
     padding: 0px !important;
-    margin-left: 30px;
 }
 #addButton{
     width: 173px;
@@ -76,6 +85,8 @@ font-weight: 500;
         color: rgb(239, 97, 97);
         font-weight: 500;
       }
+
+      
 @media only screen and (min-width:992px) and (max-width: 1299px) {
 #tbl{
     margin: 22px;
@@ -87,6 +98,9 @@ font-weight: 500;
 }
 #text{
     font-size: 20px;
+}
+#dashboardImg{
+    margin-top: 22px;
 }
  
 }
@@ -106,7 +120,15 @@ font-weight: 500;
     #text{
         font-size: 18px;
     }
-     
+    #dashboardImg{
+        margin-top: 22px;
+    }
+    }
+    @media only screen and (min-width:471px) and (max-width: 769px) {
+        #dashboardImg{
+            margin-top: 32px;
+            width: 300px;
+        }
     }
     @media only screen  and (max-width: 470px) {
         #tbl{
@@ -120,5 +142,9 @@ font-weight: 500;
         #text{
             font-size: 18px;
         }
-         
+        #dashboardImg{
+            margin-top: 30px;
+            width: 300px;
+
+        }
         }

@@ -67,7 +67,7 @@ export default function ReserveParking() {
                 });
             }
         }
-        // setReservation(initialData);
+        setReservation(initialData);
     };
     const disablePastDate = () => {
         const today = reservation.dateFrom ? moment(reservation.dateFrom).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD');

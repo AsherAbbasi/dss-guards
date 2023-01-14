@@ -9,10 +9,8 @@ import { API } from '../../Config/config'
 import Modal from 'react-bootstrap/Modal';
 import ModalForm from '../Shared-Components/Modal/EditBuildingModal'
 import Units from '../Shared-Components/BuildingUnits'
-import { useNavigate } from 'react-router-dom';
 
 export default function ViewBuildings() {
-  const navigate = useNavigate();
 
   const [showEditModel,setShowEditModel]=useState(false)
   const [showUnitModel,setShowUnitModel]=useState(false)
@@ -49,7 +47,7 @@ export default function ViewBuildings() {
   const handleClickRemove = async (buildingCode) => {
     try {
       if (window.confirm("Delete Data Permanently?")) {
-        const url = `${API}/building/` + buildingCode;
+        const url = `${API}building/` + buildingCode;
         await axios.delete(url).data;
         toast.success("Building Added successfully", {
           position: toast.POSITION.TOP_RIGHT,
@@ -113,8 +111,7 @@ export default function ViewBuildings() {
                             return <tr key={index}>
                               <td>{item.buildingCode ? item.buildingCode : 2}</td>
                               <td>{item.buildingAddress}</td>
-                              <div className='d-flex justify-content-center'>
-                                <td>{item.buildingUnits.length}</td>
+                              <div >
                                 <Button id='ViewUnits' onClick={() => handleClickViewAll(item)}>
                                   View All
 

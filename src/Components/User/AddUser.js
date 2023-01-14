@@ -23,8 +23,7 @@ export default function AddGuards() {
 
   }
   const [newUser, setNewUser] = useState(initialData)
-  const [showUnitInput,setShowUnitInput]=useState(false)
-  console.log(showUnitInput)
+  const [showUnitInput,setShowUnitInput]=useState(true)
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setNewUser((prevState) => ({ ...prevState, [name]: value }));
@@ -35,10 +34,9 @@ export default function AddGuards() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `${API}employee`;
+      const url = `${API}auth/user`;
       await axios.post(url, newUser);
-      console.log(newUser)
-      toast.success("Employee Added successfully", {
+      toast.success("User Added successfully", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2500,
       });
@@ -108,14 +106,14 @@ export default function AddGuards() {
                     </Form.Select>
                   </Form.Group>
                 
-                 {showUnitInput === 'Guard' ||showUnitInput === "User" ?
+                 {showUnitInput === 'Admin' ? '':
                  <>
                  <Form.Group className="mb-3" controlId="formBasicEmail" >
                     <p className='mb-2'>Add Building Code </p>
                     <Form.Control type="text" name="buildingCode" placeholder="Enter Code Of Building" onChange={handleOnChange} required  />
                   </Form.Group>
                  </>
-                  :''
+                  
                    }
 
                   <Button variant="primary" type="submit" id='submitBtn'>
