@@ -19,27 +19,7 @@ import '../css/responsive.css'
     const { broken, toggleSidebar } = useProSidebar();
     const Role=localStorage.getItem("role")
   let menuItems;
-  if (Role==="User"){
-    menuItems=[
-      {
-      name: "Dashboard",
-      href: `/dashboard`,
-      active: "[id]",
-      icon: <Speedometer2 />,
-    },{
-      name: "View Building",
-      href: `/buildingsDetails`,
-      active: "[id]",
-      icon: <Pencil />,
-    },
-    {
-      name: "View Parking Permits",
-      href: `/parkingReservations`,
-      active: "[id]",
-      icon: <Eye />,
-    }
-    ];
-  }else{
+  if (Role==="Admin"){
     menuItems=[
       {
       name: "Dashboard",
@@ -76,6 +56,26 @@ import '../css/responsive.css'
       active: "[id]",
       icon: <Eye />,
     },
+    ];
+  }else{
+    menuItems=[
+      {
+      name: "Dashboard",
+      href: `/dashboard`,
+      active: "[id]",
+      icon: <Speedometer2 />,
+    },{
+      name: "View Building",
+      href: `/buildingsDetails`,
+      active: "[id]",
+      icon: <Pencil />,
+    },
+    {
+      name: "View Parking Permits",
+      href: `/parkingReservations`,
+      active: "[id]",
+      icon: <Eye />,
+    }
     ];
   }
     return (

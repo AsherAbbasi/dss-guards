@@ -18,7 +18,7 @@ export default function AddGuards() {
     name:"",
     email:"",
     password:"",
-    buildingCode:"",
+    buildingCode:"Not Assigned",
     role:""
 
   }
