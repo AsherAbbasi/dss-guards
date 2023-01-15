@@ -42,7 +42,6 @@ export default function ReserveParking() {
         const { name, value } = e.target;
         setReservation((prevState) => ({ ...prevState, [name]: value }));
     }
-    console.log(reservation.timeTo)
     const handleSubmit = async (e) => {
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
@@ -53,8 +52,12 @@ export default function ReserveParking() {
             e.preventDefault();
             try {
                 const url = `${API}reservation`;
-                await axios.post(url, reservation);
-                toast.success("Request for parking permit sent! we will contact you in a while", {
+                const response=await axios.post(url, reservation);
+                let bCode=(response.data.buildingCode)
+                let unit=(response.data.buildingUnits)
+                let licensedPlateNumber=(response.data.licensedPlateNumber)
+
+                toast.success(`You Reserve The Parking Against Building ${bCode} Unit ${unit}  Licensed Plate ${licensedPlateNumber} `, {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 2500,
                 });
@@ -88,8 +91,8 @@ export default function ReserveParking() {
             <Row className='d-flex justify-content-center '>
                 <Col lg={10}>
                     <Card className='m-4 bg-transparent'  >
-                        <Card.Header id='card'>Building Information</Card.Header>
                         <Form className='m-3' noValidate validated={validated} onSubmit={handleSubmit}>
+                        <Card.Header id='card' style={{marginBottom:"16px"}}>Building Information</Card.Header>
                             <Row className='mb-3 responsive' >
                                 <Form.Group className='input' as={Col} controlId="validationCustom" >
                                     <Form.Control name='buildingCode' type={"text"} value={reservation.buildingCode} placeholder="Building Code*" onChange={handleOnChange} required />

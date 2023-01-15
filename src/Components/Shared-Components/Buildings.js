@@ -59,7 +59,7 @@ export default function AddBuilding() {
       });
 
     } catch (error) {
-      toast.error(`${error.message}`, {
+      toast.error(`${error.response.data}`, {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2500,
       });

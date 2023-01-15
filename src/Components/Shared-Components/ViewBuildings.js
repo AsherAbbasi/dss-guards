@@ -109,7 +109,7 @@ export default function ViewBuildings() {
                     <tbody>
                           {showBuildings?.map((item, index) => {
                             return <tr key={index}>
-                              <td>{item.buildingCode ? item.buildingCode : 2}</td>
+                              <td>{item.buildingCode ? item.buildingCode : ""}</td>
                               <td>{item.buildingAddress}</td>
                               <div >
                                 <Button id='ViewUnits' onClick={() => handleClickViewAll(item)}>

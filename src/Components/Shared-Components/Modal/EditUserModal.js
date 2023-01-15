@@ -15,7 +15,7 @@ export default function EditEmployeeModal({data,setEmployeeModal,employeeUpdated
   const handleSubmit=async(e)=>{
     e.preventDefault();
     try {
-      const url = `${API}employee/${id}`;
+      const url = `${API}auth/${id}`;
       await axios.put(url, empData);
       toast.success("Data Updated successfully", {
         position: toast.POSITION.TOP_RIGHT,
