@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import companyLogo from '../images/loginlogo.jpeg'
 import '../css/login.css'
 import axios from 'axios';
@@ -26,8 +26,11 @@ export default function Login() {
       const response= await axios.post(url , formValue);
       const token=(response.data.token.access.token)
       const refreshToken=(response.data.token.refresh.token)
+      const role=(response.data.response.role)
       localStorage.setItem("Access token",token)
       localStorage.setItem("Refresh token",refreshToken)
+      localStorage.setItem("role",role)
+
 
       toast.success("Login successfully", {
         position: toast.POSITION.TOP_RIGHT,
@@ -63,7 +66,7 @@ export default function Login() {
               <Col >
                 <Form onSubmit={handleSubmit}>
                   <div style={{ height: '' }}></div>
-                  <img src={companyLogo} style={{ width: 80 }} />
+                  <img src={companyLogo} alt="logo" style={{ width: 80 }} />
                   <div className="header-form">
                     {/* <h4 className="text-dark text-center"><i className="fa fa-user-circle" style={{ fontSize: "80px" }}></i></h4> */}
                     <div className="image">

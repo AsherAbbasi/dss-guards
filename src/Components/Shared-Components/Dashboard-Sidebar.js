@@ -11,32 +11,73 @@ import {
   Eye,
   Pencil,
   Speedometer2,
-  SignNoParking,
 } from "react-bootstrap-icons";
 import '../css/responsive.css'
-import { useNavigate } from 'react-router-dom';
+
 
   export default function DashboardSidebar() {
-    const navigate = useNavigate();
     const { broken, toggleSidebar } = useProSidebar();
-    const handleClickDashboard=()=>{
-      navigate('/dashboard')
+    const Role=localStorage.getItem("role")
+  let menuItems;
+  if (Role==="User"){
+    menuItems=[
+      {
+      name: "Dashboard",
+      href: `/dashboard`,
+      active: "[id]",
+      icon: <Speedometer2 />,
+    },{
+      name: "View Building",
+      href: `/buildingsDetails`,
+      active: "[id]",
+      icon: <Pencil />,
+    },
+    {
+      name: "View Parking Permits",
+      href: `/parkingReservations`,
+      active: "[id]",
+      icon: <Eye />,
     }
-    const handleClickAddBuilding=()=>{
-      navigate('/building')
-    }
-    const handleClickViewBuilding=()=>{
-      navigate('/buildingsDetails')
-    }
-    const handleClickParkingPermit=()=>{
-      navigate('/parkingReservations')
-    }
-    const handleClickAddEmployees=()=>{
-      navigate('/user')
-    }
-    const handleClickViewEmployees=()=>{
-      navigate('/users')
-    }
+    ];
+  }else{
+    menuItems=[
+      {
+      name: "Dashboard",
+      href: "/dashboard",
+      active: "[id]",
+      icon: <Speedometer2 />,
+    },{
+      name: "Add Building",
+      href: "/building",
+      active: "[id]",
+      icon: <Pencil />,
+    },
+    {
+      name: "View Building",
+      href: "/buildingsDetails",
+      active: "[id]",
+      icon: <Pencil />,
+    },
+    {
+      name: "View Parking Permits",
+      href: "/parkingReservations",
+      active: "[id]",
+      icon: <Eye />,
+    },
+    {
+      name: "Add User",
+      href: "/user",
+      active: "[id]",
+      icon: <Pencil />,
+    },
+    {
+      name: "View User",
+      href: "/users",
+      active: "[id]",
+      icon: <Eye />,
+    },
+    ];
+  }
     return (
       <>
            {broken && (
@@ -53,12 +94,15 @@ import { useNavigate } from 'react-router-dom';
       )}
           <Sidebar  breakPoint={"md"}  backgroundColor={" hsl(218, 41%, 15%)"} id="sideBar" >
             <Menu closeOnClick={true} style={{ marginTop: 55}}>
-            <MenuItem  id="style"  style={{color:'white'}} onClick={handleClickDashboard}> <Speedometer2 style={{marginRight:"12px"}}/> Dashboard </MenuItem>
-              <MenuItem style={{color:'white'}}  onClick={handleClickAddBuilding}><Pencil style={{marginRight:"12px"}}/>Add Building </MenuItem>
-              <MenuItem style={{color:'white'}} onClick={handleClickViewBuilding}> <Eye style={{marginRight:"12px"}}/>View Building </MenuItem>
-              <MenuItem style={{color:'white'}} onClick={handleClickParkingPermit} ><SignNoParking style={{marginRight:"12px"}}/>View Parking permit </MenuItem>
-              <MenuItem style={{color:'white'}} onClick={handleClickAddEmployees}><Pencil style={{marginRight:"12px"}}/> Add User </MenuItem>
-              <MenuItem style={{color:'white'}} onClick={handleClickViewEmployees}><Eye style={{marginRight:"12px"}}/> View Users </MenuItem>
+            {menuItems?.map(({ name, href, icon }, index) => (
+                  <a key={index} href={href}><MenuItem
+                    style={{ color: "white" }}
+                    icon={icon}
+                  >
+                    {name}
+                  </MenuItem>
+                  </a>
+            ))}
             </Menu>
           </Sidebar>
       </>

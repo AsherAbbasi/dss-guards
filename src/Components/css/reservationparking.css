@@ -1,6 +1,7 @@
 .font{
-   font-size: 14px;
+   font-size: 13px;
    padding: 2px !important;
+   font-weight:500;
 }
 .headerStyle{
     font-size: 12px;
@@ -39,4 +40,7 @@
     background: none;
     border: none;
     color: green;
+ }
+ .fontsizePDF{
+    font-size: 15px !important;
  }

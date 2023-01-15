@@ -5,7 +5,7 @@ import SideBar from './Shared-Components/Dashboard-Sidebar';
 import NavigationBar  from './Shared-Components/Navbar'
 import "./css/responsive.css";
 import frontDesk from './images/front.png';
-import guard from './images/Mobile-security-Patrol.jpeg';
+import guard from './images/pic2.jpeg';
 
 
 
@@ -50,12 +50,12 @@ export default function Dashboard() {
         <p id="dasboardPara">Digital Safeguard Security Inc. provides excellent security services to clients. To exceed the requirements and expectations of clients, our guards are highly trained, experienced and professional. It is our policy and highest priority to protect the safety of our employees, clients and their properties. We believe that our client’s satisfaction comes first.</p>
         </Col>
       </Row>
-      <Row style={{margin:"23px", padding:"30px",borderRadius:"23px"}}>
-        <Col>
-        <img src={frontDesk}  style={{width:"400px",height:"250px"}}></img>
+      <Row style={{margin:"3px", padding:"3px",}}>
+        <Col >
+        <img src={frontDesk} id="dashboardImg"></img>
         </Col>
         <Col>
-        <img src={guard} style={{width:"400px",height:"250px"}}></img>
+        <img id="dashboardImg" src={guard} ></img>
         </Col>
         
       </Row>

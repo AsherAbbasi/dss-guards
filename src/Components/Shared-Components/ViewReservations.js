@@ -6,7 +6,7 @@ import axios from 'axios';
 import { API } from '../../Config/config'
 import { toast } from "react-toastify";
 import Pagination from '../Shared-Components/Pagination/PaginationViewReservation'
-// import jsPDF from 'jspdf'
+import jsPDF from 'jspdf'
 
 
 
@@ -47,18 +47,6 @@ export default function ParkingReservations() {
       });
     }
   }
-  // pdf //
-  //   const onButtonClick = () => {
-
-  //     var doc=new jsPDF('p','pt')
-  //       doc.text(20,20,'Employee detail','center')
-  //       doc.setFont("courier")
-  //       doc.setFontSize(18)
-  //       let data=doc.text(20,30,"showData")
-  //       console.log(data)
-  //     //   doc.save('generated.pdf')
-
-  // }
   const indexOfLastPost = currentPage * dataPerPage
   const indexOfFirstPost = indexOfLastPost - dataPerPage;
   const currentPost = showData.slice(indexOfFirstPost, indexOfLastPost)
@@ -69,6 +57,27 @@ export default function ParkingReservations() {
     setSearchValue(e.target.value)
   }
 
+
+  const exportPDF = (index) => {
+    const pdfData = showData.filter(item=> item._id === index);
+    const unit = "pt";
+    const size = "A4"; 
+    const orientation = "landscape"; 
+    const marginLeft = 40;
+    const doc = new jsPDF(orientation, unit, size);
+    doc.setFontSize(15);
+    const title = "Builidng Reservation Report";
+    const headers = [["NAME", "BUILDING CODE","BUILDING ADDRESS", "CONTACT","UNITS","LICENSE PLATE", "VEHICLE COLOR","VEHICLE MODEL"]];
+    const data = pdfData.map(pdf => [pdf.name, pdf.buildingCode, pdf.buildingAddress,  pdf.contactNumber, pdf.buildingUnits, pdf.licensedPlateNumber,pdf.vehicleColor, pdf.vehicleModel]);
+    let content = {
+      startY: 100,
+      head: headers,
+      body: data
+    };
+    doc.text(title, marginLeft, 40);
+    doc.autoTable(content);
+    doc.save("Building Reservation Report.pdf")
+  }
   return (
     <>
       <Container fluid={true} >
@@ -77,7 +86,6 @@ export default function ParkingReservations() {
             <NavigationBar />
           </Col>
         </Row>
-
         <Row>
           <Col md={12} className="d-flex justify-content-end" id="searchSection" >
             <Form.Control id="searchBar"
@@ -136,19 +144,19 @@ export default function ParkingReservations() {
                         <td className='font'>{item.dateTo}</td>
                         <td className='font'>{item.timeFrom}</td>
                         <td className='font'>{item.timeTo}</td>
-
-                        <td className='d-flex'>
-                          {/* <Button
-                                className="btn btn-success m-1"
-                                 onClick={onButtonClick}>
-                                Download
-                              </Button> */}
+                        <td className='d-flex justify-content-between'>
                           <Button
-                            className="btn " id='btn'
+                            className="btn fontsizePDF" id='btn'
                             onClick={() => {
                               handleClickRemove(item._id);
                             }}>
                             Delete
+                          </Button>
+                          <Button
+                            className="btn fontsizePDF" id='btn'
+                            onClick={()=>exportPDF(item._id)}
+                            >
+                            Generate PDF
                           </Button>
                         </td>
                       </tr>

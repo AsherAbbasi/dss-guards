@@ -19,7 +19,7 @@ export default function ViewEmployees() {
     const color = "white";
     document.body.style.background = color;
 
-    axios.get(`${API}employee`)
+    axios.get(`${API}auth/AllUsers`)
       .then((res) => {
         setEmployeeData(res.data)
       })
@@ -32,9 +32,9 @@ export default function ViewEmployees() {
   const handleClickRemove = async (_id) => {
     try {
       if (window.confirm("Delete Data Permanently?")) {
-        const url = `${API}/employee/${_id}`;
+        const url = `${API}/auth/${_id}`;
         await axios.delete(url).data;
-        toast.success("Building Added successfully", {
+        toast.success("User Removed successfully", {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 2500,
         });
