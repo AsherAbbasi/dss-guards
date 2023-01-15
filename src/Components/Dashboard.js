@@ -47,7 +47,7 @@ export default function Dashboard() {
       </Row>
       <Row>
         <Col>
-        <p style={{padding:"26px"}} id="dasboardPara">Digital Safeguard Security Inc. provides excellent security services to clients. To exceed the requirements and expectations of clients, our guards are highly trained, experienced and professional. It is our policy and highest priority to protect the safety of our employees, clients and their properties. We believe that our client’s satisfaction comes first.</p>
+        <p id="dasboardPara">Digital Safeguard Security Inc. provides excellent security services to clients. To exceed the requirements and expectations of clients, our guards are highly trained, experienced and professional. It is our policy and highest priority to protect the safety of our employees, clients and their properties. We believe that our client’s satisfaction comes first.</p>
         </Col>
       </Row>
       <Row style={{margin:"23px", padding:"30px",borderRadius:"23px"}}>

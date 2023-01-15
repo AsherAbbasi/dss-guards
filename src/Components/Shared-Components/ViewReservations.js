@@ -59,15 +59,15 @@ export default function ParkingReservations() {
   //     //   doc.save('generated.pdf')
 
   // }
- const indexOfLastPost = currentPage * dataPerPage
- const indexOfFirstPost= indexOfLastPost - dataPerPage;
- const currentPost= showData.slice(indexOfFirstPost,indexOfLastPost)
- 
- const paginate=(pageNumber)=>setCurrentPage(pageNumber);
+  const indexOfLastPost = currentPage * dataPerPage
+  const indexOfFirstPost = indexOfLastPost - dataPerPage;
+  const currentPost = showData.slice(indexOfFirstPost, indexOfLastPost)
 
-const handleChangeSearch=(e)=>{
-  setSearchValue(e.target.value)
-} 
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleChangeSearch = (e) => {
+    setSearchValue(e.target.value)
+  }
 
   return (
     <>
@@ -77,17 +77,17 @@ const handleChangeSearch=(e)=>{
             <NavigationBar />
           </Col>
         </Row>
-       
+
         <Row>
           <Col md={12} className="d-flex justify-content-end" id="searchSection" >
-              <Form.Control id="searchBar"
-                type="search"
-                placeholder="Search Parking Permit... "
-                onChange={handleChangeSearch}
-                value={searchValue}
-                className="me-2"
-                aria-label="Search"
-              />
+            <Form.Control id="searchBar"
+              type="search"
+              placeholder="Search Parking Permit by Building Code, Licensed Plate Number or Date "
+              onChange={handleChangeSearch}
+              value={searchValue}
+              className="me-2"
+              aria-label="Search"
+            />
           </Col>
 
         </Row>
@@ -102,13 +102,10 @@ const handleChangeSearch=(e)=>{
                       <td className='headerStyle'>BUILDING CODE</td>
                       <td className='headerStyle'>BUILDING ADDRESS</td>
                       <td className='headerStyle'>Name</td>
-                      <td className='headerStyle'>Email</td>
+                      {/* <td className='headerStyle'>Email</td> */}
                       <td className='headerStyle'>CONTACT NUMBER</td>
                       <td className='headerStyle'>UNIT VISITING</td>
-                      <td className='headerStyle'>VEHICLE MODEL</td>
-                      <td className='headerStyle'>LICENSE PLATE NUMBER</td>
-                      <td className='headerStyle'>VEHICLE COLOR</td>
-                      <td className='headerStyle'>MAKE</td>
+                      <td className='headerStyle'>VEHICLE DETAIL</td>
                       <td className='headerStyle'>DATE FROM</td>
                       <td className='headerStyle'>DATE TO</td>
                       <td className='headerStyle'>TIME FROM</td>
@@ -117,23 +114,24 @@ const handleChangeSearch=(e)=>{
                     </tr>
                   </thead>
                   <tbody className='tableBody'>
-                    {currentPost?.filter((value)=>
-                    (value.licensedPlateNumber.toLowerCase().includes(searchValue) || 
-                    value.buildingCode.toLowerCase().includes(searchValue) || 
-                    value.dateFrom.toLowerCase().includes(searchValue) ||
-                    value.dateTo.toLowerCase().includes(searchValue))
+                    {currentPost?.filter((value) =>
+                    (value.licensedPlateNumber.toLowerCase().includes(searchValue) ||
+                      value.buildingCode.toLowerCase().includes(searchValue) ||
+                      value.dateFrom.toLowerCase().includes(searchValue) ||
+                      value.dateTo.toLowerCase().includes(searchValue))
                     ).map(item => {
                       return <tr >
                         <td className='font'>{item.buildingCode}</td>
                         <td className='font'>{item.buildingAddress}</td>
                         <td className='font'>{item.name}</td>
-                        <td className='font'>{item.email}</td>
+                        {/* <td className='font'>{item.email}</td> */}
                         <td className='font'>{item.contactNumber}</td>
-                        <td className='font'>{item.unitVisiting}</td>
-                        <td className='font'>{item.vehicleModel}</td>
-                        <td className='font'>{item.licensedPlateNumber}</td>
-                        <td className='font'>{item.vehicleColor}</td>
-                        <td className='font'>{item.Make}</td>
+                        <td className='font'>{item.buildingUnits}</td>
+                        <td className='font'>
+                          <p className='d-flex m-0 border-bottom'><p style={{ color: "brown", fontWeight: "600", margin: "0px" }}> Number:</p>{item.licensedPlateNumber}</p>
+                          <p className='d-flex m-0 border-bottom'><p style={{ color: "brown", fontWeight: "600", margin: "0px" }}>Color:</p>{item.vehicleColor}</p>
+                          <p className='d-flex m-0'><p style={{ color: "brown", fontWeight: "600", margin: "0px" }}> Make:</p>{item.Make}</p>
+                        </td>
                         <td className='font'>{item.dateFrom}</td>
                         <td className='font'>{item.dateTo}</td>
                         <td className='font'>{item.timeFrom}</td>
@@ -152,8 +150,6 @@ const handleChangeSearch=(e)=>{
                             }}>
                             Delete
                           </Button>
-
-
                         </td>
                       </tr>
                     })}

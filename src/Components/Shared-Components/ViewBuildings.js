@@ -8,22 +8,22 @@ import { toast } from "react-toastify";
 import { API } from '../../Config/config'
 import Modal from 'react-bootstrap/Modal';
 import ModalForm from '../Shared-Components/Modal/EditBuildingModal'
-import Units from '../Shared-Components/Modal/BuildingUnitsModal'
-
-
-
+import Units from '../Shared-Components/BuildingUnits'
+import { useNavigate } from 'react-router-dom';
 
 export default function ViewBuildings() {
+  const navigate = useNavigate();
 
   const [showEditModel,setShowEditModel]=useState(false)
   const [showUnitModel,setShowUnitModel]=useState(false)
-  const [showBuildings, setShowBuildings] = useState([]);
-  const [buildingId, setBuildingId]=useState()
-  const [buildingUnits, setBuildingUnits]=useState()
+  const [showBuildings, setShowBuildings] = useState();
+  const [buildingData, setBuildingData]=useState({})
+  const [buildingCode, setBuildingCode]=useState([])
+  const [dataUpdated, setDataUpdated]=useState(false)
+  const [showUnit, setshowUnit]=useState(false)
 
+  const buildingUpdated = () => setDataUpdated(!dataUpdated);
 
-   
-  
   const styles = {
     column: {
       // boxShadow: "1px 2px 3px 1px #949188",
@@ -35,15 +35,17 @@ export default function ViewBuildings() {
     },
   }
   const { column } = styles;
+  const accessToken=localStorage.getItem('Access token')
   useEffect(() => {
-    axios.get(`${API}building`)
+    // console.log(accessToken)
+    axios.get(`${API}building`, { headers: {"Authorization" : `Bearer ${accessToken}`} })
       .then((res) => {
         setShowBuildings(res.data)
       })
     // change background color with a random color
     const color = "white";
     document.body.style.background = color;
-  }, []);
+  }, [dataUpdated]);
   const handleClickRemove = async (buildingCode) => {
     try {
       if (window.confirm("Delete Data Permanently?")) {
@@ -65,15 +67,17 @@ export default function ViewBuildings() {
   }
  
  const handleClickViewAll=(item)=>{
+  setshowUnit(true);
   setShowEditModel(false)
     setShowUnitModel(true)
-    setBuildingUnits(item.buildingUnits);
+    setBuildingCode(item.buildingCode);
+    
 
  }
   const handleClickEdit=(item)=>{
     setShowEditModel(true)
     setShowUnitModel(false)
-    setBuildingId(item.buildingCode);
+    setBuildingData(item);
   }
   const handleClose = () =>{
     setShowEditModel(false)
@@ -81,6 +85,8 @@ export default function ViewBuildings() {
   }
 
   return (
+    <>
+    {showUnit ? <Units buildingCode={buildingCode}/> :
     <>
       <Container fluid={true}>
         <Row>
@@ -103,36 +109,39 @@ export default function ViewBuildings() {
                       </tr>
                     </thead>
                     <tbody>
-                      {showBuildings?.map((item, index) => {
-                        return <tr key={index}>
-                          <td>{item.buildingCode ? item.buildingCode : 2}</td>
-                          <td>{item.buildingAddress}</td>
-                          <div className='d-flex justify-content-center'>
-                            <td>{item.buildingUnits.length}</td>
-                            <Button id='ViewUnits' onClick={()=>handleClickViewAll(item)} >View All</Button>
-                          </div>
-                          <td>{item.parkingSlots}</td>
+                          {showBuildings?.map((item, index) => {
+                            return <tr key={index}>
+                              <td>{item.buildingCode ? item.buildingCode : 2}</td>
+                              <td>{item.buildingAddress}</td>
+                              <div className='d-flex justify-content-center'>
+                                <td>{item.buildingUnits.length}</td>
+                                <Button id='ViewUnits' onClick={() => handleClickViewAll(item)}>
+                                  View All
 
-                          <td className='d-flex'>
-                            <Button
-                              id='buildingEditBtn' onClick={()=>handleClickEdit(item)}
-                            >
-                              EDIT
-                            </Button>
-                            &nbsp;
-                            <Button
-                              onClick={() => {
-                                handleClickRemove(item.buildingCode);
-                              }}
-                              id="buildingDeleteBtn"
-                            >
-                              DELETE
-                            </Button>
+                                </Button>
+                              </div>
+                              <td>{item.parkingSlots}</td>
 
-                          </td>
-                        </tr>
-                      })}
-                    </tbody>
+                              <td className='d-flex'>
+                                <Button
+                                  id='buildingEditBtn' onClick={() => handleClickEdit(item)}
+                                >
+                                  EDIT
+                                </Button>
+                                &nbsp;
+                                <Button
+                                  onClick={() => {
+                                    handleClickRemove(item.buildingCode);
+                                  }}
+                                  id="buildingDeleteBtn"
+                                >
+                                  DELETE
+                                </Button>
+
+                              </td>
+                            </tr>
+                          })}
+                        </tbody>
                   </table>
                 </Col>
               </Row>
@@ -145,11 +154,13 @@ export default function ViewBuildings() {
           <Modal.Title>Building Units</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        { showEditModel ? <ModalForm bCode={buildingId}/>: ''}
-        { showUnitModel ? <Units data={buildingUnits}/> : ''}
+        { showEditModel ? <ModalForm bData={buildingData} setShowEditModel={setShowEditModel} buildingUpdated={buildingUpdated} />: ''}
+        {/* { showUnitModel ? <Units data={buildingUnits} /> : ''} */}
         </Modal.Body>
        
       </Modal>
     </>
+  }
+  </>
   )
 }

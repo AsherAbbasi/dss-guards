@@ -1,38 +1,24 @@
-import { React, useEffect, useState } from 'react'
-import { Row, Form, Col, Card, Button } from 'react-bootstrap'; 
+import { React, useState } from 'react'
+import { Row, Form, Col, Button } from 'react-bootstrap'; 
 import { API } from '../../../Config/config'
 import axios from 'axios';
 import { toast } from "react-toastify";
 
  
- const BuildingModal =({bCode}) =>{
-const initialData={
-  buildingCode:"",
-  buildingAddress:"",
-  buildingUnits:"",
-  parkingPermits:"",
-}   
-  const [buildingData,setBuildingData]=useState(initialData);
-
-  useEffect(() => {
-    const res = axios.get(`${API}building/${bCode}`)
-      .then((res) => {
-        console.log(res)
-        setBuildingData(res.data)
-      })
-  }, []);
-
+ const BuildingModal =({bData,setShowEditModel,buildingUpdated}) =>{   
+  const [buildingData,setBuildingData]=useState(bData);
+  let bCode=bData.buildingCode
   const handleSubmit=async(e)=>{
     e.preventDefault();
     try {
       const url = `${API}building/${bCode}`;
-      console.log(url)
       await axios.put(url, buildingData);
       toast.success("Data Updated successfully", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2500,
       });
-
+      buildingUpdated();
+      setShowEditModel(false)
     } catch (error) {
       toast.error(`${error.response.data}`, {
         position: toast.POSITION.TOP_RIGHT,

@@ -6,6 +6,10 @@ import Dashboard from './Components/Dashboard';
 import Addbuilding from './Components/Shared-Components/Buildings'
 import ViewBuildings from './Components/Shared-Components/ViewBuildings';
 import ParkingReservation from './Components/Shared-Components/ViewReservations';
+import Units from './Components/Shared-Components/BuildingUnits';
+import User from './Components/User/AddUser'
+import UserData from './Components/User/ViewUser'
+
 
 function App({}) {
   return (
@@ -14,12 +18,18 @@ function App({}) {
         <Router>
         <Routes>
           <Route exact path="/" element= {<Login />} />
-          <Route exact path="/dashboard" element= {<Dashboard />} />
-          <Route exact path="/reservation" element= {<ReserveParking />} />
-          <Route exact path="/parkingReservations" element= {<ParkingReservation />} />
-          <Route exact path="/building" element= {<Addbuilding />} />
+          <Route exact path="/dashboard" element= {<Dashboard/>} />
+          <Route exact path="/reservation" element= {<ReserveParking/>} />
+          <Route exact path="/parkingReservations" element= {<ParkingReservation/>} />
+          <Route exact path="/building" element= {<Addbuilding/>} />
+          <Route exact path="/buildingsDetails" element= {<ViewBuildings/>} />
+          <Route exact path="/buildingUnits" element= {<Units/>} />
+          <Route exact path="/user" element= {<User/>} />
+          <Route exact path="/users" element= {<UserData/>} />
 
-          <Route exact path="/buildingsDetails" element= {<ViewBuildings />} />
+
+          AddGuards
+
 
 
         </Routes>
