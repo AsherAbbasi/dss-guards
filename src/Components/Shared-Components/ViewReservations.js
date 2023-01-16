@@ -19,9 +19,10 @@ export default function ParkingReservations() {
   const [dataPerPage] = useState(8);
   const [searchValue, setSearchValue] = useState("");
   const Role = localStorage.getItem("role")
+  const accessToken=localStorage.getItem('Access token')
 
   useEffect(() => {
-    axios.get(`${API}reservation`)
+    axios.get(`${API}reservation` , { headers: {"Authorization" : `Bearer ${accessToken}`} })
       .then((res) => {
         setShowData(res.data)
       })
@@ -55,7 +56,6 @@ export default function ParkingReservations() {
   const handleChangeSearch = (e) => {
     setSearchValue(e.target.value)
   }
-  let para = "this is para"
 
   const exportPDF = async (index) => {
     const pdfData = showData.filter(item => item._id === index);
