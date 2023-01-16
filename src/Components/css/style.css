@@ -1,4 +1,35 @@
-
+#dropdown-basic.dropdown-toggle.btn.btn-success::after{
+    display: none !important;
+}
+#buildingTable{
+    width: 100%;
+    margin-top: 16px;
+}
+#addBuilding{
+    box-shadow: 1px 2px 3px 1px #949188;
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    width: 50%;
+    margin-top: 0px;
+}
+.animatedtext {
+    position: relative;
+    animation-name: example;
+    animation-duration: 5s;
+    text-align: center;
+    padding: 13px;
+  }
+  #bunitTable{
+    margin-top: -17px;
+  }
+  @keyframes example {
+    0%   {left:0px; top:0px;}
+    25%  {background-color:rgb(12, 11, 11);color:aliceblue;left:20px; top:30px;}
+    50%  {left:0px; top:0px;}
+    75%  {left:0px; top:0px;}
+    100% {left:0px; top:0px;}
+  }
 #text{
     color:white;
     text-shadow:1px 1px 4px;
@@ -12,10 +43,14 @@
 #dasboardPara{
     padding: 26px;
 }
+.headerUser{
+    font-weight: 500;
+}
 #dashboardImg{
     width: 400px;
     height: 250px;
     border-radius: 15px;
+    margin-left: 12px;
 }
 #dashboardImg1{
     width: 400px;
@@ -129,6 +164,9 @@ font-weight: 500;
             margin-top: 32px;
             width: 300px;
         }
+        #col{
+            flex-direction: column;
+        }
     }
     @media only screen  and (max-width: 470px) {
         #tbl{
@@ -139,12 +177,15 @@ font-weight: 500;
         font-size: 14px;
         
         }
+        #col{
+            flex-direction: column;
+        }
         #text{
             font-size: 18px;
         }
         #dashboardImg{
             margin-top: 30px;
             width: 300px;
-
+            margin-left: 42px;
         }
         }

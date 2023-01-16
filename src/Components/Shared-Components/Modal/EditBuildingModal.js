@@ -50,7 +50,7 @@ import { toast } from "react-toastify";
 
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p className='mb-2'>Building Units:</p>
-                      <Form.Control type="text" name="buildingUnits" value={buildingData.buildingUnits.length}  onChange={handleOnChange}/>
+                      <Form.Control type="text" name="buildingUnits" value={buildingData.buildingUnits.length}  onChange={handleOnChange} disabled/>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formBasicEmail">

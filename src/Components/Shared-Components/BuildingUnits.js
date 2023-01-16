@@ -1,5 +1,6 @@
 import {React,useEffect, useState} from 'react'
 import NavigationBar from './Navbar'
+import DashboardSidebar from './Dashboard-Sidebar';
 import { toast } from "react-toastify";
 import { API } from '../../Config/config'
 import axios from 'axios';
@@ -13,6 +14,7 @@ export default function BuildingUnits({buildingCode}) {
   const [showUnitsModel, setShowUnitsModel] = useState(false);
   const [showUnit, setShowUnit] = useState();
   const [unitsUpdated, setUnitsUpdated]=useState(false)
+  const Role = localStorage.getItem("role")
 
   
 const updatedUnits=()=>setUnitsUpdated(!unitsUpdated)
@@ -27,9 +29,6 @@ const updatedUnits=()=>setUnitsUpdated(!unitsUpdated)
       .then((res) => {
         setBuildingUnits(res.data)
       })
-    // change background color with a random color
-    const color = "white";
-    document.body.style.background = color;
   }, [unitsUpdated]);
   return (
     <>
@@ -38,33 +37,36 @@ const updatedUnits=()=>setUnitsUpdated(!unitsUpdated)
         <NavigationBar />
       </Row>
           <Row>
+          <Col md={2} ><DashboardSidebar /></Col>
+            <Col>
           <p id="text">Building Units of building {buildingCode} </p>
           <Container>
               <Row className='d-flex justify-content-center align-items-center'>
                 <Col>
-                  <table className="table table-bordered" id='tbl'>
-                    <thead className=" text-white" style={{ backgroundColor: "brown" }}>
+                  <table className="table table-bordered" id='bunitTable'>
+                    <thead className=" text-white" style={{backgroundColor: "hsl(218, 41%, 15%)" }}>
                       <tr>
-                        <td>BUILDING UNIT Number</td>
-                        <td>PARKING SLOTS</td>
-                        <td>ACTIONS</td>
+                        <td className='text-center'>BUILDING UNIT Number</td>
+                        <td className='text-center'>PERMIT PER MONTH</td>
+                        { Role==="Admin"?
+                        <td className='text-center'>ACTIONS</td>:''}
                       </tr>
                     </thead>
                     <tbody>
                       {
                         buildingUnits.map((data,index)=>{
                           return <tr key={index} >
-                          <td>{data.buildingUnits}</td>
-                          <td>{data.parkingSlots}</td>
-
+                          <td className='text-center'>{data.buildingUnits}</td>
+                          <td className='text-center'>{data.parkingSlots}</td> 
+                          { Role==="Admin"?
                           <td className='d-flex'>
                             <Button
                               id='buildingEditBtn' style={{border:"none"}}
                               onClick={()=>handleShowData(data)}
                             >
-                              Allow More Parking Slots
+                              Allow More Permit
                             </Button>
-                          </td>
+                          </td>:''}
                         </tr>
                         })
                       }
@@ -73,6 +75,7 @@ const updatedUnits=()=>setUnitsUpdated(!unitsUpdated)
                 </Col>
               </Row>
             </Container>
+            </Col>
           </Row>      
       </Container>
       <Modal show={showUnitsModel} onHide={handleClose}>

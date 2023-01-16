@@ -14,12 +14,6 @@ export default function AddBuilding() {
   const [error,setError]=useState(false);
   // const [buildingUnits,setBuildingunits]=useState();
 
-
-  useEffect(() => {
-    // change background color with a random color
-    const color = "white";
-    document.body.style.background = color;
-  });
   const formData = {
     buildingCode: '',
     buildingAddress: '',
@@ -69,21 +63,6 @@ export default function AddBuilding() {
   createUnits()
 
   }
-  const styles = {
-    column: {
-      boxShadow: "1px 2px 3px 1px #949188",
-      backgroundColor: "white",
-      borderRadius: 12,
-      padding: "25px",
-      width: "70%",
-      marginTop: "20px"
-    },
-    p: {
-      marginBottom: "3px"
-    }
-  }
-  const { column } = styles;
-
   const handleAddClick = (e) => {
     const getUnits = [...units];
     getUnits.push(data.buildingUnits);
@@ -106,8 +85,11 @@ export default function AddBuilding() {
             <Row>
               <p id="text">Please add information of building here!</p>
             </Row>
+            <Row>
+              <p className='animatedtext'>Please make sure to click on <strong>Add unit </strong> button for each building unit number!</p>
+            </Row>
             <Row className='d-flex justify-content-center align-items-center'>
-              <Col style={column} lg={2} md={4} >
+              <Col id='addBuilding' lg={2} md={4} >
 
                 <Form md={2} onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="formBasicEmail">

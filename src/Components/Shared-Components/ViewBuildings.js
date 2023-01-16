@@ -3,7 +3,7 @@ import { Row, Container, Col, Button } from 'react-bootstrap';
 import DashboardSideBar from './Dashboard-Sidebar'
 import NavigationBar from './Navbar'
 import axios from 'axios';
-import '../css/responsive.css'
+import '../css/style.css'
 import { toast } from "react-toastify";
 import { API } from '../../Config/config'
 import Modal from 'react-bootstrap/Modal';
@@ -22,27 +22,14 @@ export default function ViewBuildings() {
 
   const buildingUpdated = () => setDataUpdated(!dataUpdated);
 
-  const styles = {
-    column: {
-      // boxShadow: "1px 2px 3px 1px #949188",
-      backgroundColor: "white",
-      // borderRadius: 12,
-      padding: "25px",
-      width: "100%",
-      marginTop: "20px"
-    },
-  }
-  const { column } = styles;
   const accessToken=localStorage.getItem('Access token')
+  const Role = localStorage.getItem("role")
+
   useEffect(() => {
-    // console.log(accessToken)
     axios.get(`${API}building`, { headers: {"Authorization" : `Bearer ${accessToken}`} })
       .then((res) => {
         setShowBuildings(res.data)
       })
-    // change background color with a random color
-    const color = "white";
-    document.body.style.background = color;
   }, [dataUpdated]);
   const handleClickRemove = async (buildingCode) => {
     try {
@@ -95,15 +82,15 @@ export default function ViewBuildings() {
           <Col>
             <Container>
               <Row className='d-flex justify-content-center align-items-center'>
-                <Col style={column} lg={2} md={4} >
+                <Col id="buildingTable" lg={2} md={4} >
                   <table className="table table-bordered" id='tbl'>
                     <thead className=" text-white" style={{ backgroundColor: "brown" }}>
                       <tr>
-                        <td>BUILDING CODE</td>
-                        <td>BUILDING ADDRESS</td>
-                        <td>TOTAL UNITS</td>
-                        <td>PARKING SLOTS</td>
-                        <td>ACTIONS</td>
+                        <td className='text-center'>BUILDING CODE</td>
+                        <td className='text-center'>BUILDING ADDRESS</td>
+                        <td className='text-center'>TOTAL UNITS</td>
+                        <td className='text-center'>PARKING SLOTS</td>
+                        {Role === 'Admin' ? <td className='text-center'>EDIT / DELETE</td>:''}
                       </tr>
                     </thead>
                     <tbody>
@@ -117,9 +104,11 @@ export default function ViewBuildings() {
 
                                 </Button>
                               </div>
-                              <td>{item.parkingSlots}</td>
+                              <td className='text-center'>{item.parkingSlots}</td>
 
+                              {Role === 'Admin' ? 
                               <td className='d-flex'>
+                              <>
                                 <Button
                                   id='buildingEditBtn' onClick={() => handleClickEdit(item)}
                                 >
@@ -134,8 +123,10 @@ export default function ViewBuildings() {
                                 >
                                   DELETE
                                 </Button>
+                                </> 
 
-                              </td>
+                              </td>:''
+                          }
                             </tr>
                           })}
                         </tbody>

@@ -2,11 +2,13 @@ import React from "react";
 import {Menu, MenuItem, Sidebar, useProSidebar,} from "react-pro-sidebar";
 import {Button} from "react-bootstrap";
 import {Eye, Grid, Pencil, Speedometer2,} from "react-bootstrap-icons";
-import '../css/responsive.css'
+import '../css/style.css'
+import { useLocation } from 'react-router-dom'
 
 
 export default function DashboardSidebar() {
     const {broken, toggleSidebar} = useProSidebar();
+    const url = useLocation();
     const Role = localStorage.getItem("role")
     let menuItems;
     if (Role === "Admin") {
@@ -84,10 +86,11 @@ export default function DashboardSidebar() {
             )}
             <Sidebar breakPoint={"md"} backgroundColor={" hsl(218, 41%, 15%)"} id="sideBar">
                 <Menu closeOnClick={true} style={{marginTop: 55}}>
-                    {menuItems?.map(({name, href, icon}, index) => (
+                    {menuItems?.map(({name, href, icon,active}, index) => (
                         <a key={index} href={`/app${href}`}><MenuItem
                             style={{color: "white"}}
                             icon={icon}
+                            active={url === active}
                         >
                             {name}
                         </MenuItem>

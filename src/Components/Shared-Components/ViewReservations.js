@@ -1,12 +1,13 @@
 import { React, useEffect, useState } from 'react'
 import NavigationBar from './Navbar'
 import { Row, Container, Col, Button, Form } from 'react-bootstrap';
-import '../css/responsive.css'
+import '../css/style.css'
 import axios from 'axios';
 import { API } from '../../Config/config'
 import { toast } from "react-toastify";
-import Pagination from '../Shared-Components/Pagination/PaginationViewReservation'
+// import Pagination from '../Shared-Components/Pagination/PaginationViewReservation'
 import jsPDF from 'jspdf'
+import Companylogo from '../images/dssguardslogo.jpeg'
 
 
 
@@ -17,15 +18,13 @@ export default function ParkingReservations() {
   const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage] = useState(8);
   const [searchValue, setSearchValue] = useState("");
+  const Role = localStorage.getItem("role")
 
   useEffect(() => {
     axios.get(`${API}reservation`)
       .then((res) => {
         setShowData(res.data)
       })
-    // change background color with a random color
-    const color = "white";
-    document.body.style.background = color;
   }, []);
 
   const handleClickRemove = async (id) => {
@@ -56,27 +55,37 @@ export default function ParkingReservations() {
   const handleChangeSearch = (e) => {
     setSearchValue(e.target.value)
   }
+  let para = "this is para"
 
-
-  const exportPDF = (index) => {
-    const pdfData = showData.filter(item=> item._id === index);
+  const exportPDF = async (index) => {
+    const pdfData = showData.filter(item => item._id === index);
     const unit = "pt";
-    const size = "A4"; 
-    const orientation = "landscape"; 
+    const size = "A4";
+    const orientation = "landscape";
     const marginLeft = 40;
     const doc = new jsPDF(orientation, unit, size);
+    const loadImage = () => {
+      return new Promise((resolve) => {
+        let img = new Image();
+        img.src = Companylogo;
+        img.onload = () => resolve(img);
+      })
+    };
+    const logo = await loadImage();
+    doc.addImage(logo, 'jpeg', 290, 20, 0, 50);
     doc.setFontSize(15);
-    const title = "Builidng Reservation Report";
-    const headers = [["NAME", "BUILDING CODE","BUILDING ADDRESS", "CONTACT","UNITS","LICENSE PLATE", "VEHICLE COLOR","VEHICLE MODEL"]];
-    const data = pdfData.map(pdf => [pdf.name, pdf.buildingCode, pdf.buildingAddress,  pdf.contactNumber, pdf.buildingUnits, pdf.licensedPlateNumber,pdf.vehicleColor, pdf.vehicleModel]);
+    const title = "Parking Reservation Report";
+    const headers = [["NAME", "Email", "BUILDING CODE", "BUILDING ADDRESS", "CONTACT", "UNIT VISITING", "LICENSE PLATE", "VEHICLE COLOR", "DATE FROM", "DATE TO", "TIME FORM", "TIME TO"]];
+    const data = pdfData.map(pdf => [pdf.name, pdf.email, pdf.buildingCode, pdf.buildingAddress, pdf.contactNumber, pdf.buildingUnits, pdf.licensedPlateNumber, pdf.vehicleColor, pdf.dateFrom, pdf.dateTo, pdf.timeFrom, pdf.timeTo]);
     let content = {
       startY: 100,
       head: headers,
       body: data
     };
-    doc.text(title, marginLeft, 40);
+
+    doc.text(title, marginLeft, 90);
     doc.autoTable(content);
-    doc.save("Building Reservation Report.pdf")
+    doc.save("Parking Reservation Report.pdf")
   }
   return (
     <>
@@ -107,22 +116,26 @@ export default function ParkingReservations() {
                 <table className="table table-bordered" id='tbl'>
                   <thead className=" text-white" style={{ backgroundColor: "hsl(218, 41%, 15%)" }}>
                     <tr>
-                      <td className='headerStyle'>BUILDING CODE</td>
-                      <td className='headerStyle'>BUILDING ADDRESS</td>
-                      <td className='headerStyle'>Name</td>
+                      <td className='headerStyle text-center'>BUILDING CODE</td>
+                      <td className='headerStyle text-center'>BUILDING ADDRESS</td>
+                      <td className='headerStyle text-center'>Name</td>
                       {/* <td className='headerStyle'>Email</td> */}
-                      <td className='headerStyle'>CONTACT NUMBER</td>
-                      <td className='headerStyle'>UNIT VISITING</td>
-                      <td className='headerStyle'>VEHICLE DETAIL</td>
-                      <td className='headerStyle'>DATE FROM</td>
-                      <td className='headerStyle'>DATE TO</td>
-                      <td className='headerStyle'>TIME FROM</td>
-                      <td className='headerStyle'>TIME TO</td>
-                      <td className='headerStyle'>ACTIONS</td>
+                      <td className='headerStyle text-center'>CONTACT NUMBER</td>
+                      <td className='headerStyle text-center'>UNIT VISITING</td>
+                      <td className='headerStyle text-center'>VEHICLE DETAIL</td>
+                      <td className='headerStyle text-center'>DATE FROM</td>
+                      <td className='headerStyle text-center'>DATE TO</td>
+                      <td className='headerStyle text-center'>TIME FROM</td>
+                      <td className='headerStyle text-center'>TIME TO</td>
+                      {Role === 'Admin' ?
+                        <td className='headerStyle text-center'>DELETE</td>
+                        : ''}
+                      <td className='headerStyle text-center'>DOWNLOAD</td>
                     </tr>
                   </thead>
                   <tbody className='tableBody'>
-                    {currentPost?.filter((value) =>
+                    {/* Currentpost array for pagination  */}
+                    {showData?.filter((value) =>
                     (value.licensedPlateNumber.toLowerCase().includes(searchValue) ||
                       value.buildingCode.toLowerCase().includes(searchValue) ||
                       value.dateFrom.toLowerCase().includes(searchValue) ||
@@ -136,26 +149,30 @@ export default function ParkingReservations() {
                         <td className='font'>{item.contactNumber}</td>
                         <td className='font'>{item.buildingUnits}</td>
                         <td className='font'>
-                          <p className='d-flex m-0 border-bottom'><p style={{ color: "brown", fontWeight: "600", margin: "0px" }}> Number:</p>{item.licensedPlateNumber}</p>
-                          <p className='d-flex m-0 border-bottom'><p style={{ color: "brown", fontWeight: "600", margin: "0px" }}>Color:</p>{item.vehicleColor}</p>
-                          <p className='d-flex m-0'><p style={{ color: "brown", fontWeight: "600", margin: "0px" }}> Make:</p>{item.Make}</p>
+                          <p className='d-flex m-0 '><p style={{ color: "gray", fontWeight: "600", margin: "0px" }}> Number:</p>{item.licensedPlateNumber}</p>
+                          <p className='d-flex m-0'><p style={{ color: "gray", fontWeight: "600", margin: "0px" }}>Color:</p>{item.vehicleColor}</p>
+                          <p className='d-flex m-0'><p style={{ color: "gray", fontWeight: "600", margin: "0px" }}> Make:</p>{item.Make}</p>
                         </td>
                         <td className='font'>{item.dateFrom}</td>
                         <td className='font'>{item.dateTo}</td>
                         <td className='font'>{item.timeFrom}</td>
                         <td className='font'>{item.timeTo}</td>
-                        <td className='d-flex justify-content-between'>
+                        {Role === "Admin" ?
+                          <td >
+                            <Button
+                              className="btn fontsizePDF" id='btn'
+                              onClick={() => {
+                                handleClickRemove(item._id);
+                              }}>
+                              Delete
+                            </Button>
+                          </td>
+                          : ''}
+                        <td>
                           <Button
-                            className="btn fontsizePDF" id='btn'
-                            onClick={() => {
-                              handleClickRemove(item._id);
-                            }}>
-                            Delete
-                          </Button>
-                          <Button
-                            className="btn fontsizePDF" id='btn'
-                            onClick={()=>exportPDF(item._id)}
-                            >
+                            className="btn fontsizePDF" id='btnPdf'
+                            onClick={() => exportPDF(item._id)}
+                          >
                             Generate PDF
                           </Button>
                         </td>
@@ -168,7 +185,7 @@ export default function ParkingReservations() {
           </Container>
           {/* </Col> */}
 
-          <Pagination dataPerPage={dataPerPage} totalData={showData.length} paginate={paginate} />
+          {/* <Pagination dataPerPage={dataPerPage} totalData={showData.length} paginate={paginate} /> */}
         </Row>
       </Container>
     </>

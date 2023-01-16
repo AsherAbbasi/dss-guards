@@ -15,10 +15,6 @@ export default function ViewEmployees() {
   const [employeeData, setEmployeeData] = useState([])
   const employeeUpdated = () => setDataUpdated(!dataUpdated);
   useEffect(() => {
-    // change background color with a random color
-    const color = "white";
-    document.body.style.background = color;
-
     axios.get(`${API}auth/AllUsers`)
       .then((res) => {
         setEmployeeData(res.data)
@@ -63,12 +59,12 @@ export default function ViewEmployees() {
                 <table className="table table-bordered" id='tbl'>
                   <thead className=" text-white" style={{ backgroundColor: "brown" }}>
                     <tr>
-                      <td>Name</td>
-                      <td>Email</td>
-                      <td>Password</td>
-                      <td>Role</td>
-                      <td>Assigned building</td>
-                      <td>Action</td>
+                      <td className='text-center headerUser'>NAME</td>
+                      <td className='text-center headerUser'>EMAIL</td>
+                      <td className='text-center headerUser'>PASSWORD</td>
+                      <td className='text-center headerUser'>ROLE</td>
+                      <td className='text-center headerUser'>ASSIGNED BUILDING</td>
+                      <td className='text-center headerUser'>EDIT / DELETE</td>
                     </tr>
                   </thead>
                   <tbody>

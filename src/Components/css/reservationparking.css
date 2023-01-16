@@ -36,6 +36,12 @@
    border: none;
    color: red;
 }
+#btnPdf{
+    background: none;
+    border: none;
+    color: green;
+   
+ }
 #btn:hover{
     background: none;
     border: none;

@@ -14,11 +14,6 @@ const moment = require('moment-timezone');
 
 export default function ReserveParking() {
     const [validated, setValidated] = useState(false);
-    useEffect(() => {
-        // change background color with a random color
-        const color = "white";
-        document.body.style.background = color;
-    });
     const date = moment.tz("America/Toronto").format('YYYY-MM-DD');
     const time = moment.tz("America/Toronto").format('LTS');
     const initialData = {
@@ -56,7 +51,10 @@ export default function ReserveParking() {
                 let bCode=(response.data.buildingCode)
                 let unit=(response.data.buildingUnits)
                 let licensedPlateNumber=(response.data.licensedPlateNumber)
-
+                 
+                const Url = `${url}/email`;
+                await axios.post(Url, reservation);
+                 
                 toast.success(`You Reserve The Parking Against Building ${bCode} Unit ${unit}  Licensed Plate ${licensedPlateNumber} `, {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 2500,
@@ -70,7 +68,7 @@ export default function ReserveParking() {
                 });
             }
         }
-        setReservation(initialData);
+        // setReservation(initialData);
     };
     const disablePastDate = () => {
         const today = reservation.dateFrom ? moment(reservation.dateFrom).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD');

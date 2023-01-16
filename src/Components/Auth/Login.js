@@ -52,12 +52,12 @@ export default function Login() {
 
     return (
         <>
-
-            <Container className='form-mid '>
+          <div id="login">
+            <Container className='form-mid ' >
                 <div id="radius-shape-1" className="position-absolute rounded-circle shadow-5-strong"></div>
                 <Row className="d-flex justify-content-lg-center align-items-center vh-100 ">
                     <Col lg={4} md={6} sm={12}
-                         className=' h-50 d-flex flex-column justify-content-lg-center align-items-center '>
+                         className=' h-50 d-flex flex-column justify-content-lg-center  '>
                         <h1 className="my-3  fw-bold ls-tight px-3" style={{color: '#ab0510'}}>
                             Digital Safeguard<br/>
                             <span style={{color: 'white'}}>Security Inc</span>
@@ -74,8 +74,8 @@ export default function Login() {
                         <Row>
                             <Col>
                                 <Form onSubmit={handleSubmit}>
-                                    <div style={{height: ''}}></div>
-                                    <img src={companyLogo} alt="logo" style={{width: 80}}/>
+                                   <div className='d-flex justify-content-center'> <img src={companyLogo} alt="logo" style={{width: 80}}/></div>
+                                    <div style={{height: '12px'}}></div>
                                     <div className="header-form">
                                         {/* <h4 className="text-dark text-center"><i className="fa fa-user-circle" style={{ fontSize: "80px" }}></i></h4> */}
                                         <div className="image">
@@ -109,6 +109,7 @@ export default function Login() {
                 <div id="radius-shape-2" className="position-absolute shadow-5-strong"></div>
 
             </Container>
+            </div>
         </>
     );
 }

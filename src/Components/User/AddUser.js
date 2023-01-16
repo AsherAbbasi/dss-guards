@@ -9,11 +9,7 @@ import axios from 'axios';
 import { API } from '../../Config/config'
 
 export default function AddGuards() {
-  useEffect(() => {
-    // change background color with a random color
-    const color = "white";
-    document.body.style.background = color;
-  });
+  
   const initialData = {
     name:"",
     email:"",

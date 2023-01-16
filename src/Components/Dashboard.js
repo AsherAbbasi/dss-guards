@@ -2,31 +2,15 @@ import React, {useEffect} from 'react'
 import {Col, Container, Row} from 'react-bootstrap';
 import SideBar from './Shared-Components/Dashboard-Sidebar';
 import NavigationBar from './Shared-Components/Navbar'
-import "./css/responsive.css";
+import "./css/style.css";
 import frontDesk from './images/front.png';
 import guard from './images/pic2.jpeg';
 
 
 export default function Dashboard() {
-    useEffect(() => {
-        // change background color with a random color
-        document.body.style.background = "white";
-    }, []);
 
     return (
         <>
-            {/* <Container fluid={true}>
-        <Row>
-       <NavigationBar/>
-        </Row>
-        <Row>
-        <Col lg={6} md={6}>
-            <SideBar />
-          </Col>
-        </Row>
-        <Row>
-       <Home/>
-        </Row> */}
             <Container fluid={true}>
                 <Row>
                     <NavigationBar/>
@@ -50,12 +34,14 @@ export default function Dashboard() {
                                     properties. We believe that our client’s satisfaction comes first.</p>
                             </Col>
                         </Row>
-                        <Row style={{margin: "3px", padding: "3px",}}>
-                            <Col>
+                        <Row>
+                            <Col md={12} sm={12} className='d-flex justify-content-center' id="col">
+                                <div>
                                 <img src={frontDesk} id="dashboardImg"></img>
-                            </Col>
-                            <Col>
+                                </div>
+                                <div>
                                 <img id="dashboardImg" src={guard}></img>
+                                </div>
                             </Col>
 
                         </Row>
