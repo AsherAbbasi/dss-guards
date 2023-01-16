@@ -71,6 +71,9 @@ export default function ParkingReservations() {
         img.onload = () => resolve(img);
       })
     };
+    function footer(){ 
+      doc.text(300,580, 'https://dssguards.com/');
+    };
     const logo = await loadImage();
     doc.addImage(logo, 'jpeg', 290, 20, 0, 50);
     doc.setFontSize(15);
@@ -78,13 +81,14 @@ export default function ParkingReservations() {
     const headers = [["NAME", "Email", "BUILDING CODE", "BUILDING ADDRESS", "CONTACT", "UNIT VISITING", "LICENSE PLATE", "VEHICLE COLOR", "DATE FROM", "DATE TO", "TIME FORM", "TIME TO"]];
     const data = pdfData.map(pdf => [pdf.name, pdf.email, pdf.buildingCode, pdf.buildingAddress, pdf.contactNumber, pdf.buildingUnits, pdf.licensedPlateNumber, pdf.vehicleColor, pdf.dateFrom, pdf.dateTo, pdf.timeFrom, pdf.timeTo]);
     let content = {
-      startY: 100,
+      startY: 160,
       head: headers,
       body: data
     };
 
-    doc.text(title, marginLeft, 90);
+    doc.text(title, marginLeft, 120);
     doc.autoTable(content);
+    footer();
     doc.save("Parking Reservation Report.pdf")
   }
   return (
