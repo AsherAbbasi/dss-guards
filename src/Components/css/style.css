@@ -1,9 +1,46 @@
 #dropdown-basic.dropdown-toggle.btn.btn-success::after{
     display: none !important;
 }
+.ticketRow{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+#ticketText{
+    margin: 4px 0px !important;
+}
+#addTicket{
+    width: 90%;
+    /* border: 1px solid gray; */
+    box-shadow: 1px 2px 3px 1px #949188;
+   border-radius: 4px;
+    /* justify-items: center; */
+}
+#addticketBtn{
+    background-color: brown;
+    border: none;
+    width: 25%;
+}
+#ticketText{
+    text-align: center;
+    background-color: brown;
+    padding: 12px 0px;
+    color: white;
+}
+#ticketSection{
+    margin-top: 12px;
+}
 #buildingTable{
     width: 100%;
     margin-top: 16px;
+}
+#TicketTable{
+    width: 100%;
+    padding: 0px 12px!important;
+}
+#Table{
+    width: 100%;
+    padding: 0px !important;
+    /* margin-top: 16px; */
 }
 #addBuilding{
     box-shadow: 1px 2px 3px 1px #949188;
@@ -160,6 +197,9 @@ font-weight: 500;
     }
     }
     @media only screen and (min-width:471px) and (max-width: 769px) {
+        #ticketSection{
+            flex-direction: column;
+        }
         #dashboardImg{
             margin-top: 32px;
             width: 300px;
@@ -169,7 +209,13 @@ font-weight: 500;
         }
     }
     @media only screen  and (max-width: 470px) {
-        #tbl{
+        #ticketSection{
+            flex-direction: column;
+        }
+        #inputFormTicket{
+          width: 100%;
+        }
+         #tbl{
         margin-left: -37px;
         } 
         #dasboardPara{

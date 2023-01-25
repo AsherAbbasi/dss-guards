@@ -7,6 +7,10 @@ import ViewBuildings from "../../Components/Shared-Components/ViewBuildings";
 import BuildingUnits from "../../Components/Shared-Components/BuildingUnits";
 import AddUser from "../../Components/User/AddUser";
 import ViewUser from "../../Components/User/ViewUser";
+import Ticket from "../../Components/Shared-Components/Ticket";
+import ViewTicket from "../../Components/Shared-Components/ViewTicket"
+
+
 
 const routes = [
     {
@@ -35,6 +39,14 @@ const routes = [
     }, {
         path: '/users',
         element: <ViewUser/>
+    },
+    {
+        path: '/ticket',
+        element: <Ticket/>
+    },
+    {
+        path: '/tickets',
+        element: <ViewTicket/>
     },
     {
         path: '/',

@@ -83,7 +83,7 @@ export default function ParkingReservations() {
     let content = {
       startY: 160,
       head: headers,
-      body: data
+      body: data,
     };
 
     doc.text(title, marginLeft, 120);

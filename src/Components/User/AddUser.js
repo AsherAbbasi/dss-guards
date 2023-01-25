@@ -97,7 +97,7 @@ export default function AddGuards() {
                     <Form.Select aria-label="Default select example" name="role" onChange={handleOnChange} >
                       <option>Select Role Of User</option>
                       <option value="Admin" >Admin</option>
-                      <option value="Guard" >Guard</option>
+                      {/* <option value="Guard" >Guard</option> */}
                       <option value="User" >User</option>
                     </Form.Select>
                   </Form.Group>

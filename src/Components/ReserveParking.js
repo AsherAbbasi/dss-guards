@@ -35,7 +35,13 @@ export default function ReserveParking() {
     const [reservation, setReservation] = useState(initialData)
     const handleOnChange = (e) => {
         const { name, value } = e.target;
-        setReservation((prevState) => ({ ...prevState, [name]: value }));
+        if (name === "timeTo") {
+            setReservation((prevState) => ({ ...prevState, [name]: (moment(value, 'HH:mm').format('LT')) }));
+        }
+        else {
+
+            setReservation((prevState) => ({ ...prevState, [name]: value }));
+        }
     }
     const handleSubmit = async (e) => {
         const form = e.currentTarget;
@@ -47,14 +53,14 @@ export default function ReserveParking() {
             e.preventDefault();
             try {
                 const url = `${API}reservation`;
-                const response=await axios.post(url, reservation);
-                let bCode=(response.data.buildingCode)
-                let unit=(response.data.buildingUnits)
-                let licensedPlateNumber=(response.data.licensedPlateNumber)
-                 
+                const response = await axios.post(url, reservation);
+                let bCode = (response.data.buildingCode)
+                let unit = (response.data.buildingUnits)
+                let licensedPlateNumber = (response.data.licensedPlateNumber)
+
                 const Url = `${url}/email`;
                 await axios.post(Url, reservation);
-                 
+
                 toast.success(`You Reserve The Parking Against Building ${bCode} Unit ${unit}  Licensed Plate ${licensedPlateNumber} `, {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 2500,
@@ -74,13 +80,10 @@ export default function ReserveParking() {
         const today = reservation.dateFrom ? moment(reservation.dateFrom).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD');
         return today;
     };
-
-
     const disableDate = () => {
-        const lastDate = moment(reservation.dateFrom).add(1, 'days').format('YYYY-MM-DD');
+        const lastDate = moment(reservation.dateFrom).add(2, 'days').format('YYYY-MM-DD');
         return lastDate;
     };
-
     return (
         <>
             <div className='mt-2'>
@@ -90,7 +93,7 @@ export default function ReserveParking() {
                 <Col lg={10}>
                     <Card className='m-4 bg-transparent'  >
                         <Form className='m-3' noValidate validated={validated} onSubmit={handleSubmit}>
-                        <Card.Header id='card' style={{marginBottom:"16px"}}>Building Information</Card.Header>
+                            <Card.Header id='card' style={{ marginBottom: "16px" }}>Building Information</Card.Header>
                             <Row className='mb-3 responsive' >
                                 <Form.Group className='input' as={Col} controlId="validationCustom" >
                                     <Form.Control name='buildingCode' type={"text"} value={reservation.buildingCode} placeholder="Building Code*" onChange={handleOnChange} required />
@@ -166,7 +169,7 @@ export default function ReserveParking() {
 
                                 <Form.Group className='input' as={Col} controlId="validationCustom10">
                                     <Form.Label className='text-light text-dark'>To</Form.Label>
-                                    <Form.Control name='timeTo' type="Time" value={reservation.timeTo} placeholder="To" id="time" onChange={handleOnChange} required />
+                                    <Form.Control name='timeTo' type="Time" value={reservation.timeTo} placeholder="To" id="time" onChange={handleOnChange}  />
                                 </Form.Group>
 
                             </Row>

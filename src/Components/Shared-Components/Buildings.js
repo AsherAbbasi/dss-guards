@@ -12,7 +12,6 @@ import { API } from '../../Config/config'
 export default function AddBuilding() {
   const [units, setUnits] = useState([])
   const [error,setError]=useState(false);
-  // const [buildingUnits,setBuildingunits]=useState();
 
   const formData = {
     buildingCode: '',
