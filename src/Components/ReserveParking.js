@@ -14,6 +14,8 @@ const moment = require('moment-timezone');
 
 export default function ReserveParking() {
     const [validated, setValidated] = useState(false);
+    const [timeRes, setTimeTo] = useState();
+
     const date = moment.tz("America/Toronto").format('YYYY-MM-DD');
     const time = moment.tz("America/Toronto").format('LTS');
     const initialData = {
@@ -36,7 +38,8 @@ export default function ReserveParking() {
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         if (name === "timeTo") {
-            setReservation((prevState) => ({ ...prevState, [name]: (moment(value, 'HH:mm').format('LT')) }));
+            // setTimeTo(moment(value,'hh:mm').format('LT'))
+            setReservation((prevState) => ({ ...prevState, [name]: value}));
         }
         else {
 
@@ -51,6 +54,8 @@ export default function ReserveParking() {
             setValidated(true);
         } else if (form.checkValidity() === true) {
             e.preventDefault();
+            reservation.timeTo=moment(reservation.timeTo,'hh:mm').format('LT');
+            console.log(reservation);
             try {
                 const url = `${API}reservation`;
                 const response = await axios.post(url, reservation);
@@ -84,6 +89,7 @@ export default function ReserveParking() {
         const lastDate = moment(reservation.dateFrom).add(2, 'days').format('YYYY-MM-DD');
         return lastDate;
     };
+    
     return (
         <>
             <div className='mt-2'>
