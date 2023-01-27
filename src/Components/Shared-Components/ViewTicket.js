@@ -40,6 +40,24 @@ export default function ViewTicket() {
           });
         }
       }
+    const pdfMaker=async (id)=>{
+        // try {
+        //       const url = `${API}getPDF/${id}`;
+        //       await axios.get(url).data;
+        //       toast.success("PDF Downloaded Successfully", {
+        //         position: toast.POSITION.TOP_RIGHT,
+        //         autoClose: 2500,
+              
+        //     })
+      
+        //   } catch (error) {
+        //     toast.error(`Something went wrong! please try later`, {
+        //       position: toast.POSITION.TOP_RIGHT,
+        //       autoClose: 2500,
+        //     });
+        //   }
+
+    }
     return (
         <>
             <Container fluid={true}>
@@ -104,11 +122,13 @@ export default function ViewTicket() {
                                                         </Button>
                                                     </td>
                                                     <td>
-                                                        <Button
+                                                        <a  href={`${API}getPDF/${item._id}`}
                                                             className="btn fontsizePDF" id='btnPdf'
+                                                            target={"_blank"}
+                                                
                                                         >
                                                             Generate PDF
-                                                        </Button>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             })}
