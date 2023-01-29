@@ -84,9 +84,6 @@ export default function AddBuilding() {
             <Row>
               <p id="text">Please add information of building here!</p>
             </Row>
-            <Row>
-              <p className='animatedtext'>Please make sure to click on <strong>Add unit </strong> button for each building unit number!</p>
-            </Row>
             <Row className='d-flex justify-content-center align-items-center'>
               <Col id='addBuilding' lg={2} md={4} >
 

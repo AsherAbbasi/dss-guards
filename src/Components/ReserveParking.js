@@ -32,7 +32,7 @@ export default function ReserveParking() {
         timeFrom: time,
         timeTo: ""
     }
-    const [reservation, setReservation] = useState(initialData)
+    const [reservation, setReservation] = useState(initialData);
     const handleOnChange = (e) => {
         const { name, value } = e.target;
             setReservation((prevState) => ({ ...prevState, [name]: value }));

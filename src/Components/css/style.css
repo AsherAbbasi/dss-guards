@@ -18,7 +18,13 @@
 #addticketBtn{
     background-color: brown;
     border: none;
-    width: 25%;
+    width: 40%;
+}
+#addMoreBtn{
+    background-color: green;
+    border: none;
+    width: 30%;
+    margin-right: 12px;
 }
 #ticketText{
     text-align: center;
@@ -209,6 +215,7 @@ font-weight: 500;
         }
     }
     @media only screen  and (max-width: 470px) {
+       
         #ticketSection{
             flex-direction: column;
         }

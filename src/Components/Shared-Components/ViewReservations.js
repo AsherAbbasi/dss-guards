@@ -19,10 +19,10 @@ export default function ParkingReservations() {
   const [dataPerPage] = useState(8);
   const [searchValue, setSearchValue] = useState("");
   const Role = localStorage.getItem("role")
-  const accessToken=localStorage.getItem('Access token')
+  const accessToken = localStorage.getItem('Access token')
 
   useEffect(() => {
-    axios.get(`${API}reservation` , { headers: {"Authorization" : `Bearer ${accessToken}`} })
+    axios.get(`${API}reservation`, { headers: { "Authorization": `Bearer ${accessToken}` } })
       .then((res) => {
         setShowData(res.data)
       })
@@ -57,40 +57,40 @@ export default function ParkingReservations() {
     setSearchValue(e.target.value)
   }
 
-  const exportPDF = async (index) => {
-    const pdfData = showData.filter(item => item._id === index);
-    const unit = "pt";
-    const size = "A4";
-    const orientation = "landscape";
-    const marginLeft = 40;
-    const doc = new jsPDF(orientation, unit, size);
-    const loadImage = () => {
-      return new Promise((resolve) => {
-        let img = new Image();
-        img.src = Companylogo;
-        img.onload = () => resolve(img);
-      })
-    };
-    function footer(){ 
-      doc.text(300,580, 'https://dssguards.com/');
-    };
-    const logo = await loadImage();
-    doc.addImage(logo, 'jpeg', 290, 20, 0, 50);
-    doc.setFontSize(15);
-    const title = "Parking Reservation Report";
-    const headers = [["NAME", "Email", "BUILDING CODE", "BUILDING ADDRESS", "CONTACT", "UNIT VISITING", "LICENSE PLATE", "VEHICLE COLOR", "DATE FROM", "DATE TO", "TIME FORM", "TIME TO"]];
-    const data = pdfData.map(pdf => [pdf.name, pdf.email, pdf.buildingCode, pdf.buildingAddress, pdf.contactNumber, pdf.buildingUnits, pdf.licensedPlateNumber, pdf.vehicleColor, pdf.dateFrom, pdf.dateTo, pdf.timeFrom, pdf.timeTo]);
-    let content = {
-      startY: 160,
-      head: headers,
-      body: data,
-    };
+  // const exportPDF = async (index) => {
+  //   const pdfData = showData.filter(item => item._id === index);
+  //   const unit = "pt";
+  //   const size = "A4";
+  //   const orientation = "landscape";
+  //   const marginLeft = 40;
+  //   const doc = new jsPDF(orientation, unit, size);
+  //   const loadImage = () => {
+  //     return new Promise((resolve) => {
+  //       let img = new Image();
+  //       img.src = Companylogo;
+  //       img.onload = () => resolve(img);
+  //     })
+  //   };
+  //   function footer(){ 
+  //     doc.text(300,580, 'https://dssguards.com/');
+  //   };
+  //   const logo = await loadImage();
+  //   doc.addImage(logo, 'jpeg', 290, 20, 0, 50);
+  //   doc.setFontSize(15);
+  //   const title = "Parking Reservation Report";
+  //   const headers = [["NAME", "Email", "BUILDING CODE", "BUILDING ADDRESS", "CONTACT", "UNIT VISITING", "LICENSE PLATE", "VEHICLE COLOR", "DATE FROM", "DATE TO", "TIME FORM", "TIME TO"]];
+  //   const data = pdfData.map(pdf => [pdf.name, pdf.email, pdf.buildingCode, pdf.buildingAddress, pdf.contactNumber, pdf.buildingUnits, pdf.licensedPlateNumber, pdf.vehicleColor, pdf.dateFrom, pdf.dateTo, pdf.timeFrom, pdf.timeTo]);
+  //   let content = {
+  //     startY: 160,
+  //     head: headers,
+  //     body: data,
+  //   };
 
-    doc.text(title, marginLeft, 120);
-    doc.autoTable(content);
-    footer();
-    doc.save("Parking Reservation Report.pdf")
-  }
+  //   doc.text(title, marginLeft, 120);
+  //   doc.autoTable(content);
+  //   footer();
+  //   doc.save("Parking Reservation Report.pdf")
+  // }
   return (
     <>
       <Container fluid={true} >
@@ -173,12 +173,13 @@ export default function ParkingReservations() {
                           </td>
                           : ''}
                         <td>
-                          <Button
+                          <a href={`${API}getPDF/reservation/${item._id}`}
                             className="btn fontsizePDF" id='btnPdf'
-                            onClick={() => exportPDF(item._id)}
+                            target={"_blank"}
+
                           >
                             Generate PDF
-                          </Button>
+                          </a>
                         </td>
                       </tr>
                     })}

@@ -60,6 +60,12 @@ export default function DashboardSidebar() {
                 href: `/tickets`,
                 active: "[id]",
                 icon: <Eye />,
+            },
+            {
+                name: "Daily Report",
+                href: `/DailyReport`,
+                active: "[id]",
+                icon: <Eye />,
             }
         ];
     } else {
@@ -91,6 +97,12 @@ export default function DashboardSidebar() {
             {
                 name: "View Ticket",
                 href: `/tickets`,
+                active: "[id]",
+                icon: <Eye />,
+            },
+            {
+                name: "Daily Report",
+                href: `/DailyReport`,
                 active: "[id]",
                 icon: <Eye />,
             }

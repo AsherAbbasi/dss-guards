@@ -73,7 +73,8 @@ export default function ViewTicket() {
                                     <table className="table table-bordered" id='tbl'>
                                         <thead className=" text-white" style={{ backgroundColor: "hsl(218, 41%, 15%)" }}>
                                             <tr>
-                                                <td className='headerStyle text-center'>Name</td>
+                                                <td className='headerStyle text-center'>Officer Name</td>
+                                                <td className='headerStyle text-center'>Officer ID</td>
                                                 <td className='headerStyle text-center'>Date</td>
                                                 <td className='headerStyle text-center'>Time From</td>
                                                 <td className='headerStyle text-center'>Time To</td>
@@ -85,9 +86,7 @@ export default function ViewTicket() {
                                                 <td className='headerStyle text-center'>Location</td>
                                                 <td className='headerStyle text-center'>Voilation</td>
                                                 <td className='headerStyle text-center'>Law</td>
-                                                <td className='headerStyle text-center'>Comments</td>
                                                 <td className='headerStyle text-center'>Penalty Amount</td>
-                                                <td className='headerStyle text-center'>Officer Number</td>
                                                 <td className='headerStyle text-center'>Unit</td>
                                                 <td className='headerStyle text-center'>DELETE</td>
                                                 <td className='headerStyle text-center'>DOWNLOAD</td>
@@ -96,7 +95,8 @@ export default function ViewTicket() {
                                         <tbody>
                                             {ticketData?.map((item, index) => {
                                                 return <tr key={index}>
-                                                    <td>{item.name}</td>
+                                                    <td>{item.officerName}</td>
+                                                    <td>{item.officerId}</td>
                                                     <td>{item.date}</td>
                                                     <td>{item.timeFrom}</td>
                                                     <td>{item.timeTo}</td>
@@ -108,9 +108,7 @@ export default function ViewTicket() {
                                                     <td>{item.location}</td>
                                                     <td>{item.voilation}</td>
                                                     <td>{item.law}</td>
-                                                    <td>{item.comments}</td>
                                                     <td>{item.penaltyAmount}</td>
-                                                    <td>{item.officerNo}</td>
                                                     <td>{item.unit}</td>
                                                     <td className='d-flex'>
                                                         <Button
@@ -122,7 +120,7 @@ export default function ViewTicket() {
                                                         </Button>
                                                     </td>
                                                     <td>
-                                                        <a  href={`${API}getPDF/${item._id}`}
+                                                        <a  href={`${API}getPDF/ticket/${item._id}`}
                                                             className="btn fontsizePDF" id='btnPdf'
                                                             target={"_blank"}
                                                 

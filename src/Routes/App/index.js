@@ -8,7 +8,9 @@ import BuildingUnits from "../../Components/Shared-Components/BuildingUnits";
 import AddUser from "../../Components/User/AddUser";
 import ViewUser from "../../Components/User/ViewUser";
 import Ticket from "../../Components/Shared-Components/Ticket";
-import ViewTicket from "../../Components/Shared-Components/ViewTicket"
+import ViewTicket from "../../Components/Shared-Components/ViewTicket";
+import DailyReport from "../../Components/Shared-Components/DailyReport";
+
 
 
 
@@ -47,6 +49,10 @@ const routes = [
     {
         path: '/tickets',
         element: <ViewTicket/>
+    },
+    {
+        path: '/DailyReport',
+        element: <DailyReport/>
     },
     {
         path: '/',

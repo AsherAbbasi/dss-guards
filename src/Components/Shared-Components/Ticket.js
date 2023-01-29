@@ -8,9 +8,11 @@ import NavigationBar from "../Shared-Components/Navbar"
 import DashboardSideBar from "../Shared-Components/Dashboard-Sidebar"
 
 export default function Ticket() {
+    const [validated, setValidated] = useState(false);
+
     const initialData =
     {
-        name: "",
+        officerName: "",
         date: "",
         timeFrom: "",
         timeTo: "",
@@ -28,7 +30,6 @@ export default function Ticket() {
         unit: "",
     }
     const [data, setData] = useState(initialData);
-    console.log(data)
     const accessToken = localStorage.getItem('Access token');
 
     const handleOnChange = (e) => {
@@ -38,6 +39,7 @@ export default function Ticket() {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setValidated(true)
         try {
             const url = `${API}ticket`;
             await axios.post(url, data, { headers: { "Authorization": `Bearer ${accessToken}` } });
@@ -66,73 +68,75 @@ export default function Ticket() {
                             <p id="ticketText">Please add Ticket here!</p>
                         </Row>
                         <Row className='d-flex justify-content-center align-items-center'>
-                            <Col id='addTicket' lg={2} md={4} >
+                            <Col id='addTicket' className='mt-3' lg={2} md={4} >
 
-                                <Form md={2} onSubmit={handleSubmit}>
+                                <Form md={2} noValidate validated={validated} onSubmit={handleSubmit}>
                                     <div className='d-flex ' id='ticketSection'>
                                         <Form.Group className=" px-3 w-100" controlId="formBasicEmail">
-                                            <p className='mb-1'>Name:</p>
-                                            <Form.Control type="text" name="name" placeholder="Enter Name.." onChange={handleOnChange} />
+                                            <p className='mb-1'>Officer Name:</p>
+                                            <Form.Control type="text" name="officerName" placeholder="Enter officer Name.." onChange={handleOnChange} required />
+
+                                        </Form.Group>
+                                        <Form.Group className=" px-3 w-100" controlId="formBasicEmail">
+                                            <p className='mb-1'>Officer ID:</p>
+                                            <Form.Control type="text" name="officerId" placeholder="Enter Officer ID.. " onChange={handleOnChange} required />
 
                                         </Form.Group>
 
                                         <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
                                             <p className='mb-1'>Date:</p>
-                                            <Form.Control type="text" name="date" placeholder="Enter Date.. " onChange={handleOnChange} />
+                                            <Form.Control type="text" name="date" placeholder="Enter Date.. " onChange={handleOnChange} required />
+
+                                        </Form.Group>
+
+                                    </div>
+                                    <div className='d-flex ' id='ticketSection'>
+                                        <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
+                                            <p className='mb-1'>Time To:</p>
+                                            <Form.Control type="text" name="timeTo" placeholder="Enter Time.." onChange={handleOnChange} required />
 
                                         </Form.Group>
 
                                         <Form.Group className="px-3 w-100" controlId="formBasicEmail">
                                             <p className='mb-1'>Time From:</p>
-                                            <Form.Control type="text" name="timeFrom" placeholder="Time From.." onChange={handleOnChange} />
-                                        </Form.Group>
-                                    </div>
-                                    <div className='d-flex ' id='ticketSection'>
-                                        <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
-                                            <p className='mb-1'>Time To:</p>
-                                            <Form.Control type="text" name="timeTo" placeholder="Enter Time.." onChange={handleOnChange} />
-
+                                            <Form.Control type="text" name="timeFrom" placeholder="Time From.." onChange={handleOnChange} required />
                                         </Form.Group>
 
                                         <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
                                             <p className='mb-1'>Licensed Plate Number:</p>
-                                            <Form.Control type="text" name="licensedPlateNumber" placeholder="Enter plate number.. " onChange={handleOnChange} />
+                                            <Form.Control type="text" name="licensedPlateNumber" placeholder="Enter plate number.. " onChange={handleOnChange} required />
 
                                         </Form.Group>
 
-                                        <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
-                                            <p className='mb-1'>Expire Date:</p>
-                                            <Form.Control type="text" name="expDate" placeholder="Expire Date.." onChange={handleOnChange} />
-                                        </Form.Group>
                                     </div>
                                     <div className='d-flex ' id='ticketSection'>
                                         <Form.Group className="px-3 w-100" controlId="formBasicEmail" >
                                             <p className='mb-1'>Province:</p>
-                                            <Form.Control type="text" name="province" placeholder="Enter Province.." onChange={handleOnChange} />
+                                            <Form.Control type="text" name="province" placeholder="Enter Province.." onChange={handleOnChange} required />
 
                                         </Form.Group>
 
                                         <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
                                             <p className='mb-1'>Make:</p>
-                                            <Form.Control type="text" name="make" placeholder="Enter Make.. " onChange={handleOnChange} />
+                                            <Form.Control type="text" name="make" placeholder="Enter Make.. " onChange={handleOnChange} required />
 
                                         </Form.Group>
 
                                         <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
                                             <p className='mb-1'>City:</p>
-                                            <Form.Control type="text" name="city" placeholder="Enter City.." onChange={handleOnChange} />
+                                            <Form.Control type="text" name="city" placeholder="Enter City.." onChange={handleOnChange} required />
                                         </Form.Group>
                                     </div>
                                     <div className='d-flex ' id='ticketSection'>
                                         <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
                                             <p className='mb-1'>Location:</p>
-                                            <Form.Control type="text" name="location" placeholder="Enter Location.." onChange={handleOnChange} />
+                                            <Form.Control type="text" name="location" placeholder="Enter Location.." onChange={handleOnChange} required />
 
                                         </Form.Group>
 
                                         <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
                                             <p className='mb-1'>Voilation:</p>
-                                            <Form.Control type="text" name="voilation" placeholder="Enter Voilation.. " onChange={handleOnChange} />
+                                            <Form.Control type="text" name="voilation" placeholder="Enter Voilation.. " onChange={handleOnChange} required />
 
                                         </Form.Group>
 
@@ -140,25 +144,25 @@ export default function Ticket() {
                                     <div className='d-flex ' id='ticketSection'>
                                         <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
                                             <p className='mb-1'>Law:</p>
-                                            <Form.Control type="text" name="law" placeholder="Enter Law.." onChange={handleOnChange} />
+                                            <Form.Control type="text" name="law" placeholder="Enter Law.." onChange={handleOnChange} required />
 
                                         </Form.Group>
 
-                                        <Form.Group className=" px-3 w-100" controlId="formBasicEmail">
-                                            <p className='mb-1'>Officer Number:</p>
-                                            <Form.Control type="text" name="officerNo" placeholder="Enter officer number.. " onChange={handleOnChange} />
 
+                                        <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
+                                            <p className='mb-1'>Expire Date:</p>
+                                            <Form.Control type="text" name="expDate" placeholder="Expire Date.." onChange={handleOnChange} required />
                                         </Form.Group>
 
                                         <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
                                             <p className='mb-1'>Unit:</p>
-                                            <Form.Control type="text" name="unit" placeholder="Enter unit.." onChange={handleOnChange} />
+                                            <Form.Control type="text" name="unit" placeholder="Enter unit.." onChange={handleOnChange} required />
                                         </Form.Group>
                                     </div>
                                     <div className='d-flex ' id='ticketSection'>
                                         <Form.Group className=" px-3 w-100" controlId="formBasicEmail" >
                                             <p className='mb-1'>Comments:</p>
-                                            <Form.Control as="textarea" rows={3} type="text" name="comments" placeholder="Comments.." onChange={handleOnChange} />
+                                            <Form.Control as="textarea" rows={3} type="text" name="comments" placeholder="Comments.." onChange={handleOnChange} required />
 
                                         </Form.Group>
 
@@ -166,7 +170,7 @@ export default function Ticket() {
                                     <div className='d-flex ' id='ticketSection'>
                                         <Form.Group className="px-3 w-100" controlId="formBasicEmail">
                                             <p className='mb-1'>Penalty Amount:</p>
-                                            <Form.Control type="text" name="penaltyAmount" placeholder="Enter amount.. " onChange={handleOnChange} />
+                                            <Form.Control type="text" name="penaltyAmount" placeholder="Enter amount.. " onChange={handleOnChange} required />
 
                                         </Form.Group>
                                     </div>
