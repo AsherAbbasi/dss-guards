@@ -2,6 +2,18 @@
     display: none !important;
 }
 
+#menuItems {
+    color: rgb(38, 37, 37);
+    font-size: 16px;
+    font-weight: 440;
+}
+
+#menuItems:hover {
+    background-color: rgb(54, 53, 53);
+    color: white;
+
+}
+
 .ticketRow {
     margin: 0px !important;
     padding: 0px !important;
@@ -41,6 +53,41 @@
 
 #ticketSection {
     margin-top: 12px;
+}
+
+#tHead {
+    color: brown;
+    background-color: #f0f1f2;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#tBodyReservation {
+    background-color: #fdfbfb;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid rgb(229, 227, 227);
+}
+
+#tHeadReservation {
+    color: brown;
+    background-color: #ededed;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 15px;
+    font-weight: 500;
+
+}
+#tblReservation{
+background-color: red;
+width: 100%;
+margin-left: 11px;
+
+}
+#tBody {
+    background-color: #fbfcfd;
+    text-align: center;
+    vertical-align: middle;
 }
 
 #buildingTable {
@@ -106,14 +153,14 @@
 }
 
 #text {
-    color: white;
-    text-shadow: 1px 1px 4px;
+    color: rgb(118, 24, 24);
+    text-shadow: 1px 1px 2px;
     border-bottom: 1px solid rgb(206, 202, 202);
     /* margin-top:22px; */
     padding: 12px;
     text-align: center;
     font-size: 30px;
-    background-color: brown;
+    background-color: #fbfcfd;
 }
 
 #dasboardPara {
@@ -181,12 +228,14 @@
     height: 100vh;
 
 }
-.modal-content{
-    width:800px !important;
+
+.modal-content {
+    width: 800px !important;
     position: absolute;
     top: 50%;
     right: 30%;
 }
+
 #pdfReports {
     width: 100%;
     padding-top: 7px;
@@ -196,10 +245,12 @@
     font-weight: 500;
 
 }
-#pdfReports:hover{
+
+#pdfReports:hover {
     color: rgb(13, 206, 142);
 
 }
+
 #buildingEditBtn {
     background: none;
     border: none;

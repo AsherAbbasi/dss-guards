@@ -85,48 +85,48 @@ export default function ViewTicket() {
                         <Row className='d-flex justify-content-center align-items-center'>
                             <Col id="TicketTable" lg={2} md={4} >
                                 <table className="table table-bordered" id='tbl'>
-                                    <thead className=" text-white" style={{ backgroundColor: "brown" }}>
+                                    <thead  id='tHead'>
                                         <tr>
-                                            <td className='headerStyle text-center'>Officer Name</td>
-                                            <td className='headerStyle text-center'>Officer ID</td>
+                                            <td>Officer Name</td>
+                                            <td>Officer ID</td>
                                             {/* <td className='headerStyle text-center'>Time From</td>
                                             <td className='headerStyle text-center'>Time To</td> */}
-                                            <td className='headerStyle text-center'>Plate Number</td>
+                                            <td >Plate Number</td>
                                             {/* <td className='headerStyle text-center'>Province </td> */}
                                             {/* <td className='headerStyle text-center'>Make</td> */}
-                                            <td className='headerStyle text-center'>City</td>
-                                            <td className='headerStyle text-center'>Location</td>
-                                            <td className='headerStyle text-center'>Voilation</td>
-                                            <td className='headerStyle text-center'>Law</td>
-                                            <td className='headerStyle text-center'>Penalty Amount</td>
+                                            <td >City</td>
+                                            <td >Location</td>
+                                            <td>Voilation</td>
+                                            <td >Law</td>
+                                            <td>Penalty Amount</td>
                                             {/* <td className='headerStyle text-center'>Unit</td> */}
-                                            <td className='headerStyle text-center'>Date</td>
-                                            <td className='headerStyle text-center'>Expire Date</td>
-                                            <td className='headerStyle text-center'>DELETE</td>
-                                            <td className='headerStyle text-center'>DOWNLOAD</td>
+                                            <td >Date</td>
+                                            <td >Expire Date</td>
+                                            <td >DELETE</td>
+                                            <td >DOWNLOAD</td>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id='tBody'>
                                         {ticketData?.filter((value) => (
                                             value.licensedPlateNumber.toLowerCase().includes(searchValue) ||
                                             value.date.toLowerCase().includes(searchValue)))
                                             .map((item, index) => {
                                                 return <tr key={index}>
-                                                    <td className='font'>{item.officerName}</td>
-                                                    <td className='font'>{item.officerId}</td>
+                                                    <td >{item.officerName}</td>
+                                                    <td>{item.officerId}</td>
                                                     {/* <td className='font'>{item.timeFrom}</td>
                                                     <td className='font'>{item.timeTo}</td> */}
-                                                    <td className='font'>{item.licensedPlateNumber}</td>
+                                                    <td >{item.licensedPlateNumber}</td>
                                                     {/* <td className='font'>{item.province}</td> */}
                                                     {/* <td className='font'>{item.make}</td> */}
-                                                    <td className='font'>{item.city}</td>
-                                                    <td className='font'>{item.location}</td>
-                                                    <td className='font'>{item.voilation}</td>
-                                                    <td className='font'>{item.law}</td>
-                                                    <td className='font'>{item.penaltyAmount}</td>
+                                                    <td >{item.city}</td>
+                                                    <td >{item.location}</td>
+                                                    <td >{item.voilation}</td>
+                                                    <td >{item.law}</td>
+                                                    <td >{item.penaltyAmount}</td>
                                                     {/* <td className='font'>{item.unit}</td> */}
-                                                    <td className='font'>{item.date}</td>
-                                                    <td className='font'>{item.expDate}</td>
+                                                    <td >{item.date}</td>
+                                                    <td >{item.expDate}</td>
 
                                                     <td className='d-flex'>
                                                         <Button

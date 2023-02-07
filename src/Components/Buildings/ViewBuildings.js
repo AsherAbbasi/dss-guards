@@ -83,9 +83,9 @@ export default function ViewBuildings() {
         <Row>
           <Col md={2} ><DashboardSideBar /></Col>
           <Col>
-          <Row style={{ backgroundColor: '#f0f1f2', padding: '12px',marginBottom:'-12px' }}>
+          <Row style={{ backgroundColor: '#fbfbfb', padding: '12px',marginBottom:'-12px' }}>
                     <Col md={12} className="d-flex justify-content-end" id="" >
-                        <Col md={6}><h5 style={{color:"#325661",marginTop:'7px'}}>Registered Buildings</h5></Col>
+                        <Col md={6}><p style={{color:"black",marginTop:'17px'}}>List of registered buildings</p></Col>
                         <Form.Control id="searchBar"
                             type="search"
                             placeholder="Search Building By Code OR Address"
@@ -101,16 +101,16 @@ export default function ViewBuildings() {
               <Row className='d-flex justify-content-center align-items-center'>
                 <Col id="buildingTable" lg={2} md={4} >
                   <table className="table table-bordered" id='tbl'>
-                    <thead className=" text-white" style={{ backgroundColor: "brown" }}>
+                    <thead id='tHead'>
                       <tr>
-                        <td className='text-center'>BUILDING CODE</td>
-                        <td className='text-center'>BUILDING ADDRESS</td>
-                        <td className='text-center'>TOTAL UNITS</td>
-                        <td className='text-center'>PARKING SLOTS</td>
-                        {Role === 'Admin' ? <td className='text-center'>EDIT / DELETE</td>:''}
+                        <td >BUILDING CODE</td>
+                        <td >BUILDING ADDRESS</td>
+                        <td >TOTAL UNITS</td>
+                        <td >PARKING SLOTS</td>
+                        {Role === 'Admin' ? <td >EDIT / DELETE</td>:''}
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id='tBody'>
                           {showBuildings?.filter((value)=>(
                            value.buildingCode.toLowerCase().includes(searchValue) ||
                            value.buildingAddress.toLowerCase().includes(searchValue)))

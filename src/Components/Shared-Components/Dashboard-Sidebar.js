@@ -134,11 +134,11 @@ export default function DashboardSidebar() {
                     <Grid />
                 </Button>
             )}
-            <Sidebar breakPoint={"md"} backgroundColor={" hsl(218, 41%, 15%)"} id="sideBar">
-                <Menu closeOnClick={true} style={{ marginTop:35 }}>
+            <Sidebar breakPoint={"md"} backgroundColor={"#fbfcfd"} id="sideBar">
+                <Menu closeOnClick={true} style={{ marginTop:60 }}>
                     {menuItems?.map(({ name, href, icon, active }, index) => (
                         <a key={index} href={`/app${href}`}><MenuItem
-                            style={{ color: "white" }}
+                            id="menuItems"
                             icon={icon}
                             active={url === active}
                         >

@@ -79,29 +79,29 @@ export default function ViewDailyReport() {
             <Row className='d-flex justify-content-center align-items-center'>
               <Col id="TicketTable" lg={2} md={4} >
                 <table className="table table-bordered" id='tbl'>
-                  <thead className=" text-white" style={{ backgroundColor: "brown" }}>
+                  <thead id='tHead'>
                     <tr>
-                      <td className='headerStyle text-center'>Guard Name</td>
-                      <td className='headerStyle text-center'>License Number</td>
-                      <td className='headerStyle text-center'>Client Name</td>
-                      <td className='headerStyle text-center'>Client Address</td>
-                      <td className='headerStyle text-center'>City</td>
-                      <td className='headerStyle text-center'>Date</td>
-                      <td className='headerStyle text-center'>Edit/Generate PDF/Delete</td>
+                      <td >Guard Name</td>
+                      <td >License Number</td>
+                      <td >Client Name</td>
+                      <td >Client Address</td>
+                      <td >City</td>
+                      <td >Date</td>
+                      <td >Edit  &nbsp; Generate PDF  &nbsp;  Delete</td>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id='tBody'>
                     {dailyReports?.filter((value)=>(
                      value.clientName.toLowerCase().includes(searchValue) ||
                      value.date.toLowerCase().includes(searchValue)))
                     .map((item, index) => {
                       return <tr key={index}>
-                        <td className='font'>{item.guardName}</td>
-                        <td className='font'>{item.licenseNumber}</td>
-                        <td className='font'>{item.clientName}</td>
-                        <td className='font'>{item.clientAddress}</td>
-                        <td className='font'>{item.city}</td>
-                        <td className='font'>{item.date}</td>
+                        <td >{item.guardName}</td>
+                        <td>{item.licenseNumber}</td>
+                        <td >{item.clientName}</td>
+                        <td >{item.clientAddress}</td>
+                        <td>{item.city}</td>
+                        <td >{item.date}</td>
                         <td className='d-flex'>
                                 <Button
                                   id='buildingEditBtn'  

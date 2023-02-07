@@ -25,7 +25,7 @@ export default function Navbar() {
         <Row className='d-flex align-items-center' style={{height: "83px", backgroundColor: "white",margin:"8px"}}>
             <Col lg={6} md={6} sm={6} xs={6}>
                 <img src={Logo}
-                     style={{width: "270px", float: "left", cursor: "pointer", marginLeft: "-10px"}}
+                     style={{width: "240px", float: "left", cursor: "pointer", marginLeft: "-10px"}}
                      onClick={handleClickDashboard}/>
             </Col>
             <Col lg={6} md={6} sm={6} xs={6}>

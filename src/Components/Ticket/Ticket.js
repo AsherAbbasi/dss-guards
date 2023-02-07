@@ -65,7 +65,7 @@ export default function Ticket() {
                 <Col md={10}>
                     <Container>
                         <Row>
-                            <p id="ticketText">Please add Ticket here!</p>
+                            <p id="text">Please add Ticket here!</p>
                         </Row>
                         <Row className='d-flex justify-content-center align-items-center'>
                             <Col id='addTicket' className='mt-3' lg={2} md={4} >

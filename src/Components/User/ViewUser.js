@@ -57,17 +57,17 @@ export default function ViewEmployees() {
             <Row className='d-flex justify-content-center align-items-center mt-3'>
               <Col>
                 <table className="table table-bordered" id='tbl'>
-                  <thead className=" text-white" style={{ backgroundColor: "brown" }}>
+                  <thead  id='tHead'>
                     <tr>
-                      <td className='text-center headerUser'>NAME</td>
-                      <td className='text-center headerUser'>EMAIL</td>
-                      <td className='text-center headerUser'>PASSWORD</td>
-                      <td className='text-center headerUser'>ROLE</td>
-                      <td className='text-center headerUser'>ASSIGNED BUILDING</td>
-                      <td className='text-center headerUser'>EDIT / DELETE</td>
+                      <td >NAME</td>
+                      <td >EMAIL</td>
+                      <td >PASSWORD</td>
+                      <td >ROLE</td>
+                      <td>ASSIGNED BUILDING</td>
+                      <td >EDIT / DELETE</td>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id='tBody'>
                     {employeeData?.map((data, index) => {
                       return <tr key={index}>
                         <td>{data.name}</td>

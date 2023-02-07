@@ -118,27 +118,27 @@ export default function ParkingReservations() {
           <Container className='tableSection'>
             <Row className='d-flex justify-content-center align-items-center table' >
               <Col lg={12}  >
-                <table className="table table-bordered" id='tbl'>
-                  <thead className=" text-white" style={{ backgroundColor: "brown"}}>
+                <table className="table table-bordered" id='tblReservation' >
+                  <thead  id='tHeadReservation'>
                     <tr>
-                      <td className='headerStyle text-center'>BUILDING CODE</td>
-                      <td className='headerStyle text-center'>BUILDING ADDRESS</td>
-                      <td className='headerStyle text-center'>Name</td>
+                      <td>BUILDING CODE</td>
+                      <td>BUILDING ADDRESS</td>
+                      <td>Name</td>
                       {/* <td className='headerStyle'>Email</td> */}
-                      <td className='headerStyle text-center'>CONTACT NUMBER</td>
-                      <td className='headerStyle text-center'>UNIT VISITING</td>
-                      <td className='headerStyle text-center'>VEHICLE DETAIL</td>
-                      <td className='headerStyle text-center'>DATE FROM</td>
-                      <td className='headerStyle text-center'>DATE TO</td>
-                      <td className='headerStyle text-center'>TIME FROM</td>
-                      <td className='headerStyle text-center'>TIME TO</td>
+                      <td>CONTACT NUMBER</td>
+                      <td >UNIT VISITING</td>
+                      <td>VEHICLE DETAIL</td>
+                      <td >DATE FROM</td>
+                      <td>DATE TO</td>
+                      <td >TIME FROM</td>
+                      <td >TIME TO</td>
                       {Role === 'Admin' ?
-                        <td className='headerStyle text-center'>DELETE</td>
+                        <td >DELETE</td>
                         : ''}
-                      <td className='headerStyle text-center'>DOWNLOAD</td>
+                      <td>DOWNLOAD</td>
                     </tr>
                   </thead>
-                  <tbody className='tableBody'>
+                  <tbody id='tBodyReservation'>
                     {/* Currentpost array for pagination  */}
                     {showData?.filter((value) =>
                     (value.licensedPlateNumber.toLowerCase().includes(searchValue) ||
