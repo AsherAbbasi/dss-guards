@@ -1,6 +1,6 @@
 import { React, useState } from 'react'
 import { Row, Form, Col, Button } from 'react-bootstrap'; 
-import { API } from '../../../Config/config'
+import { API } from '../../Config/config'
 import axios from 'axios';
 import { toast } from "react-toastify";
 
@@ -68,4 +68,4 @@ import { toast } from "react-toastify";
     )   
  }
  
- export default BuildingModal
+ export default BuildingModal;

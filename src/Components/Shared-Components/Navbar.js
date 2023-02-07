@@ -1,5 +1,7 @@
 import React from 'react'
-import companyLogo from '../images/loginlogo.jpeg';
+// import companyLogo from '../images/loginlogo.jpeg';
+import Logo from '../images/dssguardslogo.jpeg';
+
 import {Col, Dropdown, Row} from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
 import {Gear} from "react-bootstrap-icons";
@@ -22,8 +24,8 @@ export default function Navbar() {
     return (
         <Row className='d-flex align-items-center' style={{height: "83px", backgroundColor: "white",margin:"8px"}}>
             <Col lg={6} md={6} sm={6} xs={6}>
-                <img src={companyLogo}
-                     style={{width: "80px", float: "left", cursor: "pointer", marginLeft: "40px"}}
+                <img src={Logo}
+                     style={{width: "270px", float: "left", cursor: "pointer", marginLeft: "-10px"}}
                      onClick={handleClickDashboard}/>
             </Col>
             <Col lg={6} md={6} sm={6} xs={6}>

@@ -6,7 +6,7 @@ import { API } from '../../Config/config'
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import { Row, Container, Col, Button } from 'react-bootstrap';
-import UserEdit from '../Shared-Components/Modal/EditUserModal'
+import UserEdit from '../Modal/EditUserModal'
 
 export default function ViewEmployees() {
   const [employeeModal, setEmployeeModal] = useState(false);

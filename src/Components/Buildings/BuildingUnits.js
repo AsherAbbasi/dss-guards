@@ -1,12 +1,12 @@
 import {React,useEffect, useState} from 'react'
-import NavigationBar from './Navbar'
-import DashboardSidebar from './Dashboard-Sidebar';
+import NavigationBar from '../Shared-Components/Navbar'
+import DashboardSidebar from '../Shared-Components/Dashboard-Sidebar';
 import { toast } from "react-toastify";
 import { API } from '../../Config/config'
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
-import UnitModel from './Modal/AddParkingSlots'
-import { Row, Container, Col,Button } from 'react-bootstrap';
+import UnitModel from '../Modal/AddParkingSlots'
+import { Row, Container, Col,Button,Form } from 'react-bootstrap';
 
 
 export default function BuildingUnits({buildingCode}) {
@@ -15,7 +15,10 @@ export default function BuildingUnits({buildingCode}) {
   const [showUnit, setShowUnit] = useState();
   const [unitsUpdated, setUnitsUpdated]=useState(false)
   const Role = localStorage.getItem("role")
-
+  const [searchValue, setSearchValue] = useState("");
+  const handleChangeSearch = (e) => {
+      setSearchValue(e.target.value)
+  }
   
 const updatedUnits=()=>setUnitsUpdated(!unitsUpdated)
   const handleClose = () => setShowUnitsModel(false);
@@ -39,22 +42,36 @@ const updatedUnits=()=>setUnitsUpdated(!unitsUpdated)
           <Row>
           <Col md={2} ><DashboardSidebar /></Col>
             <Col>
-          <p id="text">Building Units of building {buildingCode} </p>
+            <Row style={{ backgroundColor: '#f0f1f2', padding: '12px' }}>
+                    <Col md={12} className="d-flex justify-content-end" id="" >
+                        <Col md={6}><h5 style={{color:"#325661",marginTop:'7px'}}>Building Units</h5></Col>
+                        <Form.Control id="searchBar"
+                            type="search"
+                            placeholder="Search By Building Unit Number..."
+                            onChange={handleChangeSearch}
+                            value={searchValue}
+                            className="me-2"
+                            aria-label="Search"
+                        />
+                    </Col>
+
+                </Row>
           <Container>
               <Row className='d-flex justify-content-center align-items-center'>
                 <Col>
-                  <table className="table table-bordered" id='bunitTable'>
-                    <thead className=" text-white" style={{backgroundColor: "hsl(218, 41%, 15%)" }}>
+                  <table className="table table-bordered" id=''>
+                    <thead className=" text-white" style={{backgroundColor: "brown" }}>
                       <tr>
-                        <td className='text-center'>BUILDING UNIT Number</td>
+                        <td className='text-center'>BUILDING UNIT NUMBER</td>
                         <td className='text-center'>PERMIT PER MONTH</td>
                         { Role==="Admin"?
                         <td className='text-center'>ACTIONS</td>:''}
                       </tr>
                     </thead>
                     <tbody>
-                      {
-                        buildingUnits.map((data,index)=>{
+                      {buildingUnits?.filter((value)=>(
+                           value.buildingUnits.toLowerCase().includes(searchValue)))
+                      .map((data,index)=>{
                           return <tr key={index} >
                           <td className='text-center'>{data.buildingUnits}</td>
                           <td className='text-center'>{data.parkingSlots}</td> 

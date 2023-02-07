@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Container, Col, Form, Button } from 'react-bootstrap';
-import DashboardSideBar from './Dashboard-Sidebar'
-import NavigationBar from './Navbar'
+import DashboardSideBar from '../Shared-Components/Dashboard-Sidebar'
+import NavigationBar from '../Shared-Components/Navbar'
 import { useState, useEffect } from 'react';
 import { toast } from "react-toastify";
 import axios from 'axios';
@@ -12,7 +12,7 @@ export default function DailyReport() {
     const [counter, setCounter] = useState(0);
     const initialData = {
         guardName: "",
-        licensedPlateNumber: "",
+        licenseNumber: "",
         date: "",
         clientName: "",
         clientAddress: "",
@@ -26,21 +26,36 @@ export default function DailyReport() {
         shiftStartTime: "",
         shiftEndTime: "",
         hoursOfShift: "",
-        time: [],
-        remarks:[],
+        time:[],
+        remarks:[]
     }
     const [dailyReport, setDailyReport] = useState(initialData);
-    const handleClick = () => {
-     setCounter(counter + 1);
-    };
+    // const handleClick = () => {
+    //  setCounter(counter + 1);
+    // };
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setDailyReport((prevState) => ({ ...prevState, [name]: value }));
-
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setValidated(true);
+        try {
+            const url = `${API}dailyReport`;
+            await axios.post(url, dailyReport);
+            toast.success("Report Added successfully", {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 2500,
+            });
+      
+          } catch (error) {
+            toast.error(`${error.response.data}`, {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 2500,
+            });
+      
+          }
+          setDailyReport(initialData)
     }
     return (
         <Container fluid={true}>
@@ -73,8 +88,8 @@ export default function DailyReport() {
                                             <Form.Control className='mb-2' type="text" name="clientAddress" placeholder="Enter Client Address.." onChange={handleOnChange} required />
                                         </Form.Group>
                                         <Form.Group className=" px-3 w-75" controlId="formBasicEmail">
-                                            <p className='mb-1'>Licensed Plate Number</p>
-                                            <Form.Control className='mb-2' type="text" name="licensedPlateNumber" placeholder="Enter Plate Number" onChange={handleOnChange} required />
+                                            <p className='mb-1'>License Number</p>
+                                            <Form.Control className='mb-2' type="text" name="licenseNumber" placeholder="Enter Plate Number" onChange={handleOnChange} required />
                                         </Form.Group>
                                         <Form.Group className=" px-3 w-75" controlId="formBasicEmail" >
                                             <p className='mb-1'>Date:</p>
@@ -129,7 +144,7 @@ export default function DailyReport() {
                                             <Form.Control  type="text" name="hoursOfShift" placeholder="Hours Of Shift.. " onChange={handleOnChange} required />
                                         </Form.Group>
                                     </div>
-                                    <div className='d-flex ' id='ticketSection'>
+                                    {/* <div className='d-flex ' id='ticketSection'>
                                         <Form.Group className="px-3 w-50" controlId="formBasicEmail" >
                                             <p className='mb-1'>Time:</p>
                                             <Form.Control className='mb-2' type="text" name="time" placeholder="Time.. " id='fullWidth' onChange={handleOnChange}  required />
@@ -138,8 +153,8 @@ export default function DailyReport() {
                                             <p className='mb-1'>Remarks:</p>
                                             <Form.Control className='mb-2' type="text" name="remarks" placeholder="Remarks.." onChange={handleOnChange} required />
                                         </Form.Group>
-                                    </div>
-                                    {Array.from(Array(counter)).map((c, index) => {
+                                    </div> */}
+                                    {/* {Array.from(Array(counter)).map((c, index) => {
                                         return (
                                             <>
                                         <div className='d-flex w-100' id='ticketSection'>
@@ -154,11 +169,11 @@ export default function DailyReport() {
                                     </div>
                                     </>
                                     )
-                                    })}
+                                    })} */}
                                     <div className='d-flex justify-content-center mb-4 mt-4'>
-                                    <Button variant="primary"  id='addMoreBtn' onClick={handleClick}>
+                                    {/* <Button variant="primary"  id='addMoreBtn' onClick={handleClick}>
                                             Add More Remarks
-                                        </Button>
+                                        </Button> */}
                                         <Button variant="primary" type="submit" id='addticketBtn'>
                                             SUBMIT
                                         </Button>

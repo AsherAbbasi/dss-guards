@@ -1,14 +1,14 @@
 import { React, useEffect, useState } from 'react'
-import { Row, Container, Col, Button } from 'react-bootstrap';
-import DashboardSideBar from './Dashboard-Sidebar'
-import NavigationBar from './Navbar'
+import { Row, Container, Col, Button,Form } from 'react-bootstrap';
+import DashboardSideBar from '../Shared-Components/Dashboard-Sidebar'
+import NavigationBar from '../Shared-Components/Navbar'
 import axios from 'axios';
 import '../css/style.css'
 import { toast } from "react-toastify";
 import { API } from '../../Config/config'
 import Modal from 'react-bootstrap/Modal';
-import ModalForm from '../Shared-Components/Modal/EditBuildingModal'
-import Units from '../Shared-Components/BuildingUnits'
+import ModalForm from '../Modal/EditBuildingModal'
+import Units from './BuildingUnits'
 
 export default function ViewBuildings() {
 
@@ -19,7 +19,10 @@ export default function ViewBuildings() {
   const [buildingCode, setBuildingCode]=useState([])
   const [dataUpdated, setDataUpdated]=useState(false)
   const [showUnit, setshowUnit]=useState(false)
-
+  const [searchValue, setSearchValue] = useState("");
+  const handleChangeSearch = (e) => {
+      setSearchValue(e.target.value)
+  }
   const buildingUpdated = () => setDataUpdated(!dataUpdated);
 
   const accessToken=localStorage.getItem('Access token')
@@ -36,7 +39,7 @@ export default function ViewBuildings() {
       if (window.confirm("Delete Data Permanently?")) {
         const url = `${API}building/` + buildingCode;
         await axios.delete(url).data;
-        toast.success("Building Added successfully", {
+        toast.success("Building deleted successfully", {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 2500,
         });
@@ -80,6 +83,20 @@ export default function ViewBuildings() {
         <Row>
           <Col md={2} ><DashboardSideBar /></Col>
           <Col>
+          <Row style={{ backgroundColor: '#f0f1f2', padding: '12px',marginBottom:'-12px' }}>
+                    <Col md={12} className="d-flex justify-content-end" id="" >
+                        <Col md={6}><h5 style={{color:"#325661",marginTop:'7px'}}>Registered Buildings</h5></Col>
+                        <Form.Control id="searchBar"
+                            type="search"
+                            placeholder="Search Building By Code OR Address"
+                            onChange={handleChangeSearch}
+                            value={searchValue}
+                            className="me-2"
+                            aria-label="Search"
+                        />
+                    </Col>
+
+                </Row>
             <Container>
               <Row className='d-flex justify-content-center align-items-center'>
                 <Col id="buildingTable" lg={2} md={4} >
@@ -94,7 +111,10 @@ export default function ViewBuildings() {
                       </tr>
                     </thead>
                     <tbody>
-                          {showBuildings?.map((item, index) => {
+                          {showBuildings?.filter((value)=>(
+                           value.buildingCode.toLowerCase().includes(searchValue) ||
+                           value.buildingAddress.toLowerCase().includes(searchValue)))
+                          .map((item, index) => {
                             return <tr key={index}>
                               <td>{item.buildingCode ? item.buildingCode : ""}</td>
                               <td>{item.buildingAddress}</td>

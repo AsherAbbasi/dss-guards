@@ -1,54 +1,65 @@
-#dropdown-basic.dropdown-toggle.btn.btn-success::after{
+#dropdown-basic.dropdown-toggle.btn.btn-success::after {
     display: none !important;
 }
-.ticketRow{
+
+.ticketRow {
     margin: 0px !important;
     padding: 0px !important;
 }
-#ticketText{
+
+#ticketText {
     margin: 4px 0px !important;
 }
-#addTicket{
+
+#addTicket {
     width: 90%;
     /* border: 1px solid gray; */
     box-shadow: 1px 2px 3px 1px #949188;
-   border-radius: 4px;
+    border-radius: 4px;
     /* justify-items: center; */
 }
-#addticketBtn{
+
+#addticketBtn {
     background-color: brown;
     border: none;
     width: 40%;
 }
-#addMoreBtn{
+
+#addMoreBtn {
     background-color: green;
     border: none;
     width: 30%;
     margin-right: 12px;
 }
-#ticketText{
+
+#ticketText {
     text-align: center;
     background-color: brown;
     padding: 12px 0px;
     color: white;
 }
-#ticketSection{
+
+#ticketSection {
     margin-top: 12px;
 }
-#buildingTable{
+
+#buildingTable {
     width: 100%;
     margin-top: 16px;
 }
-#TicketTable{
+
+#TicketTable {
     width: 100%;
-    padding: 0px 12px!important;
+    padding: 0px 12px !important;
 }
-#Table{
+
+#Table {
     width: 100%;
     padding: 0px !important;
     /* margin-top: 16px; */
 }
-#addBuilding{
+
+#addBuilding {
     box-shadow: 1px 2px 3px 1px #949188;
     background-color: white;
     border-radius: 12px;
@@ -56,189 +67,260 @@
     width: 50%;
     margin-top: 0px;
 }
+
 .animatedtext {
     position: relative;
     animation-name: example;
     animation-duration: 5s;
     text-align: center;
     padding: 13px;
-  }
-  #bunitTable{
-    margin-top: -17px;
-  }
-  @keyframes example {
-    0%   {left:0px; top:0px;}
-    25%  {background-color:rgb(12, 11, 11);color:aliceblue;left:20px; top:30px;}
-    50%  {left:0px; top:0px;}
-    75%  {left:0px; top:0px;}
-    100% {left:0px; top:0px;}
-  }
-#text{
-    color:white;
-    text-shadow:1px 1px 4px;
-     border-bottom:1px solid rgb(206, 202, 202);
-     /* margin-top:22px; */
-     padding:12px;
-     text-align:center;
-     font-size: 30px;
-     background-color:brown ;
 }
-#dasboardPara{
+
+@keyframes example {
+    0% {
+        left: 0px;
+        top: 0px;
+    }
+
+    25% {
+        background-color: rgb(12, 11, 11);
+        color: aliceblue;
+        left: 20px;
+        top: 30px;
+    }
+
+    50% {
+        left: 0px;
+        top: 0px;
+    }
+
+    75% {
+        left: 0px;
+        top: 0px;
+    }
+
+    100% {
+        left: 0px;
+        top: 0px;
+    }
+}
+
+#text {
+    color: white;
+    text-shadow: 1px 1px 4px;
+    border-bottom: 1px solid rgb(206, 202, 202);
+    /* margin-top:22px; */
+    padding: 12px;
+    text-align: center;
+    font-size: 30px;
+    background-color: brown;
+}
+
+#dasboardPara {
     padding: 26px;
 }
-.headerUser{
+
+.headerUser {
     font-weight: 500;
 }
-#dashboardImg{
+
+#dashboardImg {
     width: 400px;
     height: 250px;
     border-radius: 15px;
     margin-left: 12px;
 }
-#dashboardImg1{
+
+#dashboardImg1 {
     width: 400px;
     height: 250px;
     border-radius: 15px;
 }
-#left{
+
+#left {
     color: red;
     margin-top: 10px;
 }
-#ViewUnits{
+
+#ViewUnits {
     background: none;
     border: none;
     color: green;
     margin-top: -7px;
     padding: 0px !important;
 }
-#addButton{
+
+#addButton {
     width: 173px;
     margin-left: 8px;
     background-color: white;
     color: green;
     border: 1px solid rgb(236, 235, 235);
-    
+
 }
-#addButton:hover{
+
+#addButton:hover {
     background-color: rgb(245, 245, 245);
     color: black;
 }
-#submitBtn{
+
+#submitBtn {
     background-color: brown;
     border: none;
     font-weight: 600;
 }
-#submitBtn:hover{
+
+#submitBtn:hover {
     background-color: rgb(157, 14, 14);
     font-size: 17px;
     font-weight: 700;
 }
-#sideBar{
+
+#sideBar {
     text-align: left;
     height: 100vh;
-    
+
+}
+.modal-content{
+    width:800px !important;
+    position: absolute;
+    top: 50%;
+    right: 30%;
+}
+#pdfReports {
+    width: 100%;
+    padding-top: 7px;
+    text-align: center;
+    color: rgb(7, 162, 110);
+    border-right: 1px solid gray;
+    font-weight: 500;
+
+}
+#pdfReports:hover{
+    color: rgb(13, 206, 142);
+
+}
+#buildingEditBtn {
+    background: none;
+    border: none;
+    border-radius: 0px;
+    border-right: 1px solid gray;
+    color: green;
+    padding: 0px;
+    font-weight: 500;
 }
 
-#buildingEditBtn{
-background: none;
-border: none;
-border-radius: 0px;
-border-right: 1px solid gray;
-color: green;
-padding: 0px;
-font-weight: 500;
-}
-#buildingDeleteBtn{
+#buildingDeleteBtn {
     background: none;
     border: none;
     color: brown;
     padding: 0px;
     font-weight: 500;
-    }
-#buildingEditBtn:hover{
-      color: rgb(17, 195, 17);
-      font-weight: 500;
-    }
- #buildingDeleteBtn:hover{
-        color: rgb(239, 97, 97);
-        font-weight: 500;
-      }
+}
 
-      
+#buildingEditBtn:hover {
+    color: rgb(17, 195, 17);
+    font-weight: 500;
+}
+
+#buildingDeleteBtn:hover {
+    color: rgb(239, 97, 97);
+    font-weight: 500;
+}
+
+
 @media only screen and (min-width:992px) and (max-width: 1299px) {
-#tbl{
-    margin: 22px;
-    margin-left: 33px;
-}  
-#dasboardPara{
-    margin-left:74px;
-
-}
-#text{
-    font-size: 20px;
-}
-#dashboardImg{
-    margin-top: 22px;
-}
- 
-}
-@media only screen and (min-width:770px) and (max-width: 991px) {
-    #tbl{
+    #tbl {
         margin: 22px;
         margin-left: 33px;
-    } 
-    #sideBar{
-        padding-right: 62px;
-        border: none;
-    } 
-    #dasboardPara{
-        margin-left:44px;
-    
     }
-    #text{
-        font-size: 18px;
+
+    #dasboardPara {
+        margin-left: 74px;
+
     }
-    #dashboardImg{
+
+    #text {
+        font-size: 20px;
+    }
+
+    #dashboardImg {
         margin-top: 22px;
     }
+
+}
+
+@media only screen and (min-width:770px) and (max-width: 991px) {
+    #tbl {
+        margin: 22px;
+        margin-left: 33px;
     }
-    @media only screen and (min-width:471px) and (max-width: 769px) {
-        #ticketSection{
-            flex-direction: column;
-        }
-        #dashboardImg{
-            margin-top: 32px;
-            width: 300px;
-        }
-        #col{
-            flex-direction: column;
-        }
+
+    #sideBar {
+        padding-right: 62px;
+        border: none;
     }
-    @media only screen  and (max-width: 470px) {
-       
-        #ticketSection{
-            flex-direction: column;
-        }
-        #inputFormTicket{
-          width: 100%;
-        }
-         #tbl{
+
+    #dasboardPara {
+        margin-left: 44px;
+
+    }
+
+    #text {
+        font-size: 18px;
+    }
+
+    #dashboardImg {
+        margin-top: 22px;
+    }
+}
+
+@media only screen and (min-width:471px) and (max-width: 769px) {
+    #ticketSection {
+        flex-direction: column;
+    }
+
+    #dashboardImg {
+        margin-top: 32px;
+        width: 300px;
+    }
+
+    #col {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+
+    #ticketSection {
+        flex-direction: column;
+    }
+
+    #inputFormTicket {
+        width: 100%;
+    }
+
+    #tbl {
         margin-left: -37px;
-        } 
-        #dasboardPara{
-        padding:0 !important;
+    }
+
+    #dasboardPara {
+        padding: 0 !important;
         font-size: 14px;
-        
-        }
-        #col{
-            flex-direction: column;
-        }
-        #text{
-            font-size: 18px;
-        }
-        #dashboardImg{
-            margin-top: 30px;
-            width: 300px;
-            margin-left: 42px;
-        }
-        }
+
+    }
+
+    #col {
+        flex-direction: column;
+    }
+
+    #text {
+        font-size: 18px;
+    }
+
+    #dashboardImg {
+        margin-top: 30px;
+        width: 300px;
+        margin-left: 42px;
+    }
+}

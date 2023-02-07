@@ -1,15 +1,16 @@
 import React, {Suspense} from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 import Dashboard from "../../Components/Dashboard";
-import Buildings from "../../Components/Shared-Components/Buildings";
-import ViewReservations from "../../Components/Shared-Components/ViewReservations";
-import ViewBuildings from "../../Components/Shared-Components/ViewBuildings";
-import BuildingUnits from "../../Components/Shared-Components/BuildingUnits";
+import Buildings from "../../Components/Buildings/Buildings";
+import ViewReservations from "../../Components/Permit/ViewReservations";
+import ViewBuildings from "../../Components/Buildings/ViewBuildings";
+import BuildingUnits from "../../Components/Buildings/BuildingUnits";
 import AddUser from "../../Components/User/AddUser";
 import ViewUser from "../../Components/User/ViewUser";
-import Ticket from "../../Components/Shared-Components/Ticket";
-import ViewTicket from "../../Components/Shared-Components/ViewTicket";
-import DailyReport from "../../Components/Shared-Components/DailyReport";
+import Ticket from "../../Components/Ticket/Ticket";
+import ViewTicket from "../../Components/Ticket/ViewTicket";
+import DailyReport from "../../Components/Reports/DailyReport";
+import ViewDailyReport from '../../Components/Reports/ViewDailyReport';
 
 
 
@@ -53,6 +54,10 @@ const routes = [
     {
         path: '/DailyReport',
         element: <DailyReport/>
+    },
+    {
+        path: '/DailyReports',
+        element: <ViewDailyReport/>
     },
     {
         path: '/',

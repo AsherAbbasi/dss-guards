@@ -1,7 +1,7 @@
 import React from "react";
 import { Menu, MenuItem, Sidebar, useProSidebar, } from "react-pro-sidebar";
 import { Button } from "react-bootstrap";
-import { Eye, Grid, Pencil, Speedometer2,Ticket } from "react-bootstrap-icons";
+import { Eye, Grid, Pen, Speedometer2,Ticket,BuildingFillX,SignNoParkingFill,PeopleFill, TicketDetailedFill ,PersonFillAdd, Receipt, Text, BuildingsFill,TextWrap,Textarea} from "react-bootstrap-icons";
 import '../css/style.css'
 import { useLocation } from 'react-router-dom'
 
@@ -22,50 +22,56 @@ export default function DashboardSidebar() {
                 name: "Add Building",
                 href: "/building",
                 active: "[id]",
-                icon: <Pencil />,
+                icon: <BuildingsFill />,
             },
             {
                 name: "View Building",
                 href: "/buildingsDetails",
                 active: "[id]",
-                icon: <Eye />,
+                icon: <BuildingFillX />,
             },
             {
-                name: "View Parking Permits",
+                name: "Parking Permits",
                 href: "/parkingReservations",
                 active: "[id]",
-                icon: <Eye />,
+                icon: <SignNoParkingFill />,
             },
             {
                 name: "Add User",
                 href: "/user",
                 active: "[id]",
-                icon: <Pencil />,
+                icon: <PersonFillAdd />,
             },
             {
                 name: "View User",
                 href: "/users",
                 active: "[id]",
-                icon: <Eye />,
+                icon: <PeopleFill />,
             },
             {
                 name: "Add Ticket",
                 href: `/ticket`,
                 active: "[id]",
-                icon: <Ticket />,
+                icon: <TicketDetailedFill />,
 
             },
             {
                 name: "View Ticket",
                 href: `/tickets`,
                 active: "[id]",
-                icon: <Eye />,
+                icon: <Receipt />,
             },
             {
                 name: "Daily Report",
                 href: `/DailyReport`,
                 active: "[id]",
-                icon: <Eye />,
+                icon: <TextWrap />,
+            },
+            {
+                name: "View Daily Report",
+                href: `/DailyReports`,
+                active: "[id]",
+                icon: <Textarea />,
             }
         ];
     } else {
@@ -104,6 +110,12 @@ export default function DashboardSidebar() {
                 name: "Daily Report",
                 href: `/DailyReport`,
                 active: "[id]",
+                icon: <Pen />,
+            },
+            {
+                name: "View Daily Report",
+                href: `/DailyReports`,
+                active: "[id]",
                 icon: <Eye />,
             }
         ];
@@ -123,7 +135,7 @@ export default function DashboardSidebar() {
                 </Button>
             )}
             <Sidebar breakPoint={"md"} backgroundColor={" hsl(218, 41%, 15%)"} id="sideBar">
-                <Menu closeOnClick={true} style={{ marginTop: 55 }}>
+                <Menu closeOnClick={true} style={{ marginTop:35 }}>
                     {menuItems?.map(({ name, href, icon, active }, index) => (
                         <a key={index} href={`/app${href}`}><MenuItem
                             style={{ color: "white" }}

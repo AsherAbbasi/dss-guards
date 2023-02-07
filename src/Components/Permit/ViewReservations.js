@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react'
-import NavigationBar from './Navbar'
+import NavigationBar from '../Shared-Components/Navbar'
 import { Row, Container, Col, Button, Form } from 'react-bootstrap';
 import '../css/style.css'
 import axios from 'axios';
@@ -99,8 +99,9 @@ export default function ParkingReservations() {
             <NavigationBar />
           </Col>
         </Row>
-        <Row>
-          <Col md={12} className="d-flex justify-content-end" id="searchSection" >
+        <Row style={{backgroundColor:'#f0f1f2',padding:'12px'}}>
+          <Col md={12} className="d-flex justify-content-end" id="" >
+          <Col md={6}><h5 style={{color:"#325661",marginTop:'7px'}}>Parking Permits</h5></Col>
             <Form.Control id="searchBar"
               type="search"
               placeholder="Search Parking Permit by Building Code, Licensed Plate Number or Date "
@@ -118,7 +119,7 @@ export default function ParkingReservations() {
             <Row className='d-flex justify-content-center align-items-center table' >
               <Col lg={12}  >
                 <table className="table table-bordered" id='tbl'>
-                  <thead className=" text-white" style={{ backgroundColor: "hsl(218, 41%, 15%)" }}>
+                  <thead className=" text-white" style={{ backgroundColor: "brown"}}>
                     <tr>
                       <td className='headerStyle text-center'>BUILDING CODE</td>
                       <td className='headerStyle text-center'>BUILDING ADDRESS</td>
@@ -144,8 +145,8 @@ export default function ParkingReservations() {
                       value.buildingCode.toLowerCase().includes(searchValue) ||
                       value.dateFrom.toLowerCase().includes(searchValue) ||
                       value.dateTo.toLowerCase().includes(searchValue))
-                    ).map(item => {
-                      return <tr >
+                    ).map((item,index) => {
+                      return <tr key={index} >
                         <td className='font'>{item.buildingCode}</td>
                         <td className='font'>{item.buildingAddress}</td>
                         <td className='font'>{item.name}</td>

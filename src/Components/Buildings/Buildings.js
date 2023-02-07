@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Container, Col } from 'react-bootstrap';
-import DashboardSideBar from './Dashboard-Sidebar'
-import NavigationBar from './Navbar'
+import DashboardSideBar from '../Shared-Components/Dashboard-Sidebar'
+import NavigationBar from '../Shared-Components/Navbar'
 import { Form, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { toast } from "react-toastify";
