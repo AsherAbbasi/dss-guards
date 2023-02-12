@@ -18,14 +18,9 @@ export default function DashboardSidebar() {
                 href: "/dashboard",
                 active: "[id]",
                 icon: <Speedometer2 />,
-            }, {
-                name: "Add Building",
-                href: "/building",
-                active: "[id]",
-                icon: <BuildingsFill />,
-            },
+            }, 
             {
-                name: "View Building",
+                name: "Buildings",
                 href: "/buildingsDetails",
                 active: "[id]",
                 icon: <BuildingFillX />,
@@ -37,26 +32,13 @@ export default function DashboardSidebar() {
                 icon: <SignNoParkingFill />,
             },
             {
-                name: "Add User",
-                href: "/user",
-                active: "[id]",
-                icon: <PersonFillAdd />,
-            },
-            {
-                name: "View User",
+                name: "Users",
                 href: "/users",
                 active: "[id]",
                 icon: <PeopleFill />,
             },
             {
-                name: "Add Ticket",
-                href: `/ticket`,
-                active: "[id]",
-                icon: <TicketDetailedFill />,
-
-            },
-            {
-                name: "View Ticket",
+                name: "Tickets",
                 href: `/tickets`,
                 active: "[id]",
                 icon: <Receipt />,
@@ -82,41 +64,34 @@ export default function DashboardSidebar() {
                 active: "[id]",
                 icon: <Speedometer2 />,
             }, {
-                name: "View Building",
+                name: "Buildings",
                 href: `/buildingsDetails`,
                 active: "[id]",
-                icon: <Eye />,
+                icon: <BuildingFillX />,
             },
             {
-                name: "View Parking Permits",
+                name: "Parking Permits",
                 href: `/parkingReservations`,
                 active: "[id]",
-                icon: <Eye />,
+                icon: <SignNoParkingFill />,
             },
             {
-                name: "Add Ticket",
-                href: `/ticket`,
-                active: "[id]",
-                icon: <Ticket />,
-
-            },
-            {
-                name: "View Ticket",
+                name: "Tickets",
                 href: `/tickets`,
                 active: "[id]",
-                icon: <Eye />,
+                icon: <Receipt />,
             },
             {
                 name: "Daily Report",
                 href: `/DailyReport`,
                 active: "[id]",
-                icon: <Pen />,
+                icon: <TextWrap />,
             },
             {
                 name: "View Daily Report",
                 href: `/DailyReports`,
                 active: "[id]",
-                icon: <Eye />,
+                icon: <Textarea />,
             }
         ];
     }

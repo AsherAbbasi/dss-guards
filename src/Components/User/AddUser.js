@@ -1,14 +1,15 @@
 import React from 'react'
 import { Row, Container, Col } from 'react-bootstrap';
-import DashboardSideBar from '../Shared-Components/Dashboard-Sidebar'
-import NavigationBar from '../Shared-Components/Navbar'
+// import DashboardSideBar from '../Shared-Components/Dashboard-Sidebar'
+// import NavigationBar from '../Shared-Components/Navbar'
 import { Form, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { toast } from "react-toastify";
 import axios from 'axios';
 import { API } from '../../Config/config'
 
-export default function AddGuards() {
+export default function AddUser({setAddUserModal,employeeUpdated}) {
+  const [validated, setValidated] = useState(false);
   
   const initialData = {
     name:"",
@@ -28,7 +29,14 @@ export default function AddGuards() {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+        e.preventDefault();
+        e.stopPropagation();
+        setValidated(true);
+    }
+    else if (form.checkValidity() === true) {
+      e.preventDefault();
     try {
       const url = `${API}auth/user`;
       await axios.post(url, newUser);
@@ -37,13 +45,15 @@ export default function AddGuards() {
         autoClose: 2500,
       });
       setNewUser()
+      employeeUpdated();
+      setAddUserModal(false)
     } catch (error) {
       toast.error(`${error.response.data}`, {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2500,
       });
 
-    }
+    }}
   }
   const styles = {
     column: {
@@ -59,20 +69,20 @@ export default function AddGuards() {
 
   return (
     <Container fluid={true}>
-      <Row>
+      {/* <Row>
         <NavigationBar />
-      </Row>
-      <Row>
-        <Col md={2}><DashboardSideBar /></Col>
-        <Col md={10}>
-          <Container>
-            <Row>
+      </Row> */}
+      {/* <Row> */}
+        {/* <Col md={2}><DashboardSideBar /></Col> */}
+        {/* <Col md={12}> */}
+          {/* <Container> */}
+            {/* <Row>
               <p id="text">Please Fill This Form!</p>
-            </Row>
-            <Row className='d-flex justify-content-center align-items-center'>
-              <Col style={column} lg={2} md={4} >
+            </Row> */}
+            {/* <Row className='d-flex justify-content-center align-items-center'>
+              <Col style={column}  > */}
 
-                <Form md={2} onSubmit={handleSubmit}>
+                <Form md={2}  noValidate validated={validated} onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p className='mb-2'>Name</p>
                     <Form.Control type="text" name="name" placeholder="Enter Name" onChange={handleOnChange} required />
@@ -94,7 +104,7 @@ export default function AddGuards() {
 
                   <Form.Group className="mb-3" controlId="formBasicEmail" >
                     <p className='mb-2'>Role</p>
-                    <Form.Select aria-label="Default select example" name="role" onChange={handleOnChange} >
+                    <Form.Select aria-label="Default select example" name="role" onChange={handleOnChange} required>
                       <option>Select Role Of User</option>
                       <option value="Admin" >Admin</option>
                       {/* <option value="Guard" >Guard</option> */}
@@ -116,11 +126,11 @@ export default function AddGuards() {
                     SUBMIT
                   </Button>
                 </Form>
-              </Col>
+              {/* </Col>
             </Row>
           </Container>
         </Col>
-      </Row>
+      </Row> */}
     </Container>
   )
 }

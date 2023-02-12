@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react';
 import { toast } from "react-toastify";
 import axios from 'axios';
 import { API } from '../../Config/config'
-import NavigationBar from "../Shared-Components/Navbar"
-import DashboardSideBar from "../Shared-Components/Dashboard-Sidebar"
+// import NavigationBar from "../Shared-Components/Navbar"
+// import DashboardSideBar from "../Shared-Components/Dashboard-Sidebar"
 
-export default function Ticket() {
+export default function Ticket({setTicketModal}) {
     const [validated, setValidated] = useState(false);
 
     const initialData =
@@ -38,8 +38,14 @@ export default function Ticket() {
         e.preventDefault();
     }
     const handleSubmit = async (e) => {
+        const form = e.currentTarget;
+    if (form.checkValidity() === false) {
         e.preventDefault();
-        setValidated(true)
+        e.stopPropagation();
+        setValidated(true);
+    }
+    else if (form.checkValidity() === true) {
+      e.preventDefault();
         try {
             const url = `${API}ticket`;
             await axios.post(url, data, { headers: { "Authorization": `Bearer ${accessToken}` } });
@@ -47,28 +53,28 @@ export default function Ticket() {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 2500,
             });
-
+            setTicketModal(false)
         } catch (error) {
             toast.error(`${error.response.data}`, {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 2500,
             });
-        }
+        }}
     }
     return (
         <Container fluid={true}>
-            <Row>
+            {/* <Row>
                 <NavigationBar />
-            </Row>
-            <Row>
-                <Col md={2}><DashboardSideBar /></Col>
-                <Col md={10}>
-                    <Container>
-                        <Row>
+            </Row> */}
+            {/* <Row> */}
+                {/* <Col md={2}><DashboardSideBar /></Col> */}
+                {/* <Col md={12}> */}
+                    {/* <Container> */}
+                        {/* <Row>
                             <p id="text">Please add Ticket here!</p>
-                        </Row>
-                        <Row className='d-flex justify-content-center align-items-center'>
-                            <Col id='addTicket' className='mt-3' lg={2} md={4} >
+                        </Row> */}
+                        {/* <Row className='d-flex justify-content-center align-items-center'>
+                            <Col id='addTicket' className='mt-3' lg={2} md={4} > */}
 
                                 <Form md={2} noValidate validated={validated} onSubmit={handleSubmit}>
                                     <div className='d-flex ' id='ticketSection'>
@@ -180,11 +186,11 @@ export default function Ticket() {
                                         </Button>
                                     </div>
                                 </Form>
-                            </Col>
+                            {/* </Col>
                         </Row>
-                    </Container>
-                </Col>
-            </Row>
+                    </Container> */}
+                {/* </Col> */}
+            {/* </Row> */}
         </Container>
     )
 }

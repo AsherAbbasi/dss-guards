@@ -9,7 +9,7 @@ import axios from 'axios';
 import { API } from '../../Config/config'
 
 
-export default function AddBuilding() {
+const AddBuilding=({setAddBuildingModal,buildingUpdated})=> {
   const [units, setUnits] = useState([])
   const [error,setError]=useState(false);
 
@@ -50,7 +50,8 @@ export default function AddBuilding() {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2500,
       });
-
+      buildingUpdated();
+      setAddBuildingModal(false)
     } catch (error) {
       toast.error(`${error.response.data}`, {
         position: toast.POSITION.TOP_RIGHT,
@@ -74,18 +75,18 @@ export default function AddBuilding() {
 
   return (
     <Container fluid={true}>
-      <Row>
-        <NavigationBar />
-      </Row>
-      <Row>
-        <Col md={2}><DashboardSideBar /></Col>
-        <Col md={10}>
-          <Container>
-            <Row>
-              <p id="text">Please add information of building here!</p>
-            </Row>
-            <Row className='d-flex justify-content-center align-items-center'>
-              <Col id='addBuilding' lg={2} md={4} >
+      {/* <Row> */}
+        {/* <NavigationBar /> */}
+      {/* </Row> */}
+      {/* <Row> */}
+        {/* <Col md={2}><DashboardSideBar /></Col> */}
+        {/* <Col md={12}> */}
+          {/* <Container> */}
+            {/* <Row> */}
+              {/* <p id="text">Please add information of building here!</p> */}
+            {/* </Row> */}
+            {/* <Row className='d-flex justify-content-center align-items-center'>
+              <Col id='addBuilding'  > */}
 
                 <Form md={2} onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -121,12 +122,13 @@ export default function AddBuilding() {
                     SUBMIT
                   </Button>
                 </Form>
-              </Col>
-            </Row>
-          </Container>
-        </Col>
-      </Row>
+              {/* </Col> */}
+    {/* //         </Row> */}
+    {/* //       </Container> */}
+        {/* </Col> */}
+    {/* //   </Row> */}
     </Container>
   )
 }
 
+export default AddBuilding;

@@ -6,9 +6,16 @@ import axios from 'axios';
 import '../css/style.css'
 import { toast } from "react-toastify";
 import { API } from '../../Config/config'
+import Modal from 'react-bootstrap/Modal';
+import AddTicket from './AddTicket'
+
 
 export default function ViewTicket() {
     const [searchValue, setSearchValue] = useState("");
+    const [ticketModal, setTicketModal] = useState(false);
+//   const [ticket, setTicket] = useState(false)
+
+
     const handleChangeSearch = (e) => {
         setSearchValue(e.target.value)
     }
@@ -16,7 +23,8 @@ export default function ViewTicket() {
 
     const accessToken = localStorage.getItem('Access token')
     // const Role = localStorage.getItem("role")
-
+    // const ticketShow = () => setTicket(!ticket);
+  
     useEffect(() => {
         axios.get(`${API}ticket`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then((res) => {
@@ -42,24 +50,31 @@ export default function ViewTicket() {
             });
         }
     }
-    const pdfMaker = async (id) => {
-        // try {
-        //       const url = `${API}getPDF/${id}`;
-        //       await axios.get(url).data;
-        //       toast.success("PDF Downloaded Successfully", {
-        //         position: toast.POSITION.TOP_RIGHT,
-        //         autoClose: 2500,
+    // const pdfMaker = async (id) => {
+    // try {
+    //       const url = `${API}getPDF/${id}`;
+    //       await axios.get(url).data;
+    //       toast.success("PDF Downloaded Successfully", {
+    //         position: toast.POSITION.TOP_RIGHT,
+    //         autoClose: 2500,
 
-        //     })
+    //     })
 
-        //   } catch (error) {
-        //     toast.error(`Something went wrong! please try later`, {
-        //       position: toast.POSITION.TOP_RIGHT,
-        //       autoClose: 2500,
-        //     });
-        //   }
+    //   } catch (error) {
+    //     toast.error(`Something went wrong! please try later`, {
+    //       position: toast.POSITION.TOP_RIGHT,
+    //       autoClose: 2500,
+    //     });
+    //   }
 
+    // }
+    const handleClickAddTicket = () => {
+        setTicketModal(true)
     }
+    const handleClose = () => {
+        setTicketModal(false)
+    
+      }
     return (
         <>
             <Container fluid={true}>
@@ -68,8 +83,9 @@ export default function ViewTicket() {
                 </Row>
 
                 <Row style={{ backgroundColor: '#f0f1f2', padding: '12px' }}>
-                    <Col md={12} className="d-flex justify-content-end" id="" >
-                        <Col md={6}><h5 style={{color:"#325661",marginTop:'7px'}}>Tickets</h5></Col>
+                    <Col md={2} ><Button id="AddbtnModel" style={{ width: '100%', border: 'none', textDecoration: "underline" }} onClick={handleClickAddTicket} >Add New Ticket</Button>
+                    </Col>
+                    <Col md={10} className="d-flex justify-content-end" id="" >
                         <Form.Control id="searchBar"
                             type="search"
                             placeholder="Search Ticket By Licensed Plate Number OR Date"
@@ -85,7 +101,7 @@ export default function ViewTicket() {
                         <Row className='d-flex justify-content-center align-items-center'>
                             <Col id="TicketTable" lg={2} md={4} >
                                 <table className="table table-bordered" id='tbl'>
-                                    <thead  id='tHead'>
+                                    <thead id='tHead'>
                                         <tr>
                                             <td>Officer Name</td>
                                             <td>Officer ID</td>
@@ -156,6 +172,14 @@ export default function ViewTicket() {
                     </Container>
                 </Row>
             </Container>
+            <Modal show={ticketModal} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title >Add New Ticket</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+               <AddTicket setTicketModal={setTicketModal}/>
+                </Modal.Body>
+            </Modal>
         </>
     )
 }
