@@ -1,7 +1,7 @@
 import React from "react";
 import { Menu, MenuItem, Sidebar, useProSidebar, } from "react-pro-sidebar";
 import { Button } from "react-bootstrap";
-import { Eye, Grid, Pen, Speedometer2,Ticket,BuildingFillX,SignNoParkingFill,PeopleFill, TicketDetailedFill ,PersonFillAdd, Receipt, Text, BuildingsFill,TextWrap,Textarea} from "react-bootstrap-icons";
+import { Eye, Grid, Pen, Speedometer2,Ticket,BuildingFillX,SignNoParkingFill,PeopleFill, TicketDetailedFill ,PersonFillAdd, Receipt, Text, BuildingsFill,TextWrap,Textarea, Building, BuildingX, BuildingGear, SignNoParking, People, Gear, DashCircle, Star} from "react-bootstrap-icons";
 import '../css/style.css'
 import { useLocation } from 'react-router-dom'
 
@@ -17,26 +17,27 @@ export default function DashboardSidebar() {
                 name: "Dashboard",
                 href: "/dashboard",
                 active: "[id]",
-                icon: <Speedometer2 />,
+                icon: <Star />,
             }, 
+            {
+                name: "Users",
+                href: "/users",
+                active: "[id]",
+                icon: <People />,
+            },
             {
                 name: "Buildings",
                 href: "/buildingsDetails",
                 active: "[id]",
-                icon: <BuildingFillX />,
+                icon: <BuildingGear />,
             },
             {
                 name: "Parking Permits",
                 href: "/parkingReservations",
                 active: "[id]",
-                icon: <SignNoParkingFill />,
+                icon: <SignNoParking />,
             },
-            {
-                name: "Users",
-                href: "/users",
-                active: "[id]",
-                icon: <PeopleFill />,
-            },
+            
             {
                 name: "Tickets",
                 href: `/tickets`,
@@ -44,17 +45,12 @@ export default function DashboardSidebar() {
                 icon: <Receipt />,
             },
             {
-                name: "Daily Report",
-                href: `/DailyReport`,
-                active: "[id]",
-                icon: <TextWrap />,
-            },
-            {
-                name: "View Daily Report",
+                name: "Occurance Reports",
                 href: `/DailyReports`,
                 active: "[id]",
                 icon: <Textarea />,
-            }
+            },
+            
         ];
     } else {
         menuItems = [
@@ -62,18 +58,19 @@ export default function DashboardSidebar() {
                 name: "Dashboard",
                 href: `/dashboard`,
                 active: "[id]",
-                icon: <Speedometer2 />,
-            }, {
+                icon: <Star />,
+            },
+             {
                 name: "Buildings",
                 href: `/buildingsDetails`,
                 active: "[id]",
-                icon: <BuildingFillX />,
+                icon: <BuildingGear />,
             },
             {
                 name: "Parking Permits",
                 href: `/parkingReservations`,
                 active: "[id]",
-                icon: <SignNoParkingFill />,
+                icon: <SignNoParking />,
             },
             {
                 name: "Tickets",
@@ -82,17 +79,11 @@ export default function DashboardSidebar() {
                 icon: <Receipt />,
             },
             {
-                name: "Daily Report",
-                href: `/DailyReport`,
-                active: "[id]",
-                icon: <TextWrap />,
-            },
-            {
-                name: "View Daily Report",
+                name: "Occurance Reports",
                 href: `/DailyReports`,
                 active: "[id]",
                 icon: <Textarea />,
-            }
+            },
         ];
     }
     return (

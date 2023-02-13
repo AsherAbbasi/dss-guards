@@ -16,7 +16,6 @@ export default function ViewBuildings() {
   const [showEditModel, setShowEditModel] = useState(false)
   const [showUnitModel, setShowUnitModel] = useState(false)
   const [addBuildingModal, setAddBuildingModal] = useState(false)
-
   const [showBuildings, setShowBuildings] = useState();
   const [buildingData, setBuildingData] = useState({})
   const [buildingCode, setBuildingCode] = useState([])

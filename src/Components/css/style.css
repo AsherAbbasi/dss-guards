@@ -25,6 +25,14 @@
     color: white;
 
 }
+#addReport{
+    color:blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+#addReport:hover{
+ color: rgb(14, 2, 173);
+}
 
 .ticketRow {
     margin: 0px !important;

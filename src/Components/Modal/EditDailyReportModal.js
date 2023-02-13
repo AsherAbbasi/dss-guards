@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 import '../css/style.css';
 
 
-// 
-const DailyReportModel=({dailyReportData,setShowEditModel})=> {
+
+const EditDailyReportModel=({dailyReportData,setShowEditModel})=> {
     const dailyReport=dailyReportData; // {name, username, email, password} {createdAt, sss, ddd, gg}
   const [time, setTime] = useState('')
   const [remarks, setRemarks] = useState('')
@@ -19,26 +19,13 @@ const DailyReportModel=({dailyReportData,setShowEditModel})=> {
         } else if (name === "remarks") {
             setRemarks(value)
         }
-        // setDailyReport((prevState) => ({ ...prevState, [name]: value }));
     }
 
-    // const setTimeRemarks=()=>{
-    //     const getTime=[...time];
-    //     getTime.push(dailyReport.time);
-    //     setTime(getTime);
-    //     dailyReport.time=getTime;
-    //     setDailyReport(dailyReport)
-    //     // const getRemarks=[...dailyReport?.remarks];
-    //     // setRemarks(getRemarks);
-    //     // dailyReport.remarks=getRemarks;
-    //     setDailyReport(dailyReport)
-    // }
     let id=dailyReport._id;
     console.log(id)
     const handleSubmit=async (e)=>{
        e.preventDefault();
-    //    return;
-    //    setTimeRemarks();
+  
        try {
         const url = `${API}dailyReport/${id}`;
         await axios.put(url, {remarks, time });
@@ -170,4 +157,4 @@ const DailyReportModel=({dailyReportData,setShowEditModel})=> {
 </Row>
   )
 }
-export default DailyReportModel;
+export default EditDailyReportModel;

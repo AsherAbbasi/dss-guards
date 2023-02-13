@@ -9,7 +9,7 @@ import BuildingUnits from "../../Components/Buildings/BuildingUnits";
 import ViewUser from "../../Components/User/ViewUser";
 // import Ticket from "../../Components/Ticket/Ticket";
 import ViewTicket from "../../Components/Ticket/ViewTicket";
-import DailyReport from "../../Components/Reports/DailyReport";
+// import DailyReport from "../../Components/Reports/AddDailyReport";
 import ViewDailyReport from '../../Components/Reports/ViewDailyReport';
 
 
@@ -52,10 +52,10 @@ const routes = [
         path: '/tickets',
         element: <ViewTicket/>
     },
-    {
-        path: '/DailyReport',
-        element: <DailyReport/>
-    },
+    // {
+    //     path: '/DailyReport',
+    //     element: <DailyReport/>
+    // },
     {
         path: '/DailyReports',
         element: <ViewDailyReport/>
