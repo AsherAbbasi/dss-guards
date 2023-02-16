@@ -2,7 +2,7 @@ import React from 'react'
 // import companyLogo from '../images/loginlogo.jpeg';
 import Logo from '../images/dssguardslogo.jpeg';
 
-import {Col, Dropdown, Row} from 'react-bootstrap';
+import {Col, Container, Dropdown, Row} from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
 import {Gear} from "react-bootstrap-icons";
 import {useDispatch} from "react-redux";
@@ -22,6 +22,7 @@ export default function Navbar() {
         navigate('/')
     }
     return (
+        // <div style={{position:"fixed",width:"100%"}}>
         <Row className='d-flex align-items-center' style={{height: "83px", backgroundColor: "white",margin:"8px"}}>
             <Col lg={6} md={6} sm={6} xs={6}>
                 <img src={Logo}
@@ -48,5 +49,6 @@ export default function Navbar() {
                 </Dropdown>
             </Col>
         </Row>
+        // </div>
     )
 }

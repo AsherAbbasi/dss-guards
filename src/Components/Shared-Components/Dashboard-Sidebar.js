@@ -50,6 +50,12 @@ export default function DashboardSidebar() {
                 active: "[id]",
                 icon: <Textarea />,
             },
+            {
+                name: "Incident Reports",
+                href: `/incidentReport`,
+                active: "[id]",
+                icon: <Textarea />,
+            },
             
         ];
     } else {
@@ -84,6 +90,12 @@ export default function DashboardSidebar() {
                 active: "[id]",
                 icon: <Textarea />,
             },
+            {
+                name: "Incident Reports",
+                href: `/incidentReport`,
+                active: "[id]",
+                icon: <Textarea />,
+            },
         ];
     }
     return (
@@ -100,7 +112,7 @@ export default function DashboardSidebar() {
                     <Grid />
                 </Button>
             )}
-            <Sidebar breakPoint={"md"} backgroundColor={"#fbfcfd"} id="sideBar">
+            <Sidebar breakPoint={"md"} backgroundColor={"#fbfcfd"} id="sideBar" style={{position:"fixed"}}>
                 <Menu closeOnClick={true} style={{ marginTop:60 }}>
                     {menuItems?.map(({ name, href, icon, active }, index) => (
                         <a key={index} href={`/app${href}`}><MenuItem

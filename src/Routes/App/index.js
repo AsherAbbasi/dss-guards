@@ -11,6 +11,8 @@ import ViewUser from "../../Components/User/ViewUser";
 import ViewTicket from "../../Components/Ticket/ViewTicket";
 // import DailyReport from "../../Components/Reports/AddDailyReport";
 import ViewDailyReport from '../../Components/Reports/ViewDailyReport';
+import ViewIncidentReports from '../../Components/Reports/ViewIncidentReports';
+
 
 
 
@@ -59,6 +61,10 @@ const routes = [
     {
         path: '/DailyReports',
         element: <ViewDailyReport/>
+    },
+    {
+        path: '/incidentReport',
+        element: <ViewIncidentReports/>
     },
     {
         path: '/',
