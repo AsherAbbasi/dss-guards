@@ -10,8 +10,8 @@ import ViewUser from "../../Components/User/ViewUser";
 // import Ticket from "../../Components/Ticket/Ticket";
 import ViewTicket from "../../Components/Ticket/ViewTicket";
 // import DailyReport from "../../Components/Reports/AddDailyReport";
-import ViewDailyReport from '../../Components/Reports/ViewDailyReport';
-import ViewIncidentReports from '../../Components/Reports/ViewIncidentReports';
+// import ViewDailyReport from '../../Components/Reports/ViewDailyReport';
+// import ViewIncidentReports from '../../Components/Reports/ViewIncidentReports';
 
 
 
@@ -58,14 +58,14 @@ const routes = [
     //     path: '/DailyReport',
     //     element: <DailyReport/>
     // },
-    {
-        path: '/DailyReports',
-        element: <ViewDailyReport/>
-    },
-    {
-        path: '/incidentReport',
-        element: <ViewIncidentReports/>
-    },
+    // {
+    //     path: '/DailyReports',
+    //     element: <ViewDailyReport/>
+    // },
+    // {
+    //     path: '/incidentReport',
+    //     element: <ViewIncidentReports/>
+    // },
     {
         path: '/',
         element: <Navigate to={`/app/dashboard`} replace={true}/>

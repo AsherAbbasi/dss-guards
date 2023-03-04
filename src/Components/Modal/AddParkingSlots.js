@@ -13,7 +13,6 @@ let id=(updatedSlots._id)
     const {name, value} = e.target;
     setUpdatedSlots((prevState) => ({...prevState, [name]: value}));
     e.preventDefault();
-
 }
 const handleSubmit=async(e)=>{
   e.preventDefault();

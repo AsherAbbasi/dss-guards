@@ -1,13 +1,13 @@
 import React from 'react'
 // import companyLogo from '../images/loginlogo.jpeg';
-import Logo from '../images/dssguardslogo.jpeg';
+import Logo from '../../images/dssguardslogo.jpeg';
 
 import {Col, Container, Dropdown, Row} from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
 import {Gear} from "react-bootstrap-icons";
 import {useDispatch} from "react-redux";
 import {logout} from "../../redux/actions";
-import '../css/style.css'
+import '../../style/style.css'
 
 
 export default function Navbar() {

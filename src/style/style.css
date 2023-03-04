@@ -9,6 +9,11 @@
     /* border: none; */
 }
 
+#searchBar {
+    width: 41%;
+    border: 2px solid gainsboro;
+}
+
 #AddbtnModel:hover {
     background-color: black;
     color: white;
@@ -25,13 +30,15 @@
     color: white;
 
 }
-#addReport{
-    color:blue;
+
+#addReport {
+    color: blue;
     text-decoration: underline;
     cursor: pointer;
 }
-#addReport:hover{
- color: rgb(14, 2, 173);
+
+#addReport:hover {
+    color: rgb(14, 2, 173);
 }
 
 .ticketRow {
@@ -82,8 +89,9 @@
     vertical-align: middle;
 }
 
+
 #tBodyReservation {
-    background-color: #fdfbfb;
+    background:none;
     text-align: center;
     vertical-align: middle;
     border: 1px solid rgb(229, 227, 227);
@@ -100,7 +108,6 @@
 }
 
 #tblReservation {
-    background-color: red;
     width: 100%;
     margin-left: 11px;
 
@@ -112,7 +119,7 @@
     vertical-align: middle;
 }
 
-#buildingTable {
+#table {
     width: 100%;
     margin-top: 16px;
 }
@@ -273,7 +280,7 @@
 
 }
 
-#buildingEditBtn {
+#editButton {
     background: none;
     border: none;
     border-radius: 0px;
@@ -283,7 +290,7 @@
     font-weight: 500;
 }
 
-#buildingDeleteBtn {
+#deleteButton {
     background: none;
     border: none;
     color: brown;
@@ -291,18 +298,49 @@
     font-weight: 500;
 }
 
-#buildingEditBtn:hover {
+#editButton:hover {
     color: rgb(17, 195, 17);
     font-weight: 500;
 }
 
-#buildingDeleteBtn:hover {
+#deleteButton:hover {
     color: rgb(239, 97, 97);
     font-weight: 500;
 }
 
 
 @media only screen and (min-width:992px) and (max-width: 1299px) {
+    #editButton {
+        font-size: 13px;
+    }
+
+    #deleteButton {
+        font-size: 13px;
+    }
+
+    #ViewUnits {
+        font-size: 13px;
+
+    }
+
+    #tHead td {
+        font-size: 13px;
+    }
+
+    #tBody td {
+        font-size: 12px;
+    }
+
+    #AddbtnModel {
+        font-size: 12px;
+        width: 34%;
+        margin-left: 12px;
+    }
+
+    #table {
+        width: 90%;
+    }
+
     #tbl {
         margin: 22px;
         margin-left: 33px;
@@ -320,17 +358,59 @@
     #dashboardImg {
         margin-top: 22px;
     }
-
+    #col {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
-@media only screen and (min-width:770px) and (max-width: 991px) {
+@media only screen and (min-width:900px) and (max-width: 991px) {
+    #editButton {
+        font-size: 13px;
+    }
+
+    #deleteButton {
+        font-size: 13px;
+    }
+
+    #ViewUnits {
+        font-size: 13px;
+
+    }
+
+    #tHead td {
+        font-size: 13px;
+    }
+
+    #tBody td {
+        font-size: 12px;
+    }
+
+    .modal-content {
+        width: 600px !important;
+        position: absolute;
+        top: 50%;
+        right: 0%;
+    }
+
+    #AddbtnModel {
+        font-size: 10px;
+        width: 30%;
+        margin-left: 22px;
+    }
+
+    #table {
+        width: 90%;
+    }
+
     #tbl {
         margin: 22px;
         margin-left: 33px;
     }
 
     #sideBar {
-        padding-right: 62px;
+        padding-right: 12px;
         border: none;
     }
 
@@ -346,9 +426,127 @@
     #dashboardImg {
         margin-top: 22px;
     }
+
+    #col {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width:770px) and (max-width: 899px) {
+    #editButton {
+        font-size: 13px;
+    }
+
+    #deleteButton {
+        font-size: 13px;
+    }
+
+    #ViewUnits {
+        font-size: 13px;
+
+    }
+
+    #tHead td {
+        font-size: 13px;
+    }
+
+    #tBody td {
+        font-size: 12px;
+    }
+
+    .modal-content {
+        width: 500px !important;
+        position: absolute;
+        top: 50%;
+        right: 0%;
+    }
+
+    #AddbtnModel {
+        font-size: 12px;
+        width: 60%;
+        margin-left: 28px;
+    }
+
+    #table {
+        width: 90%;
+    }
+
+    #sideBar {
+        padding-right: 50px;
+        border: none;
+    }
+
+    #tbl {
+        margin: 22px;
+        margin-left: 33px;
+    }
+
+    #dasboardPara {
+        margin-left: 44px;
+
+    }
+
+    #text {
+        font-size: 18px;
+    }
+
+    #dashboardImg {
+        margin-top: 22px;
+    }
+
+    #col {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media only screen and (min-width:471px) and (max-width: 769px) {
+    #editButton {
+        font-size: 13px;
+    }
+
+    #deleteButton {
+        font-size: 13px;
+    }
+
+    #ViewUnits {
+        font-size: 13px;
+
+    }
+
+    #tHead td {
+        font-size: 13px;
+    }
+
+    #tBody td {
+        font-size: 12px;
+    }
+
+
+    .modal-content {
+        width: 400px !important;
+        position: absolute;
+        top: 50%;
+        right: 0%;
+    }
+
+    #AddbtnModel {
+        font-size: 12px;
+        width: 100%;
+        align-items: left;
+    }
+
+    #searchBar {
+        width: 60%;
+    }
+
+    #table {
+        width: 100%;
+    }
+
     #ticketSection {
         flex-direction: column;
     }
@@ -360,13 +558,60 @@
 
     #col {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 
 @media only screen and (max-width: 470px) {
+    #editButton {
+        font-size: 13px;
+    }
+
+    #deleteButton {
+        font-size: 13px;
+    }
+
+    #ViewUnits {
+        font-size: 13px;
+
+    }
+
+    #tHead td {
+        font-size: 13px;
+    }
+
+    #tBody td {
+        font-size: 12px;
+    }
+
+    .modal-content {
+        width: 350px !important;
+        position: absolute;
+        top: 50%;
+        right: 0%;
+    }
+
+    #AddbtnModel {
+        font-size: 12px;
+        width: 100%;
+        align-items: left;
+    }
+
+    #searchBar {
+        width: 60%;
+    }
 
     #ticketSection {
         flex-direction: column;
+    }
+
+    #table {
+        width: 80%;
+    }
+
+    #ViewUnits {
+        font-size: 13px;
     }
 
     #inputFormTicket {
@@ -385,6 +630,8 @@
 
     #col {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     #text {

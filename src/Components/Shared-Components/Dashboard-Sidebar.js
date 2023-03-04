@@ -1,8 +1,8 @@
 import React from "react";
 import { Menu, MenuItem, Sidebar, useProSidebar, } from "react-pro-sidebar";
 import { Button } from "react-bootstrap";
-import { Eye, Grid, Pen, Speedometer2,Ticket,BuildingFillX,SignNoParkingFill,PeopleFill, TicketDetailedFill ,PersonFillAdd, Receipt, Text, BuildingsFill,TextWrap,Textarea, Building, BuildingX, BuildingGear, SignNoParking, People, Gear, DashCircle, Star} from "react-bootstrap-icons";
-import '../css/style.css'
+import {  Grid, Receipt,Textarea, BuildingGear, SignNoParking, People, Star} from "react-bootstrap-icons";
+import '../../style/style.css'
 import { useLocation } from 'react-router-dom'
 
 
@@ -44,18 +44,18 @@ export default function DashboardSidebar() {
                 active: "[id]",
                 icon: <Receipt />,
             },
-            {
-                name: "Occurance Reports",
-                href: `/DailyReports`,
-                active: "[id]",
-                icon: <Textarea />,
-            },
-            {
-                name: "Incident Reports",
-                href: `/incidentReport`,
-                active: "[id]",
-                icon: <Textarea />,
-            },
+            // {
+            //     name: "Occurance Reports",
+            //     href: `/DailyReports`,
+            //     active: "[id]",
+            //     icon: <Textarea />,
+            // },
+            // {
+            //     name: "Incident Reports",
+            //     href: `/incidentReport`,
+            //     active: "[id]",
+            //     icon: <Textarea />,
+            // },
             
         ];
     } else {
@@ -84,18 +84,18 @@ export default function DashboardSidebar() {
                 active: "[id]",
                 icon: <Receipt />,
             },
-            {
-                name: "Occurance Reports",
-                href: `/DailyReports`,
-                active: "[id]",
-                icon: <Textarea />,
-            },
-            {
-                name: "Incident Reports",
-                href: `/incidentReport`,
-                active: "[id]",
-                icon: <Textarea />,
-            },
+            // {
+            //     name: "Occurance Reports",
+            //     href: `/DailyReports`,
+            //     active: "[id]",
+            //     icon: <Textarea />,
+            // },
+            // {
+            //     name: "Incident Reports",
+            //     href: `/incidentReport`,
+            //     active: "[id]",
+            //     icon: <Textarea />,
+            // },
         ];
     }
     return (
@@ -112,7 +112,7 @@ export default function DashboardSidebar() {
                     <Grid />
                 </Button>
             )}
-            <Sidebar breakPoint={"md"} backgroundColor={"#fbfcfd"} id="sideBar" style={{position:"fixed"}}>
+            <Sidebar breakPoint={"md"} backgroundColor={"#fbfcfd"} id="sideBar" >
                 <Menu closeOnClick={true} style={{ marginTop:60 }}>
                     {menuItems?.map(({ name, href, icon, active }, index) => (
                         <a key={index} href={`/app${href}`}><MenuItem

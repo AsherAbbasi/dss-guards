@@ -3,28 +3,25 @@ import { Row, Container, Col, Button, Form } from 'react-bootstrap';
 // import DashboardSideBar from './Dashboard-Sidebar'
 import NavigationBar from '../Shared-Components/Navbar'
 import axios from 'axios';
-import '../css/style.css'
+import '../../style/style.css'
 import { toast } from "react-toastify";
 import { API } from '../../Config/config'
 import Modal from 'react-bootstrap/Modal';
 import AddTicket from './AddTicket'
-
+import SideBar from '../../Components/Shared-Components/Dashboard-Sidebar'
 
 export default function ViewTicket() {
     const [searchValue, setSearchValue] = useState("");
     const [ticketModal, setTicketModal] = useState(false);
-//   const [ticket, setTicket] = useState(false)
-
+    //   const [ticket, setTicket] = useState(false)
 
     const handleChangeSearch = (e) => {
         setSearchValue(e.target.value)
     }
     const [ticketData, setTicketData] = useState([])
-
     const accessToken = localStorage.getItem('Access token')
-    // const Role = localStorage.getItem("role")
+    const Role = localStorage.getItem("role")
     // const ticketShow = () => setTicket(!ticket);
-  
     useEffect(() => {
         axios.get(`${API}ticket`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then((res) => {
@@ -73,16 +70,17 @@ export default function ViewTicket() {
     }
     const handleClose = () => {
         setTicketModal(false)
-    
-      }
+    }
     return (
         <>
             <Container fluid={true}>
+               
                 <Row>
                     <NavigationBar />
                 </Row>
-
-                <Row style={{ backgroundColor: '#f0f1f2', padding: '12px' }}>
+                {ticketData?.length !==0 ?
+                 <>
+                <Row style={{  padding: '12px' }}>
                     <Col md={2} ><Button id="AddbtnModel" style={{ width: '100%', border: 'none', textDecoration: "underline" }} onClick={handleClickAddTicket} >Add New Ticket</Button>
                     </Col>
                     <Col md={10} className="d-flex justify-content-end" id="" >
@@ -100,8 +98,8 @@ export default function ViewTicket() {
                     <Container>
                         <Row className='d-flex justify-content-center align-items-center'>
                             <Col id="TicketTable" lg={2} md={4} >
-                                <table className="table table-bordered" id='tbl'>
-                                    <thead id='tHead'>
+                                <table className="table" id='tbl'>
+                                    <thead id='tHeadReservation'>
                                         <tr>
                                             <td>Officer Name</td>
                                             <td>Officer ID</td>
@@ -111,15 +109,18 @@ export default function ViewTicket() {
                                             {/* <td className='headerStyle text-center'>Province </td> */}
                                             {/* <td className='headerStyle text-center'>Make</td> */}
                                             <td >City</td>
-                                            <td >Location</td>
-                                            <td>Voilation</td>
-                                            <td >Law</td>
-                                            <td>Penalty Amount</td>
+                                            {/* <td >Location</td> */}
+                                            {/* <td>Voilation</td> */}
+                                            {/* <td >Law</td> */}
+                                            {/* <td>Penalty Amount</td> */}
                                             {/* <td className='headerStyle text-center'>Unit</td> */}
                                             <td >Date</td>
-                                            <td >Expire Date</td>
+                                            {/* <td >Expire Date</td> */}
+                             {Role==="Admin" ? 
                                             <td >DELETE</td>
-                                            <td >DOWNLOAD</td>
+                                            :""}
+                                                    {Role==="Admin" ? 
+                                            <td >DOWNLOAD</td>:""}
                                         </tr>
                                     </thead>
                                     <tbody id='tBody'>
@@ -136,14 +137,14 @@ export default function ViewTicket() {
                                                     {/* <td className='font'>{item.province}</td> */}
                                                     {/* <td className='font'>{item.make}</td> */}
                                                     <td >{item.city}</td>
-                                                    <td >{item.location}</td>
-                                                    <td >{item.voilation}</td>
-                                                    <td >{item.law}</td>
-                                                    <td >{item.penaltyAmount}</td>
+                                                    {/* <td >{item.location}</td> */}
+                                                    {/* <td >{item.voilation}</td> */}
+                                                    {/* <td >{item.law}</td> */}
+                                                    {/* <td >{item.penaltyAmount}</td> */}
                                                     {/* <td className='font'>{item.unit}</td> */}
                                                     <td >{item.date}</td>
-                                                    <td >{item.expDate}</td>
-
+                                                    {/* <td >{item.expDate}</td> */}
+                                                    {Role==="Admin" ? 
                                                     <td className='d-flex'>
                                                         <Button
                                                             id='btn'
@@ -153,7 +154,8 @@ export default function ViewTicket() {
                                                         >
                                                             DELETE
                                                         </Button>
-                                                    </td>
+                                                    </td>:""}
+                                                    {Role==="Admin" ? 
                                                     <td>
                                                         <a href={`${API}getPDF/ticket/${item._id}`}
                                                             className="btn fontsizePDF" id='btnPdf'
@@ -162,7 +164,7 @@ export default function ViewTicket() {
                                                         >
                                                             Generate PDF
                                                         </a>
-                                                    </td>
+                                                    </td>:""}
                                                 </tr>
                                             })}
                                     </tbody>
@@ -171,13 +173,24 @@ export default function ViewTicket() {
                         </Row>
                     </Container>
                 </Row>
+                </>
+                :<><Row>
+                <Col md={2} ><SideBar /></Col>
+                <Col>
+                  <h5 className="text-center" style={{ color: "red" }}>
+                    There are currently no parking ticket to show
+                  </h5>
+                </Col>
+              </Row>
+    
+              </>}
             </Container>
             <Modal show={ticketModal} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title >Add New Ticket</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-               <AddTicket setTicketModal={setTicketModal}/>
+                    <AddTicket setTicketModal={setTicketModal} />
                 </Modal.Body>
             </Modal>
         </>

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Row, Container, Col } from 'react-bootstrap';
+import {  Container } from 'react-bootstrap';
 // import DashboardSideBar from '../Shared-Components/Dashboard-Sidebar'
 // import NavigationBar from '../Shared-Components/Navbar'
 import { Form, Button } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { toast } from "react-toastify";
 import axios from 'axios';
 import { API } from '../../Config/config'
@@ -55,17 +55,17 @@ export default function AddUser({setAddUserModal,employeeUpdated}) {
 
     }}
   }
-  const styles = {
-    column: {
-      boxShadow: "1px 2px 3px 1px #949188",
-      backgroundColor: "white",
-      borderRadius: 12,
-      padding: "25px",
-      width: "70%",
-      marginTop: "20px"
-    },
-  }
-  const { column } = styles;
+  // const styles = {
+  //   column: {
+  //     boxShadow: "1px 2px 3px 1px #949188",
+  //     backgroundColor: "white",
+  //     borderRadius: 12,
+  //     padding: "25px",
+  //     width: "70%",
+  //     marginTop: "20px"
+  //   },
+  // }
+  // const { column } = styles;
 
   return (
     <Container fluid={true}>
@@ -111,7 +111,6 @@ export default function AddUser({setAddUserModal,employeeUpdated}) {
                       <option value="User" >User</option>
                     </Form.Select>
                   </Form.Group>
-                
                  {showUnitInput === 'Admin' ? '':
                  <>
                  <Form.Group className="mb-3" controlId="formBasicEmail" >
@@ -119,9 +118,7 @@ export default function AddUser({setAddUserModal,employeeUpdated}) {
                     <Form.Control type="text" name="buildingCode" placeholder="Enter Code Of Building" onChange={handleOnChange} required  />
                   </Form.Group>
                  </>
-                  
                    }
-
                   <Button variant="primary" type="submit" id='submitBtn'>
                     SUBMIT
                   </Button>

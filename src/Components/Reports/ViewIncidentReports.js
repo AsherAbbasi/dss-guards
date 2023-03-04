@@ -22,30 +22,29 @@ export default function ViewIncidentReports() {
     }, [dataUpdated]);
     const handleClickRemove = async (id) => {
         try {
-          if (window.confirm("Delete Report Permanently?")) {
-            const url = `${API}incidentReport/${id}`;
-            await axios.delete(url).data;
-            toast.success("Report Deleted Successfully", {
-              position: toast.POSITION.TOP_RIGHT,
-              autoClose: 2500,
-            });
-            window.location.reload()
-          }
-    
+            if (window.confirm("Delete Report Permanently?")) {
+                const url = `${API}incidentReport/${id}`;
+                await axios.delete(url).data;
+                toast.success("Report Deleted Successfully", {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 2500,
+                });
+                window.location.reload()
+            }
         } catch (error) {
-          toast.error(`${error.response.data}`, {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 2500,
-          });
+            toast.error(`${error.response.data}`, {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 2500,
+            });
         }
-      }
-      const handleClickAddReport=()=>{
+    }
+    const handleClickAddReport = () => {
         setShowIncidentReportModal(true)
-      }
-      const handleClose = () =>{
+    }
+    const handleClose = () => {
         setShowIncidentReportModal(false)
 
-      }
+    }
     return (
         <>
             <Container fluid={true} >
@@ -64,7 +63,6 @@ export default function ViewIncidentReports() {
                             aria-label="Search"
                         />
                     </Col>
-
                 </Row>
                 <Row>
                     <Container>
@@ -115,7 +113,7 @@ export default function ViewIncidentReports() {
                                                         id="buildingDeleteBtn"
                                                         onClick={() => {
                                                             handleClickRemove(item._id);
-                                                          }}
+                                                        }}
                                                     >
                                                         DELETE
                                                     </Button>
@@ -129,15 +127,15 @@ export default function ViewIncidentReports() {
                     </Container>
                 </Row>
             </Container>
-            <Modal show={ showIncidentReportModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>SECURITY GUARD INCIDENT REPORT</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        {showIncidentReportModal ? <IncidentReport setShowIncidentReportModal={setShowIncidentReportModal} Updated={Updated}/>:''}
-        </Modal.Body>
-       
-      </Modal>
+            <Modal show={showIncidentReportModal} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>SECURITY GUARD INCIDENT REPORT</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {showIncidentReportModal ? <IncidentReport setShowIncidentReportModal={setShowIncidentReportModal} Updated={Updated} /> : ''}
+                </Modal.Body>
+
+            </Modal>
         </>
     )
 }

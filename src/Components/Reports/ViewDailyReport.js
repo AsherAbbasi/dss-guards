@@ -50,7 +50,6 @@ export default function ViewDailyReport() {
         });
         window.location.reload()
       }
-
     } catch (error) {
       toast.error(`${error.response.data}`, {
         position: toast.POSITION.TOP_RIGHT,

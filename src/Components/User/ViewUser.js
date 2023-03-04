@@ -66,58 +66,63 @@ export default function ViewUser() {
           <Col>
             <Row className='d-flex justify-content-end'>
               {Role === 'Admin' ?
-                <Col md={2} ><Button id="AddbtnModel" style={{ width: '100%', marginBottom: '-12px',border:'none',textDecoration:"underline" }} onClick={handleClickAdd}>Add New User</Button>
+                <Col md={2} ><Button id="AddbtnModel" style={{ width: '100%', marginBottom: '-12px', border: 'none', textDecoration: "underline" }} onClick={handleClickAdd}>Add New User</Button>
                 </Col>
                 : ''}
             </Row>
             <Container>
-            {Role === 'Admin' ?
-              <Row className='d-flex justify-content-center align-items-center mt-3'>
-                <Col>
-                  <table className="table table-bordered" id='tbl'>
-                    <thead id='tHead'>
-                      <tr>
-                        <td >NAME</td>
-                        <td >EMAIL</td>
-                        <td >PASSWORD</td>
-                        <td >ROLE</td>
-                        <td>ASSIGNED BUILDING</td>
-                        <td >EDIT / DELETE</td>
-                      </tr>
-                    </thead>
-                    <tbody id='tBody'>
-                      {employeeData?.map((data, index) => {
-                        return <tr key={index}>
-                          <td>{data.name}</td>
-                          <td>{data.email}</td>
-                          <td>{data.password}</td>
-                          <td>{data.role}</td>
-                          <td>{data.buildingCode}</td>
-                          <td className='d-flex'>
-                            <Button
-                              id='buildingEditBtn'
-                              onClick={() => handleShowData(data)}
-                            >
-                              Edit
-                            </Button>
-                            &nbsp;
-                            <Button
-                              onClick={() => {
-                                handleClickRemove(data._id);
-                              }}
-                              id="buildingDeleteBtn"
-                            >
-                              DELETE
-                            </Button>
-                          </td>
+              {Role === 'Admin' ?
+                <Row className='d-flex justify-content-center align-items-center mt-3'>
+                  <Col>
+                  {employeeData?.length !==0 ?
+                    <table className="table" id='tbl'>
+                      <thead id='tHead'>
+                        <tr>
+                          <td >NAME</td>
+                          <td >EMAIL</td>
+                          <td >PASSWORD</td>
+                          <td >ROLE</td>
+                          <td>ASSIGNED BUILDING</td>
+                          <td >EDIT / DELETE</td>
                         </tr>
-                      })}
+                      </thead>
+                      <tbody id='tBody'>
+                        {employeeData?.map((data, index) => {
+                          return <tr key={index}>
+                            <td>{data.name}</td>
+                            <td>{data.email}</td>
+                            <td>{data.password}</td>
+                            <td>{data.role}</td>
+                            <td>{data.buildingCode}</td>
+                            <td className='d-flex'>
+                              <Button
+                                id='editButton'
+                                onClick={() => handleShowData(data)}
+                              >
+                                Edit
+                              </Button>
+                              &nbsp;
+                              <Button
+                                onClick={() => {
+                                  handleClickRemove(data._id);
+                                }}
+                                id="deleteButton"
+                              >
+                                DELETE
+                              </Button>
+                            </td>
+                          </tr>
+                        })}
 
-                    </tbody>
-                  </table>
-                </Col>
-              </Row>:
-              <Col md={12} style={{color:'red',backgroundColor:'wheat'}} className="d-flex justify-content-center"> <h3>Please Login As Admin To See User Details</h3></Col>}
+                      </tbody>
+                    </table>
+                    : <h5 className="text-center" style={{ color: "red" }}>
+                    There are currently no user to show
+                </h5>
+                    }
+                  </Col>
+                </Row> :
+                <Col md={12} style={{ color: 'red', backgroundColor: 'wheat' }} className="d-flex justify-content-center"> <h3>Please Login As Admin To See User Details</h3></Col>}
             </Container>
           </Col>
         </Row>

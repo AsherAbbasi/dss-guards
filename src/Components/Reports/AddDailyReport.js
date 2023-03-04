@@ -1,8 +1,8 @@
 import React from 'react'
-import { Row, Container, Col, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button } from 'react-bootstrap';
 // import DashboardSideBar from '../Shared-Components/Dashboard-Sidebar'
 // import NavigationBar from '../Shared-Components/Navbar'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { toast } from "react-toastify";
 import axios from 'axios';
 import { API } from '../../Config/config'

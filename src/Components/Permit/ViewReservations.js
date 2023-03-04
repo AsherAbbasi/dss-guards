@@ -1,19 +1,18 @@
 import { React, useEffect, useState } from 'react'
 import NavigationBar from '../Shared-Components/Navbar'
 import { Row, Container, Col, Button, Form } from 'react-bootstrap';
-import '../css/style.css'
+import '../../style/style.css'
 import axios from 'axios';
 import { API } from '../../Config/config'
 import { toast } from "react-toastify";
+import SideBar from "../../Components/Shared-Components/Dashboard-Sidebar"
 // import Pagination from '../Shared-Components/Pagination/PaginationViewReservation'
-import jsPDF from 'jspdf'
-import Companylogo from '../images/dssguardslogo.jpeg'
+// import jsPDF from 'jspdf'
+// import Companylogo from '../images/dssguardslogo.jpeg'
 
 
 
 export default function ParkingReservations() {
-
-
   const [showData, setShowData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage] = useState(8);
@@ -99,100 +98,110 @@ export default function ParkingReservations() {
             <NavigationBar />
           </Col>
         </Row>
-        <Row style={{backgroundColor:'#f0f1f2',padding:'12px'}}>
-          <Col md={12} className="d-flex justify-content-end" id="" >
-          <Col md={6}><h5 style={{color:"#325661",marginTop:'7px'}}>Parking Permits</h5></Col>
-            <Form.Control id="searchBar"
-              type="search"
-              placeholder="Search Parking Permit by Building Code, Licensed Plate Number or Date "
-              onChange={handleChangeSearch}
-              value={searchValue}
-              className="me-2"
-              aria-label="Search"
-            />
-          </Col>
-
-        </Row>
-        <Row>
-          {/* <Col> */}
-          <Container className='tableSection'>
-            <Row className='d-flex justify-content-center align-items-center table' >
-              <Col lg={12}  >
-                <table className="table table-bordered" id='tblReservation' >
-                  <thead  id='tHeadReservation'>
-                    <tr>
-                      <td>BUILDING CODE</td>
-                      <td>BUILDING ADDRESS</td>
-                      <td>Name</td>
-                      {/* <td className='headerStyle'>Email</td> */}
-                      <td>CONTACT NUMBER</td>
-                      <td >UNIT VISITING</td>
-                      <td>VEHICLE DETAIL</td>
-                      <td >DATE FROM</td>
-                      <td>DATE TO</td>
-                      <td >TIME FROM</td>
-                      <td >TIME TO</td>
-                      {Role === 'Admin' ?
-                        <td >DELETE</td>
-                        : ''}
-                      <td>DOWNLOAD</td>
-                    </tr>
-                  </thead>
-                  <tbody id='tBodyReservation'>
-                    {/* Currentpost array for pagination  */}
-                    {showData?.filter((value) =>
-                    (value.licensedPlateNumber.toLowerCase().includes(searchValue) ||
-                      value.buildingCode.toLowerCase().includes(searchValue) ||
-                      value.dateFrom.toLowerCase().includes(searchValue) ||
-                      value.dateTo.toLowerCase().includes(searchValue))
-                    ).map((item,index) => {
-                      return <tr key={index} >
-                        <td className='font'>{item.buildingCode}</td>
-                        <td className='font'>{item.buildingAddress}</td>
-                        <td className='font'>{item.name}</td>
-                        {/* <td className='font'>{item.email}</td> */}
-                        <td className='font'>{item.contactNumber}</td>
-                        <td className='font'>{item.buildingUnits}</td>
-                        <td className='font'>
-                          <p className='d-flex m-0 '><p style={{ color: "gray", fontWeight: "600", margin: "0px" }}> Number:</p>{item.licensedPlateNumber}</p>
-                          <p className='d-flex m-0'><p style={{ color: "gray", fontWeight: "600", margin: "0px" }}>Color:</p>{item.vehicleColor}</p>
-                          <p className='d-flex m-0'><p style={{ color: "gray", fontWeight: "600", margin: "0px" }}> Make:</p>{item.Make}</p>
-                        </td>
-                        <td className='font'>{item.dateFrom}</td>
-                        <td className='font'>{item.dateTo}</td>
-                        <td className='font'>{item.timeFrom}</td>
-                        <td className='font'>{item.timeTo}</td>
-                        {Role === "Admin" ?
-                          <td >
-                            <Button
-                              className="btn fontsizePDF" id='btn'
-                              onClick={() => {
-                                handleClickRemove(item._id);
-                              }}>
-                              Delete
-                            </Button>
-                          </td>
-                          : ''}
-                        <td>
-                          <a href={`${API}getPDF/reservation/${item._id}`}
-                            className="btn fontsizePDF" id='btnPdf'
-                            target={"_blank"}
-
-                          >
-                            Generate PDF
-                          </a>
-                        </td>
-                      </tr>
-                    })}
-                  </tbody>
-                </table>
+        {showData?.length !== 0 ?
+          <>
+            <Row style={{ padding: '12px' }}>
+              <Col md={12} className="d-flex justify-content-end" id="" >
+                <Col md={6}><h5 style={{ color: "Brown", marginTop: '7px' }}>Parking Permits</h5></Col>
+                <Form.Control id="searchBar"
+                  type="search"
+                  placeholder="Search Parking Permit by Building Code, Licensed Plate Number or Date "
+                  onChange={handleChangeSearch}
+                  value={searchValue}
+                  className="me-2"
+                  aria-label="Search"
+                />
               </Col>
             </Row>
-          </Container>
-          {/* </Col> */}
+            <Row>
+              {/* <Col> */}
+              <Container className='tableSection'>
+                <Row className='d-flex justify-content-center align-items-center table' >
+                  <Col lg={12}  >
+                    <table className="table " id='tblReservation' >
+                      <thead id='tHeadReservation'>
+                        <tr>
+                          <td>BUILDING CODE</td>
+                          <td>BUILDING ADDRESS</td>
+                          <td>Name</td>
+                          {/* <td className='headerStyle'>Email</td> */}
+                          <td>CONTACT NUMBER</td>
+                          {/* <td >UNIT VISITING</td> */}
+                          <td>VEHICLE Number</td>
+                          {/* <td>VEHICLE COLOR</td> */}
+                          {/* <td >DATE FROM</td> */}
+                          {/* <td>DATE TO</td> */}
+                          {/* <td >TIME FROM</td> */}
+                          {/* <td >TIME TO</td> */}
+                          {Role === 'Admin' ?
+                            <td >DELETE</td>
+                            : ''}
+                          <td>DOWNLOAD</td>
+                        </tr>
+                      </thead>
+                      <tbody id='tBody' >
+                        {/* Currentpost array for pagination  */}
+                        {showData?.filter((value) =>
+                        (value.licensedPlateNumber.toLowerCase().includes(searchValue) ||
+                          value.buildingCode.toLowerCase().includes(searchValue) ||
+                          value.dateFrom.toLowerCase().includes(searchValue) ||
+                          value.dateTo.toLowerCase().includes(searchValue))
+                        ).map((item, index) => {
+                          return <tr key={index} >
+                            <td className='font'>{item.buildingCode}</td>
+                            <td className='font'>{item.buildingAddress}</td>
+                            <td className='font'>{item.name}</td>
+                            {/* <td className='font'>{item.email}</td> */}
+                            <td className='font'>{item.contactNumber}</td>
+                            {/* <td className='font'>{item.buildingUnits}</td> */}
+                            <td className='font'> {item.licensedPlateNumber}</td>
+                            {/* <td className='font'> {item.vehicleColor}</td> */}
+                            {/* <td className='font'>{item.dateFrom}</td> */}
+                            {/* <td className='font'>{item.dateTo}</td> */}
+                            {/* <td className='font'>{item.timeFrom}</td> */}
+                            {/* <td className='font'>{item.timeTo}</td> */}
+                            {Role === "Admin" ?
+                              <td >
+                                <Button
+                                  className="btn fontsizePDF" id='btn'
+                                  onClick={() => {
+                                    handleClickRemove(item._id);
+                                  }}>
+                                  Delete
+                                </Button>
+                              </td>
+                              : ''}
+                            <td>
+                              <a href={`${API}getPDF/reservation/${item._id}`}
+                                className="btn fontsizePDF" id='btnPdf'
+                                target={"_blank"}
 
-          {/* <Pagination dataPerPage={dataPerPage} totalData={showData.length} paginate={paginate} /> */}
-        </Row>
+                              >
+                                Generate PDF
+                              </a>
+                            </td>
+                          </tr>
+                        })}
+                      </tbody>
+                    </table>
+                  </Col>
+                </Row>
+              </Container>
+              {/* </Col> */}
+
+              {/* <Pagination dataPerPage={dataPerPage} totalData={showData.length} paginate={paginate} /> */}
+            </Row>
+          </>
+          : <><Row>
+            <Col md={2} ><SideBar /></Col>
+            <Col>
+              <h5 className="text-center" style={{ color: "red" }}>
+                There are currently no parking permit to show
+              </h5>
+            </Col>
+          </Row>
+
+          </>}
       </Container>
     </>
   )
