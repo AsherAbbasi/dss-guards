@@ -1,5 +1,5 @@
-import { React, useEffect, useState } from 'react'
-import { Row, Container, Col, Button, Form } from 'react-bootstrap';
+import { React, useEffect, useState} from 'react'
+import { Row, Container, Col, Button, Form, } from 'react-bootstrap';
 import DashboardSideBar from '../Shared-Components/Dashboard-Sidebar'
 import NavigationBar from '../Shared-Components/Navbar'
 import axios from 'axios';
@@ -11,9 +11,12 @@ import ModalForm from '../Modal/EditBuildingModal'
 import Units from './BuildingUnits'
 import Buildings from './AddBuildings';
 import { Trash3,PencilSquare } from "react-bootstrap-icons";
+import {useNavigate} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 
 export default function ViewBuildings() {
+  const navigate = useNavigate();
   const [showEditModel, setShowEditModel] = useState(false)
   const [showUnitModel, setShowUnitModel] = useState(false)
   const [addBuildingModal, setAddBuildingModal] = useState(false)
@@ -23,6 +26,8 @@ export default function ViewBuildings() {
   const [dataUpdated, setDataUpdated] = useState(false)
   const [showUnit, setshowUnit] = useState(false)
   const [searchValue, setSearchValue] = useState("");
+  
+  
   const handleChangeSearch = (e) => {
     setSearchValue(e.target.value)
   }
@@ -55,11 +60,14 @@ export default function ViewBuildings() {
     }
   }
 
+
   const handleClickViewAll = (item) => {
-    setshowUnit(true);
-    setShowEditModel(false)
-    setShowUnitModel(true)
+    // setshowUnit(true);
+    // setShowEditModel(false)
+    // setShowUnitModel(true)
     setBuildingCode(item.buildingCode);
+    navigate('/buildingUnits')
+    
   }
   const handleClickEdit = (item) => {
     setShowEditModel(true)
@@ -74,10 +82,8 @@ export default function ViewBuildings() {
   const handleClickAdd = () => {
     setAddBuildingModal(true)
   }
-
   return (
     <>
-      {showUnit ? <Units buildingCode={buildingCode} /> :
         <>
           <Container fluid={true}>
             <Row>
@@ -102,9 +108,7 @@ export default function ViewBuildings() {
                       <Col md={6} ><p style={{ color: "black", marginTop: '' }}>
                         <Button id="AddbtnModel" onClick={handleClickAdd} style={{ width: '100%', marginBottom: '-12px', border: 'none', textDecoration: "underline" }} >Add New Building</Button></p>
                       </Col> : ''}
-
                   </Col>
-
                 </Row>
                 <Container>
                   <Row className='d-flex justify-content-center align-items-center'>
@@ -129,7 +133,7 @@ export default function ViewBuildings() {
                                   <td className='font'>{item.buildingCode ? item.buildingCode : ""}</td>
                                   <td className='font'>{item.buildingAddress}</td>
                                   <div >
-                                    <Button id='ViewUnits' className='font' onClick={() => handleClickViewAll(item)}>
+                                    <Button id='ViewUnits' href='app/buildingUnits' className='font' onClick={() => handleClickViewAll(item)}>
                                       View All
                                     </Button>
                                   </div>
@@ -181,7 +185,7 @@ export default function ViewBuildings() {
 
           </Modal>
         </>
-      }
+      
     </>
   )
 }

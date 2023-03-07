@@ -53,6 +53,7 @@ export default function Ticket({ setTicketModal }) {
                     autoClose: 2500,
                 });
                 setTicketModal(false)
+                window.location.reload()
             } catch (error) {
                 toast.error(`${error.response.data}`, {
                     position: toast.POSITION.TOP_RIGHT,

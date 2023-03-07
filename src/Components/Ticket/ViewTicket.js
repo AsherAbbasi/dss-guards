@@ -66,11 +66,12 @@ export default function ViewTicket() {
                 <Row>
                     <Col md={2}><DashboardSideBar/></Col>
                     <Col md={10}>
-                {ticketData?.length ?
+                
                     <>
                         <Row style={{ padding: '12px' }}>
                             <Col md={2} ><Button id="AddbtnModel" style={{ width: '100%', border: 'none', textDecoration: "underline" }} onClick={handleClickAddTicket} >Add New Ticket</Button>
                             </Col>
+                            { ticketData?.length ?
                             <Col md={10} className="d-flex justify-content-end" id="" >
                                 <Form.Control id="searchBar"
                                     type="search"
@@ -80,10 +81,11 @@ export default function ViewTicket() {
                                     className="me-2"
                                     aria-label="Search"
                                 />
-                            </Col>
+                            </Col>:""}
                         </Row>
                         <Row>
                             <Container>
+                            { ticketData?.length ?
                                 <Row className='d-flex justify-content-center align-items-center'>
                                     <Col id="TicketTable" lg={2} md={4} >
                                         <table className="table" id='tbl'>
@@ -160,18 +162,20 @@ export default function ViewTicket() {
                                         </table>
                                     </Col>
                                 </Row>
+                                : <><Row>
+                                <Col>
+                                    <h5 className="text-center" style={{ color: "red" }}>
+                                        There are currently no parking ticket to show
+                                    </h5>
+                                </Col>
+                            </Row>
+        
+                            </>
+                            }
                             </Container>
                         </Row>
                     </>
-                    : <><Row>
-                        <Col>
-                            <h5 className="text-center" style={{ color: "red" }}>
-                                There are currently no parking ticket to show
-                            </h5>
-                        </Col>
-                    </Row>
-
-                    </>}
+                    
                     </Col>
                     </Row>
             </Container>
