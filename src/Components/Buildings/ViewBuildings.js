@@ -10,6 +10,8 @@ import Modal from 'react-bootstrap/Modal';
 import ModalForm from '../Modal/EditBuildingModal'
 import Units from './BuildingUnits'
 import Buildings from './AddBuildings';
+import { Trash3,PencilSquare } from "react-bootstrap-icons";
+
 
 export default function ViewBuildings() {
   const [showEditModel, setShowEditModel] = useState(false)
@@ -107,7 +109,7 @@ export default function ViewBuildings() {
                 <Container>
                   <Row className='d-flex justify-content-center align-items-center'>
                     <Col id="table" lg={2} md={4}>
-                      {showBuildings?.length !== 0 ?
+                      {showBuildings?.length ?
                         <table className="table table-bordered" id='tbl'>
                           <thead id='tHeadReservation'>
                             <tr>
@@ -139,7 +141,7 @@ export default function ViewBuildings() {
                                         <Button
                                           id='editButton' onClick={() => handleClickEdit(item)}
                                         >
-                                          EDIT
+                                         <PencilSquare style={{fontSize:"20px"}}/>
                                         </Button>
                                         &nbsp;
                                         <Button
@@ -148,7 +150,7 @@ export default function ViewBuildings() {
                                           }}
                                           id="deleteButton"
                                         >
-                                          DELETE
+                                          <Trash3 style={{fontSize:"20px"}}/>
                                         </Button>
                                       </>
 

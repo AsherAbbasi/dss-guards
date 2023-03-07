@@ -284,10 +284,10 @@
     background: none;
     border: none;
     border-radius: 0px;
-    border-right: 1px solid gray;
+    border-right: 1px solid rgb(213, 211, 211);
     color: green;
     padding: 0px;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 #deleteButton {
@@ -336,7 +336,6 @@
         width: 34%;
         margin-left: 12px;
     }
-
     #table {
         width: 90%;
     }

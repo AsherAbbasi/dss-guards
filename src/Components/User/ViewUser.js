@@ -8,6 +8,8 @@ import Modal from 'react-bootstrap/Modal';
 import { Row, Container, Col, Button } from 'react-bootstrap';
 import UserEdit from '../Modal/EditUserModal'
 import AddUser from '../User/AddUser'
+import { Trash3,PencilSquare } from "react-bootstrap-icons";
+
 
 export default function ViewUser() {
   const [employeeModal, setEmployeeModal] = useState(false);
@@ -74,51 +76,51 @@ export default function ViewUser() {
               {Role === 'Admin' ?
                 <Row className='d-flex justify-content-center align-items-center mt-3'>
                   <Col>
-                  {employeeData?.length !==0 ?
-                    <table className="table" id='tbl'>
-                      <thead id='tHead'>
-                        <tr>
-                          <td >NAME</td>
-                          <td >EMAIL</td>
-                          <td >PASSWORD</td>
-                          <td >ROLE</td>
-                          <td>ASSIGNED BUILDING</td>
-                          <td >EDIT / DELETE</td>
-                        </tr>
-                      </thead>
-                      <tbody id='tBody'>
-                        {employeeData?.map((data, index) => {
-                          return <tr key={index}>
-                            <td>{data.name}</td>
-                            <td>{data.email}</td>
-                            <td>{data.password}</td>
-                            <td>{data.role}</td>
-                            <td>{data.buildingCode}</td>
-                            <td className='d-flex'>
-                              <Button
-                                id='editButton'
-                                onClick={() => handleShowData(data)}
-                              >
-                                Edit
-                              </Button>
-                              &nbsp;
-                              <Button
-                                onClick={() => {
-                                  handleClickRemove(data._id);
-                                }}
-                                id="deleteButton"
-                              >
-                                DELETE
-                              </Button>
-                            </td>
+                    {employeeData?.length ?
+                      <table className="table table-bordered " id='tbl'>
+                        <thead id='tHead'>
+                          <tr>
+                            <td >NAME</td>
+                            <td >EMAIL</td>
+                            <td >PASSWORD</td>
+                            <td >ROLE</td>
+                            <td>ASSIGNED BUILDING</td>
+                            <td >EDIT / DELETE</td>
                           </tr>
-                        })}
+                        </thead>
+                        <tbody id='tBody'>
+                          {employeeData?.map((data, index) => {
+                            return <tr key={index}>
+                              <td>{data.name}</td>
+                              <td>{data.email}</td>
+                              <td>{data.password}</td>
+                              <td>{data.role}</td>
+                              <td>{data.buildingCode}</td>
+                              <td className='d-flex'>
+                                <Button
+                                  id='editButton'
+                                  onClick={() => handleShowData(data)}
+                                >
+                                  <PencilSquare style={{fontSize:"20px"}}/>
+                                </Button>
+                                &nbsp;
+                                <Button
+                                  onClick={() => {
+                                    handleClickRemove(data._id);
+                                  }}
+                                  id="deleteButton"
+                                >
+                                 <Trash3 style={{fontSize:"20px"}}/>
+                                </Button>
+                              </td>
+                            </tr>
+                          })}
 
-                      </tbody>
-                    </table>
-                    : <h5 className="text-center" style={{ color: "red" }}>
-                    There are currently no user to show
-                </h5>
+                        </tbody>
+                      </table>
+                      : <h5 className="text-center" style={{ color: "red" }}>
+                        There are currently no user to show
+                      </h5>
                     }
                   </Col>
                 </Row> :

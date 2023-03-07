@@ -5,7 +5,9 @@ import '../../style/style.css'
 import axios from 'axios';
 import { API } from '../../Config/config'
 import { toast } from "react-toastify";
-import SideBar from "../../Components/Shared-Components/Dashboard-Sidebar"
+import SideBar from "../../Components/Shared-Components/Dashboard-Sidebar";
+import { Trash3,FilePdf} from "react-bootstrap-icons";
+
 // import Pagination from '../Shared-Components/Pagination/PaginationViewReservation'
 // import jsPDF from 'jspdf'
 // import Companylogo from '../images/dssguardslogo.jpeg'
@@ -56,40 +58,7 @@ export default function ParkingReservations() {
     setSearchValue(e.target.value)
   }
 
-  // const exportPDF = async (index) => {
-  //   const pdfData = showData.filter(item => item._id === index);
-  //   const unit = "pt";
-  //   const size = "A4";
-  //   const orientation = "landscape";
-  //   const marginLeft = 40;
-  //   const doc = new jsPDF(orientation, unit, size);
-  //   const loadImage = () => {
-  //     return new Promise((resolve) => {
-  //       let img = new Image();
-  //       img.src = Companylogo;
-  //       img.onload = () => resolve(img);
-  //     })
-  //   };
-  //   function footer(){ 
-  //     doc.text(300,580, 'https://dssguards.com/');
-  //   };
-  //   const logo = await loadImage();
-  //   doc.addImage(logo, 'jpeg', 290, 20, 0, 50);
-  //   doc.setFontSize(15);
-  //   const title = "Parking Reservation Report";
-  //   const headers = [["NAME", "Email", "BUILDING CODE", "BUILDING ADDRESS", "CONTACT", "UNIT VISITING", "LICENSE PLATE", "VEHICLE COLOR", "DATE FROM", "DATE TO", "TIME FORM", "TIME TO"]];
-  //   const data = pdfData.map(pdf => [pdf.name, pdf.email, pdf.buildingCode, pdf.buildingAddress, pdf.contactNumber, pdf.buildingUnits, pdf.licensedPlateNumber, pdf.vehicleColor, pdf.dateFrom, pdf.dateTo, pdf.timeFrom, pdf.timeTo]);
-  //   let content = {
-  //     startY: 160,
-  //     head: headers,
-  //     body: data,
-  //   };
-
-  //   doc.text(title, marginLeft, 120);
-  //   doc.autoTable(content);
-  //   footer();
-  //   doc.save("Parking Reservation Report.pdf")
-  // }
+ 
   return (
     <>
       <Container fluid={true} >
@@ -98,14 +67,17 @@ export default function ParkingReservations() {
             <NavigationBar />
           </Col>
         </Row>
-        {showData?.length !== 0 ?
+        <Row>
+          <Col md={2}><SideBar/></Col>
+          <Col md={10}>
+        {showData?.length  ?
           <>
             <Row style={{ padding: '12px' }}>
               <Col md={12} className="d-flex justify-content-end" id="" >
                 <Col md={6}><h5 style={{ color: "Brown", marginTop: '7px' }}>Parking Permits</h5></Col>
                 <Form.Control id="searchBar"
                   type="search"
-                  placeholder="Search Parking Permit by Building Code, Licensed Plate Number or Date "
+                  placeholder="Search by Building Code, Licensed Plate Number or Date... "
                   onChange={handleChangeSearch}
                   value={searchValue}
                   className="me-2"
@@ -133,10 +105,11 @@ export default function ParkingReservations() {
                           {/* <td>DATE TO</td> */}
                           {/* <td >TIME FROM</td> */}
                           {/* <td >TIME TO</td> */}
+                          <td>PDF</td>
                           {Role === 'Admin' ?
                             <td >DELETE</td>
                             : ''}
-                          <td>DOWNLOAD</td>
+                          
                         </tr>
                       </thead>
                       <tbody id='tBody' >
@@ -160,6 +133,15 @@ export default function ParkingReservations() {
                             {/* <td className='font'>{item.dateTo}</td> */}
                             {/* <td className='font'>{item.timeFrom}</td> */}
                             {/* <td className='font'>{item.timeTo}</td> */}
+                            <td>
+                              <a href={`${API}getPDF/reservation/${item._id}`}
+                                className="btn fontsizePDF" id='btnPdf'
+                                target={"_blank"}
+
+                              >
+                               <FilePdf style={{fontSize:"20px"}}/>
+                              </a>
+                            </td>
                             {Role === "Admin" ?
                               <td >
                                 <Button
@@ -167,19 +149,10 @@ export default function ParkingReservations() {
                                   onClick={() => {
                                     handleClickRemove(item._id);
                                   }}>
-                                  Delete
+                                  <Trash3 style={{fontSize:"20px"}}/>
                                 </Button>
                               </td>
                               : ''}
-                            <td>
-                              <a href={`${API}getPDF/reservation/${item._id}`}
-                                className="btn fontsizePDF" id='btnPdf'
-                                target={"_blank"}
-
-                              >
-                                Generate PDF
-                              </a>
-                            </td>
                           </tr>
                         })}
                       </tbody>
@@ -193,7 +166,7 @@ export default function ParkingReservations() {
             </Row>
           </>
           : <><Row>
-            <Col md={2} ><SideBar /></Col>
+            
             <Col>
               <h5 className="text-center" style={{ color: "red" }}>
                 There are currently no parking permit to show
@@ -202,6 +175,8 @@ export default function ParkingReservations() {
           </Row>
 
           </>}
+          </Col>
+          </Row>
       </Container>
     </>
   )
