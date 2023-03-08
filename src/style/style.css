@@ -8,7 +8,11 @@
     color: blue;
     /* border: none; */
 }
-
+#viewAll {
+    background: none !important;
+    border: none;
+    color:green;
+}
 #searchBar {
     width: 41%;
     border: 2px solid gainsboro;
@@ -91,7 +95,7 @@
 
 
 #tBodyReservation {
-    background:none;
+    background: none;
     text-align: center;
     vertical-align: middle;
     border: 1px solid rgb(229, 227, 227);
@@ -336,9 +340,12 @@
         width: 34%;
         margin-left: 12px;
     }
+
     #table {
         width: 90%;
     }
+
+    
 
     #tbl {
         margin: 22px;
@@ -357,6 +364,7 @@
     #dashboardImg {
         margin-top: 22px;
     }
+
     #col {
         flex-direction: column;
         justify-content: center;

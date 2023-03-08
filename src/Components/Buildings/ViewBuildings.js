@@ -111,31 +111,31 @@ export default function ViewBuildings() {
                       </Col> : ''}
                   </Col>
                 </Row>
-                <Container>
-                  <Row className='d-flex justify-content-center align-items-center'>
-                    <Col id="table" lg={2} md={4}>
-                      {showBuildings?.length ?
-                        <table className="table table-bordered" id='tbl'>
-                          <thead id='tHeadReservation'>
-                            <tr>
-                              <td >BUILDING CODE</td>
-                              <td >BUILDING ADDRESS</td>
-                              <td >TOTAL UNITS</td>
-                              <td >PARKING SLOTS</td>
-                              {Role === 'Admin' ? <td >EDIT / DELETE</td> : ''}
-                            </tr>
-                          </thead>
-                          <tbody id='tBody'>
-                            {showBuildings?.filter((value) => (
-                              value.buildingCode.toLowerCase().includes(searchValue) ||
-                              value.buildingAddress.toLowerCase().includes(searchValue)))
-                              .map((item, index) => {
-                                return <tr key={index}>
-                                  <td className='font'>{item.buildingCode ? item.buildingCode : ""}</td>
-                                  <td className='font'>{item.buildingAddress}</td>
-                                  <div >
-                                    <Button id='ViewUnits' href='app/buildingUnits' className='font' onClick={() => handleClickViewAll(item)}>
-                                      View All
+                 <Container>
+                <Row className='d-flex justify-content-center align-items-center'>
+                <Col id="table" lg={2} md={4}>
+                  {showBuildings?.length ?
+                    <table className="table table-bordered" id='tbl'>
+                      <thead id='tHeadReservation'>
+                        <tr>
+                          <td >BUILDING CODE</td>
+                          <td >BUILDING ADDRESS</td>
+                          <td >TOTAL UNITS</td>
+                          <td >PARKING SLOTS</td>
+                          {Role === 'Admin' ? <td >EDIT / DELETE</td> : ''}
+                        </tr>
+                      </thead>
+                      <tbody id='tBody'>
+                        {showBuildings?.filter((value) => (
+                          value.buildingCode.toLowerCase().includes(searchValue) ||
+                          value.buildingAddress.toLowerCase().includes(searchValue)))
+                          .map((item, index) => {
+                            return <tr key={index}>
+                              <td className='font'>{item.buildingCode ? item.buildingCode : ""}</td>
+                              <td className='font'>{item.buildingAddress}</td>
+                              <div >                                
+                                <Button onClick={()=>handleClickViewAll(item.buildingCode)} id="viewAll">
+                                    View All
                                     </Button>
                              
                               </div>
