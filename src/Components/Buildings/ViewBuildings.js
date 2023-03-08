@@ -133,7 +133,7 @@ export default function ViewBuildings() {
                                   <td className='font'>{item.buildingCode ? item.buildingCode : ""}</td>
                                   <td className='font'>{item.buildingAddress}</td>
                                   <div >
-                                    <Button id='ViewUnits' href='app/buildingUnits' className='font' onClick={() => handleClickViewAll(item)}>
+                                    <Button id='ViewUnits' href='/buildingUnits' className='font' >
                                       View All
                                     </Button>
                                   </div>
