@@ -39,7 +39,7 @@ const BuildingModal = ({ bData, setShowEditModel, buildingUpdated }) => {
           <Form md={2} onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <p className='mb-2'>Building Code:</p>
-              <Form.Control type="text" name="buildingCode" value={buildingData.buildingCode} onChange={handleOnChange} disabled />
+              <Form.Control type="text" name="buildingCode" value={buildingData.buildingCode} onChange={handleOnChange}  />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -49,7 +49,7 @@ const BuildingModal = ({ bData, setShowEditModel, buildingUpdated }) => {
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <p className='mb-2'>Building Units:</p>
-              <Form.Control type="text" name="buildingUnits" value={buildingData.buildingUnits.length} onChange={handleOnChange} disabled />
+              <Form.Control type="text" name="buildingUnits" value={buildingData.buildingUnits.length} onChange={handleOnChange}  disabled/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
