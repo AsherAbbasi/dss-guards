@@ -9,7 +9,7 @@ import UnitModel from '../Modal/AddParkingSlots'
 import { Row, Container, Col, Button, Form } from 'react-bootstrap';
 
 
-export default function BuildingUnits({ buildingCode }) {
+const BuildingUnits = ({buildingCode}) => {
   const [buildingUnits, setBuildingUnits] = useState([])
   const [showUnitsModel, setShowUnitsModel] = useState(false);
   const [showUnit, setShowUnit] = useState();
@@ -36,11 +36,11 @@ export default function BuildingUnits({ buildingCode }) {
   return (
     <>
       <Container fluid={true}>
-        <Row>
+        {/* <Row>
           <NavigationBar />
-        </Row>
+        </Row> */}
         <Row>
-          <Col md={2} ><DashboardSidebar /></Col>
+          {/* <Col md={2} ><DashboardSidebar /></Col> */}
           <Col>
             <Row style={{ padding: '12px' }}>
               <Col md={12} className="d-flex justify-content-end" id="" >
@@ -106,3 +106,4 @@ export default function BuildingUnits({ buildingCode }) {
     </>
   )
 }
+export default BuildingUnits;
