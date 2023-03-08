@@ -1,15 +1,15 @@
 import React from 'react'
-import { Row, Container, Col, Form, Button } from 'react-bootstrap';
-import DashboardSideBar from '../Shared-Components/Dashboard-Sidebar'
-import NavigationBar from '../Shared-Components/Navbar'
-import { useState, useEffect } from 'react';
+import { Container, Form, Button } from 'react-bootstrap';
+// import DashboardSideBar from '../Shared-Components/Dashboard-Sidebar'
+// import NavigationBar from '../Shared-Components/Navbar'
+import { useState } from 'react';
 import { toast } from "react-toastify";
 import axios from 'axios';
 import { API } from '../../Config/config'
 
-export default function DailyReport() {
+export default function AddDailyReport({Updated,setShowDailyReportModel}) {
     const [validated, setValidated] = useState(false);
-    const [counter, setCounter] = useState(0);
+    // const [counter, setCounter] = useState(0);
     const initialData = {
         guardName: "",
         licenseNumber: "",
@@ -30,16 +30,19 @@ export default function DailyReport() {
         remarks:[]
     }
     const [dailyReport, setDailyReport] = useState(initialData);
-    // const handleClick = () => {
-    //  setCounter(counter + 1);
-    // };
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setDailyReport((prevState) => ({ ...prevState, [name]: value }));
     }
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setValidated(true);
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+            setValidated(true);
+        }
+        else if (form.checkValidity() === true) {
+          e.preventDefault();
         try {
             const url = `${API}dailyReport`;
             await axios.post(url, dailyReport);
@@ -47,7 +50,9 @@ export default function DailyReport() {
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 2500,
             });
-      
+            Updated();
+            setShowDailyReportModel(false)
+
           } catch (error) {
             toast.error(`${error.response.data}`, {
               position: toast.POSITION.TOP_RIGHT,
@@ -56,21 +61,22 @@ export default function DailyReport() {
       
           }
           setDailyReport(initialData)
+        }
     }
     return (
         <Container fluid={true}>
-            <Row>
+            {/* <Row>
                 <NavigationBar />
-            </Row>
-            <Row>
-                <Col md={2}><DashboardSideBar /></Col>
-                <Col md={10}>
-                    <Container>
-                        <Row>
-                            <p id="ticketText">Please Add Daily Report here!</p>
-                        </Row>
-                        <Row className='d-flex justify-content-center align-items-center'>
-                            <Col id='addTicket' className='mt-3' lg={2} md={4} >
+            </Row> */}
+            {/* <Row> */}
+                {/* <Col md={2}><DashboardSideBar /></Col> */}
+                {/* <Col md={10}> */}
+                    {/* <Container> */}
+                        {/* <Row>
+                            <p id="text">Please Add Daily Report here!</p>
+                        </Row> */}
+                        {/* <Row className='d-flex justify-content-center align-items-center'> */}
+                            {/* <Col id='addTicket' className='mt-3' lg={2} md={4} > */}
                                 <Form md={2} noValidate validated={validated} onSubmit={handleSubmit}>
                                     <div className='d-flex ' id='ticketSection'>
                                         <Form.Group className=" px-3 w-100" controlId="formBasicEmail">
@@ -144,46 +150,17 @@ export default function DailyReport() {
                                             <Form.Control  type="text" name="hoursOfShift" placeholder="Hours Of Shift.. " onChange={handleOnChange} required />
                                         </Form.Group>
                                     </div>
-                                    {/* <div className='d-flex ' id='ticketSection'>
-                                        <Form.Group className="px-3 w-50" controlId="formBasicEmail" >
-                                            <p className='mb-1'>Time:</p>
-                                            <Form.Control className='mb-2' type="text" name="time" placeholder="Time.. " id='fullWidth' onChange={handleOnChange}  required />
-                                        </Form.Group>
-                                        <Form.Group className="px-3 w-100" controlId="formBasicEmail">
-                                            <p className='mb-1'>Remarks:</p>
-                                            <Form.Control className='mb-2' type="text" name="remarks" placeholder="Remarks.." onChange={handleOnChange} required />
-                                        </Form.Group>
-                                    </div> */}
-                                    {/* {Array.from(Array(counter)).map((c, index) => {
-                                        return (
-                                            <>
-                                        <div className='d-flex w-100' id='ticketSection'>
-                                        <Form.Group className="px-3 w-50" controlId="formBasicEmail">
-                                            <p className='mb-1' key={c}>Time:</p>
-                                            <Form.Control className='mb-2' type="text" name="time" placeholder="Time.. "  key={c} onChange={handleOnChange} required />
-                                        </Form.Group>
-                                        <Form.Group className="px-3 w-100" controlId="formBasicEmail">
-                                            <p className='mb-1' key={c}>Remarks:</p>
-                                            <Form.Control className='mb-2' type="text" name="remarks" placeholder="Remarks.." key={c} onChange={handleOnChange} required />
-                                        </Form.Group>
-                                    </div>
-                                    </>
-                                    )
-                                    })} */}
                                     <div className='d-flex justify-content-center mb-4 mt-4'>
-                                    {/* <Button variant="primary"  id='addMoreBtn' onClick={handleClick}>
-                                            Add More Remarks
-                                        </Button> */}
                                         <Button variant="primary" type="submit" id='addticketBtn'>
                                             SUBMIT
                                         </Button>
                                     </div>
                                 </Form>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Col>
-            </Row>
-        </Container>
+                            {/* </Col> */}
+                        {/* </Row> */}
+                    {/* </Container>
+               </Col>
+             </Row> */}
+         </Container>
     )
 }

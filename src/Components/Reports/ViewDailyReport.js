@@ -6,15 +6,18 @@ import axios from 'axios';
 import { API } from '../../Config/config'
 import { toast } from "react-toastify";
 import Modal from 'react-bootstrap/Modal';
-import DailyReportModel from '../Modal/dailyReportModal';
-
+import EditDailyReportModel from '../Modal/EditDailyReportModal';
+import DailyReportModel from './AddDailyReport'
 
 export default function ViewDailyReport() {
   const [searchValue, setSearchValue] = useState("");
   const [dailyReports, setDailyReports] = useState([]);
   const [showEditModel,setShowEditModel]=useState(false);
   const [showDailyReportModel,setShowDailyReportModel]=useState(false);
-  const [dailyReportData, setDailyReportData]=useState({})
+  const [dailyReportData, setDailyReportData]=useState({});
+  const [dataUpdated, setDataUpdated] = useState(false)
+  const Updated = () => setDataUpdated(!dataUpdated);
+
   const handleChangeSearch = (e) => {
     setSearchValue(e.target.value)
   }
@@ -23,8 +26,8 @@ export default function ViewDailyReport() {
       .then((res) => {
         setDailyReports(res.data)
       })
-  }, []);
-  const handleClickEdit=(item)=>{
+  }, [dataUpdated]);
+  const handleClickRemarks=(item)=>{
     setShowEditModel(true)
     setShowDailyReportModel(false)
     setDailyReportData(item);
@@ -32,6 +35,9 @@ export default function ViewDailyReport() {
   const handleClose = () =>{
     setShowEditModel(false)
     setShowDailyReportModel(false)
+  }
+  const handleClickAddReport=()=>{
+    setShowDailyReportModel(true)
   }
   const handleClickRemove = async (id) => {
     try {
@@ -44,7 +50,6 @@ export default function ViewDailyReport() {
         });
         window.location.reload()
       }
-
     } catch (error) {
       toast.error(`${error.response.data}`, {
         position: toast.POSITION.TOP_RIGHT,
@@ -62,7 +67,7 @@ export default function ViewDailyReport() {
         </Row>
         <Row style={{ backgroundColor: '#f0f1f2', padding: '12px' }}>
           <Col md={12} className="d-flex justify-content-end" id="" >
-            <Col md={6}><h5>SECURITY GUARD DAILY OCCURENCE REPORT </h5></Col>
+            <Col md={6}><p id='addReport' onClick={handleClickAddReport}>ADD SECURITY GUARD DAILY OCCURENCE REPORT </p></Col>
             <Form.Control id="searchBar"
               type="search"
               placeholder="Search Report By Client Name or Date"
@@ -79,35 +84,35 @@ export default function ViewDailyReport() {
             <Row className='d-flex justify-content-center align-items-center'>
               <Col id="TicketTable" lg={2} md={4} >
                 <table className="table table-bordered" id='tbl'>
-                  <thead className=" text-white" style={{ backgroundColor: "brown" }}>
+                  <thead id='tHead'>
                     <tr>
-                      <td className='headerStyle text-center'>Guard Name</td>
-                      <td className='headerStyle text-center'>License Number</td>
-                      <td className='headerStyle text-center'>Client Name</td>
-                      <td className='headerStyle text-center'>Client Address</td>
-                      <td className='headerStyle text-center'>City</td>
-                      <td className='headerStyle text-center'>Date</td>
-                      <td className='headerStyle text-center'>Edit/Generate PDF/Delete</td>
+                      <td >Guard Name</td>
+                      <td >License Number</td>
+                      <td >Client Name</td>
+                      <td >Client Address</td>
+                      <td >City</td>
+                      <td >Date</td>
+                      <td >Remarks  &nbsp; Generate PDF  &nbsp;  Delete</td>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id='tBody'>
                     {dailyReports?.filter((value)=>(
                      value.clientName.toLowerCase().includes(searchValue) ||
                      value.date.toLowerCase().includes(searchValue)))
                     .map((item, index) => {
                       return <tr key={index}>
-                        <td className='font'>{item.guardName}</td>
-                        <td className='font'>{item.licenseNumber}</td>
-                        <td className='font'>{item.clientName}</td>
-                        <td className='font'>{item.clientAddress}</td>
-                        <td className='font'>{item.city}</td>
-                        <td className='font'>{item.date}</td>
+                        <td >{item.guardName}</td>
+                        <td>{item.licenseNumber}</td>
+                        <td >{item.clientName}</td>
+                        <td >{item.clientAddress}</td>
+                        <td>{item.city}</td>
+                        <td >{item.date}</td>
                         <td className='d-flex'>
                                 <Button
                                   id='buildingEditBtn'  
-                                  onClick={() => handleClickEdit(item)}
+                                  onClick={() => handleClickRemarks(item)}
                                 >
-                                  EDIT
+                                  Remarks
                                 </Button>
                                 &nbsp;
                                 <a
@@ -137,12 +142,14 @@ export default function ViewDailyReport() {
           </Container>
         </Row>
       </Container>
-      <Modal show={showEditModel} onHide={handleClose}>
+      <Modal show={showEditModel ? showEditModel : showDailyReportModel} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Daily Occurance Report</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        {showEditModel ? <DailyReportModel dailyReportData={dailyReportData} setShowEditModel={setShowEditModel}/>:''}
+        {showEditModel ? <EditDailyReportModel dailyReportData={dailyReportData} setShowEditModel={setShowEditModel}/>:''}
+        {showDailyReportModel ? <DailyReportModel  setShowDailyReportModel={setShowDailyReportModel} Updated={Updated}/>:''}
+
         </Modal.Body>
        
       </Modal>

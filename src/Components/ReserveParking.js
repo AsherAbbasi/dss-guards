@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../App.css'
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
-import './css/reservationparking.css'
+import '../style/reservationparking.css'
 import { toast } from "react-toastify";
 import axios from 'axios';
 import { API } from '../Config/config'
@@ -35,8 +35,8 @@ export default function ReserveParking() {
     const [reservation, setReservation] = useState(initialData);
     const handleOnChange = (e) => {
         const { name, value } = e.target;
-            setReservation((prevState) => ({ ...prevState, [name]: value }));
-        
+        setReservation((prevState) => ({ ...prevState, [name]: value }));
+
     }
     const handleSubmit = async (e) => {
         const form = e.currentTarget;
@@ -46,7 +46,7 @@ export default function ReserveParking() {
             setValidated(true);
         } else if (form.checkValidity() === true) {
             e.preventDefault();
-            reservation.timeTo=moment(reservation.timeTo,'hh:mm').format('LT');
+            reservation.timeTo = moment(reservation.timeTo, 'hh:mm').format('LT');
             try {
                 const url = `${API}reservation`;
                 const response = await axios.post(url, reservation);
@@ -70,7 +70,7 @@ export default function ReserveParking() {
                 });
             }
         }
-        setReservation(initialData);
+        // setReservation(initialData);
     };
     const disablePastDate = () => {
         const today = reservation.dateFrom ? moment(reservation.dateFrom).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD');
@@ -80,7 +80,7 @@ export default function ReserveParking() {
         const lastDate = moment(reservation.dateFrom).add(2, 'days').format('YYYY-MM-DD');
         return lastDate;
     };
-    
+
     return (
         <>
             <div className='mt-2'>
@@ -146,7 +146,7 @@ export default function ReserveParking() {
                             <Row className='mb-3 responsive'>
                                 <Form.Group className='input' as={Col} controlId="validationCustom07" >
                                     <Form.Label className='text-light text-dark'>From</Form.Label>
-                                    <Form.Control name='dateFrom' type="" value={reservation.dateFrom} placeholder=" From " onChange={handleOnChange} min={disablePastDate()} required />
+                                    <Form.Control name='dateFrom' type="" value={reservation.dateFrom} placeholder=" From " onChange={handleOnChange} min={disablePastDate()} required disabled/>
 
                                 </Form.Group>
 
@@ -161,12 +161,12 @@ export default function ReserveParking() {
                             <Row className='mb-3 responsive'>
                                 <Form.Group className='input' as={Col} controlId="validationCustom09" >
                                     <Form.Label className='text-light text-dark'>From</Form.Label>
-                                    <Form.Control name='timeFrom' type="" value={reservation.timeFrom} placeholder=" From " onChange={handleOnChange} required />
+                                    <Form.Control name='timeFrom' type="" value={reservation.timeFrom} placeholder=" From " onChange={handleOnChange} required  disabled/>
                                 </Form.Group>
 
                                 <Form.Group className='input' as={Col} controlId="validationCustom10">
                                     <Form.Label className='text-light text-dark'>To</Form.Label>
-                                    <Form.Control name='timeTo' type="Time" value={reservation.timeTo} placeholder="To" id="time" onChange={handleOnChange}  />
+                                    <Form.Control name='timeTo' type="Time" value={reservation.timeTo} placeholder="To" id="time" onChange={handleOnChange} />
                                 </Form.Group>
 
                             </Row>

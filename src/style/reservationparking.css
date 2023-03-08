@@ -23,14 +23,11 @@
 } */
 #searchBtn{
     width: 100px;
-    background-color: green;
+    background-color: green; 
     color: white;
 
 }
-#searchBar{
-    width: 41%;
-    border: 2px solid gainsboro;
-}
+
 #btn{
    background: none;
    border: none;
@@ -39,8 +36,7 @@
 #btnPdf{
     background: none;
     border: none;
-    color: green;
-   
+    color: rgb(128, 0, 11);
  }
 #btn:hover{
     background: none;

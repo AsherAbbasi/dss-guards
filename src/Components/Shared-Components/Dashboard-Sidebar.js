@@ -1,8 +1,8 @@
 import React from "react";
 import { Menu, MenuItem, Sidebar, useProSidebar, } from "react-pro-sidebar";
 import { Button } from "react-bootstrap";
-import { Eye, Grid, Pen, Speedometer2,Ticket,BuildingFillX,SignNoParkingFill,PeopleFill, TicketDetailedFill ,PersonFillAdd, Receipt, Text, BuildingsFill,TextWrap,Textarea} from "react-bootstrap-icons";
-import '../css/style.css'
+import {  Grid, Receipt,Textarea, BuildingGear, SignNoParking, People, Star} from "react-bootstrap-icons";
+import '../../style/style.css'
 import { useLocation } from 'react-router-dom'
 
 
@@ -17,62 +17,46 @@ export default function DashboardSidebar() {
                 name: "Dashboard",
                 href: "/dashboard",
                 active: "[id]",
-                icon: <Speedometer2 />,
-            }, {
-                name: "Add Building",
-                href: "/building",
+                icon: <Star />,
+            }, 
+            {
+                name: "Users",
+                href: "/users",
                 active: "[id]",
-                icon: <BuildingsFill />,
+                icon: <People />,
             },
             {
-                name: "View Building",
+                name: "Buildings",
                 href: "/buildingsDetails",
                 active: "[id]",
-                icon: <BuildingFillX />,
+                icon: <BuildingGear />,
             },
             {
                 name: "Parking Permits",
                 href: "/parkingReservations",
                 active: "[id]",
-                icon: <SignNoParkingFill />,
+                icon: <SignNoParking />,
             },
+            
             {
-                name: "Add User",
-                href: "/user",
-                active: "[id]",
-                icon: <PersonFillAdd />,
-            },
-            {
-                name: "View User",
-                href: "/users",
-                active: "[id]",
-                icon: <PeopleFill />,
-            },
-            {
-                name: "Add Ticket",
-                href: `/ticket`,
-                active: "[id]",
-                icon: <TicketDetailedFill />,
-
-            },
-            {
-                name: "View Ticket",
+                name: "Tickets",
                 href: `/tickets`,
                 active: "[id]",
                 icon: <Receipt />,
             },
-            {
-                name: "Daily Report",
-                href: `/DailyReport`,
-                active: "[id]",
-                icon: <TextWrap />,
-            },
-            {
-                name: "View Daily Report",
-                href: `/DailyReports`,
-                active: "[id]",
-                icon: <Textarea />,
-            }
+            // {
+            //     name: "Occurance Reports",
+            //     href: `/DailyReports`,
+            //     active: "[id]",
+            //     icon: <Textarea />,
+            // },
+            // {
+            //     name: "Incident Reports",
+            //     href: `/incidentReport`,
+            //     active: "[id]",
+            //     icon: <Textarea />,
+            // },
+            
         ];
     } else {
         menuItems = [
@@ -80,44 +64,38 @@ export default function DashboardSidebar() {
                 name: "Dashboard",
                 href: `/dashboard`,
                 active: "[id]",
-                icon: <Speedometer2 />,
-            }, {
-                name: "View Building",
+                icon: <Star />,
+            },
+             {
+                name: "Buildings",
                 href: `/buildingsDetails`,
                 active: "[id]",
-                icon: <Eye />,
+                icon: <BuildingGear />,
             },
             {
-                name: "View Parking Permits",
+                name: "Parking Permits",
                 href: `/parkingReservations`,
                 active: "[id]",
-                icon: <Eye />,
+                icon: <SignNoParking />,
             },
             {
-                name: "Add Ticket",
-                href: `/ticket`,
-                active: "[id]",
-                icon: <Ticket />,
-
-            },
-            {
-                name: "View Ticket",
+                name: "Tickets",
                 href: `/tickets`,
                 active: "[id]",
-                icon: <Eye />,
+                icon: <Receipt />,
             },
-            {
-                name: "Daily Report",
-                href: `/DailyReport`,
-                active: "[id]",
-                icon: <Pen />,
-            },
-            {
-                name: "View Daily Report",
-                href: `/DailyReports`,
-                active: "[id]",
-                icon: <Eye />,
-            }
+            // {
+            //     name: "Occurance Reports",
+            //     href: `/DailyReports`,
+            //     active: "[id]",
+            //     icon: <Textarea />,
+            // },
+            // {
+            //     name: "Incident Reports",
+            //     href: `/incidentReport`,
+            //     active: "[id]",
+            //     icon: <Textarea />,
+            // },
         ];
     }
     return (
@@ -134,11 +112,11 @@ export default function DashboardSidebar() {
                     <Grid />
                 </Button>
             )}
-            <Sidebar breakPoint={"md"} backgroundColor={" hsl(218, 41%, 15%)"} id="sideBar">
-                <Menu closeOnClick={true} style={{ marginTop:35 }}>
+            <Sidebar breakPoint={"md"} backgroundColor={"#fbfcfd"} id="sideBar" >
+                <Menu closeOnClick={true} style={{ marginTop:60 }}>
                     {menuItems?.map(({ name, href, icon, active }, index) => (
                         <a key={index} href={`/app${href}`}><MenuItem
-                            style={{ color: "white" }}
+                            id="menuItems"
                             icon={icon}
                             active={url === active}
                         >

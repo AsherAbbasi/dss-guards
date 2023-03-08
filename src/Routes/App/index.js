@@ -1,16 +1,18 @@
 import React, {Suspense} from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 import Dashboard from "../../Components/Dashboard";
-import Buildings from "../../Components/Buildings/Buildings";
+// import Buildings from "../../Components/Buildings/Buildings";
 import ViewReservations from "../../Components/Permit/ViewReservations";
 import ViewBuildings from "../../Components/Buildings/ViewBuildings";
 import BuildingUnits from "../../Components/Buildings/BuildingUnits";
-import AddUser from "../../Components/User/AddUser";
+// import AddUser from "../../Components/User/AddUser";
 import ViewUser from "../../Components/User/ViewUser";
-import Ticket from "../../Components/Ticket/Ticket";
+// import Ticket from "../../Components/Ticket/Ticket";
 import ViewTicket from "../../Components/Ticket/ViewTicket";
-import DailyReport from "../../Components/Reports/DailyReport";
-import ViewDailyReport from '../../Components/Reports/ViewDailyReport';
+// import DailyReport from "../../Components/Reports/AddDailyReport";
+// import ViewDailyReport from '../../Components/Reports/ViewDailyReport';
+// import ViewIncidentReports from '../../Components/Reports/ViewIncidentReports';
+
 
 
 
@@ -20,10 +22,10 @@ const routes = [
         path: '/dashboard',
         element: <Dashboard/>
     },
-    {
-        path: '/building',
-        element: <Buildings/>
-    },
+    // {
+    //     path: '/building',
+    //     element: <Buildings/>
+    // },
     {
         path: '/parkingReservations',
         element: <ViewReservations/>
@@ -36,29 +38,34 @@ const routes = [
         path: '/buildingUnits',
         element: <BuildingUnits/>
     },
-    {
-        path: '/user',
-        element: <AddUser/>
-    }, {
+    // {
+    //     path: '/user',
+    //     element: <AddUser/>
+    // },
+     {
         path: '/users',
         element: <ViewUser/>
     },
-    {
-        path: '/ticket',
-        element: <Ticket/>
-    },
+    // {
+    //     path: '/ticket',
+    //     element: <Ticket/>
+    // },
     {
         path: '/tickets',
         element: <ViewTicket/>
     },
-    {
-        path: '/DailyReport',
-        element: <DailyReport/>
-    },
-    {
-        path: '/DailyReports',
-        element: <ViewDailyReport/>
-    },
+    // {
+    //     path: '/DailyReport',
+    //     element: <DailyReport/>
+    // },
+    // {
+    //     path: '/DailyReports',
+    //     element: <ViewDailyReport/>
+    // },
+    // {
+    //     path: '/incidentReport',
+    //     element: <ViewIncidentReports/>
+    // },
     {
         path: '/',
         element: <Navigate to={`/app/dashboard`} replace={true}/>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Col, Container, Form, Row} from 'react-bootstrap';
-import companyLogo from '../images/loginlogo.jpeg'
-import '../css/login.css'
+import companyLogo from '../../images/loginlogo.jpeg'
+import '../../style/login.css'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import {toast} from "react-toastify";

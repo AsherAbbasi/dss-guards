@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react'
-import {Col, Container, Row} from 'react-bootstrap';
+import React, { useEffect } from 'react'
+import { Col, Container, Row } from 'react-bootstrap';
 import SideBar from './Shared-Components/Dashboard-Sidebar';
 import NavigationBar from './Shared-Components/Navbar'
-import "./css/style.css";
-import frontDesk from './images/front.png';
-import guard from './images/pic2.jpeg';
+import "../style/style.css";
+import frontDesk from '../images/front.png';
+import guard from '../images/pic2.jpeg';
 
 
 export default function Dashboard() {
@@ -13,10 +13,10 @@ export default function Dashboard() {
         <>
             <Container fluid={true}>
                 <Row>
-                    <NavigationBar/>
+                    <NavigationBar />
                 </Row>
                 <Row>
-                    <Col md={2}><SideBar/></Col>
+                    <Col md={2}><SideBar /></Col>
                     <Col>
                         <Row className='d-flex justify-content-center align-items-center'>
                             <Col>
@@ -37,15 +37,13 @@ export default function Dashboard() {
                         <Row>
                             <Col md={12} sm={12} className='d-flex justify-content-center' id="col">
                                 <div>
-                                <img src={frontDesk} id="dashboardImg"></img>
+                                    <img src={frontDesk} id="dashboardImg"></img>
                                 </div>
                                 <div>
-                                <img id="dashboardImg" src={guard}></img>
+                                    <img id="dashboardImg" src={guard}></img>
                                 </div>
                             </Col>
-
                         </Row>
-
                     </Col>
                 </Row>
             </Container>
