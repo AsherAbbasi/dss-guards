@@ -11,7 +11,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "dev": "react-scripts start",
     "build": "react-scripts build && rm -rf node_modules && npm install --only=production",
     "test": "react-scripts test",
