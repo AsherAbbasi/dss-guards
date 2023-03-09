@@ -1,6 +1,7 @@
 
-const express = require('express')
-const app = express()
+const express = require('express');
+const path = require("path");
+const app = express();
 
 // #############################################################################
 // This configures static hosting for files in /public that have the extensions
@@ -13,7 +14,15 @@ const options = {
     maxAge: '1m',
     redirect: false
 };
-app.use(express.static('build', options))
+app.use(express.static('build', options));
+
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'public/index.html'), function(err) {
+        if (err) {
+            res.status(500).send(err)
+        }
+    })
+})
 
 const port = process.env.PORT || 3000
 
