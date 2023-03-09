@@ -16,12 +16,8 @@ const options = {
 };
 app.use(express.static('build', options));
 
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'index.html'), function(err) {
-        if (err) {
-            res.status(500).send(err);
-        }
-    });
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 const port = process.env.PORT || 3000
